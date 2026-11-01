@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link, useLocation } from 'react-router';
-import { TAG_LABELS, TRAVEL_MINUTES, ZONE_LABELS } from '@cheongdo/shared';
+import { KIND_LABELS, TAG_LABELS, ZONE_LABELS, formatWeeklyHours } from '@cheongdo/shared';
 
 import { Button } from '../components/ui/Button.js';
 import { Chip } from '../components/ui/Chip.js';
@@ -12,21 +12,15 @@ import { useCourse, type CourseState } from '../hooks/useCourse.js';
 import { useSpot } from '../hooks/useSpot.js';
 import { ApiError } from '../lib/api.js';
 import { formatDuration } from '../lib/format.js';
-import { fromCourseSearchParams, toCourseUrl } from '../lib/query.js';
 
 export function SpotPage() {
   const location = useLocation();
   const state = useSpot();
   const fromQuery = new URLSearchParams(location.search).get('from');
   const hasCourse = fromQuery !== null;
-  const courseState = useCourse(hasCourse ? `?${fromQuery}` : '', hasCourse);
-  const courseUrl = hasCourse
-    ? toCourseUrl(fromCourseSearchParams(new URLSearchParams(fromQuery)))
-    : '/';
-  const courseStop =
-    state.status === 'success' && courseState.status === 'success'
-      ? courseState.data.stops.find((stop) => stop.spot.id === state.data.spot.id)
-      : undefined;
+  const courseSearch = hasCourse ? `?${fromQuery}` : '';
+  const courseState = useCourse(courseSearch, hasCourse);
+  const courseUrl = hasCourse ? `/course${courseSearch}` : '/';
   const [copied, setCopied] = useState(false);
   const [copyFailed, setCopyFailed] = useState(false);
   const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -67,7 +61,7 @@ export function SpotPage() {
     return (
       <Container>
         <NotFoundState
-          description="주소가 바뀌었거나 목록에서 빠진 장소예요. 관광지 목록에서 다른 장소를 찾아보세요."
+          description="주소가 바뀌었거나 목록에서 빠진 장소예요. 장소 목록에서 다른 장소를 찾아보세요."
           title="찾는 장소가 없어요"
         />
       </Container>
@@ -96,7 +90,7 @@ export function SpotPage() {
               /
             </span>
             <span aria-current="page" className="text-ink-3">
-              {state.status === 'success' ? state.data.spot.name : '관광지 상세'}
+              {state.status === 'success' ? state.data.spot.name : '장소 상세'}
             </span>
           </nav>
           <Link
@@ -111,7 +105,7 @@ export function SpotPage() {
       {state.status === 'loading' ? (
         <Container>
           <p className="py-16 text-center text-sm text-muted" role="status">
-            관광지 정보를 불러오고 있어요
+            장소 정보를 불러오고 있어요
           </p>
         </Container>
       ) : state.status === 'error' ? (
@@ -122,48 +116,56 @@ export function SpotPage() {
         <>
           <Container>
             <div className="relative h-[220px] overflow-hidden rounded-card bg-ink text-white sm:h-[360px]">
-              <svg
-                aria-hidden="true"
-                className="absolute inset-0 h-full w-full text-white"
-                fill="none"
-                preserveAspectRatio="xMidYMid slice"
-                viewBox="0 0 1200 360"
-              >
-                <path
-                  d="M170 360V242a430 430 0 0 1 860 0v118"
-                  opacity=".16"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M255 360V252a345 345 0 0 1 690 0v108"
-                  opacity=".22"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M345 360V263a255 255 0 0 1 510 0v97"
-                  opacity=".3"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M435 360V275a165 165 0 0 1 330 0v85"
-                  opacity=".4"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M520 360V290a80 80 0 0 1 160 0v70"
-                  opacity=".55"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
-              </svg>
-              {courseStop && (
-                <span className="absolute left-5 top-5 inline-flex min-h-11 items-center rounded-full border border-white/30 bg-ink px-4 text-xs font-medium text-white sm:left-7 sm:top-7">
-                  코스 {courseStop.order}번째 장소
-                </span>
+              {state.data.spot.images[0] ? (
+                <>
+                  <img
+                    alt={state.data.spot.images[0].alt}
+                    className="h-full w-full object-cover"
+                    src={state.data.spot.images[0].url}
+                  />
+                  <span className="absolute right-3 bottom-3 rounded bg-ink/75 px-2 py-1 text-xs text-white">
+                    {state.data.spot.images[0].credit}
+                  </span>
+                </>
+              ) : (
+                <svg
+                  aria-hidden="true"
+                  className="absolute inset-0 h-full w-full text-white"
+                  fill="none"
+                  preserveAspectRatio="xMidYMid slice"
+                  viewBox="0 0 1200 360"
+                >
+                  <path
+                    d="M170 360V242a430 430 0 0 1 860 0v118"
+                    opacity=".16"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M255 360V252a345 345 0 0 1 690 0v108"
+                    opacity=".22"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M345 360V263a255 255 0 0 1 510 0v97"
+                    opacity=".3"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M435 360V275a165 165 0 0 1 330 0v85"
+                    opacity=".4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M520 360V290a80 80 0 0 1 160 0v70"
+                    opacity=".55"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                </svg>
               )}
             </div>
           </Container>
@@ -171,6 +173,9 @@ export function SpotPage() {
           <Container className="py-8 sm:py-10">
             <section aria-labelledby="spot-title">
               <div className="flex flex-wrap gap-2">
+                <Chip className="bg-accent-soft text-accent-text">
+                  {KIND_LABELS[state.data.spot.kind]}
+                </Chip>
                 <Chip className="bg-accent-soft text-accent-text">
                   {ZONE_LABELS[state.data.spot.zone]}
                 </Chip>
@@ -199,7 +204,7 @@ export function SpotPage() {
                 </Button>
                 <a
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-line-strong bg-surface px-4 text-sm font-medium hover:bg-surface-2"
-                  href={`https://map.naver.com/p/search/${encodeURIComponent(state.data.spot.name)}`}
+                  href={`https://map.kakao.com/link/map/${encodeURIComponent(state.data.spot.name)},${state.data.spot.location.lat},${state.data.spot.location.lng}`}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -251,7 +256,7 @@ export function SpotPage() {
                 {state.data.nearby.length > 0 && (
                   <section aria-labelledby="nearby-heading">
                     <h2 className="text-xl font-semibold tracking-tight" id="nearby-heading">
-                      같은 권역의 장소
+                      가까운 관광지
                     </h2>
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
                       {state.data.nearby.map((nearby) => (
@@ -266,9 +271,20 @@ export function SpotPage() {
                             {nearby.summary}
                           </span>
                           <span className="mt-3 block text-xs text-muted">
-                            차로 약 {TRAVEL_MINUTES.sameZone}분 · 체류{' '}
-                            {formatDuration(nearby.stayMinutes)}
+                            체류 {formatDuration(nearby.stayMinutes)}
                           </span>
+                          {nearby.image && (
+                            <span className="mt-3 block">
+                              <img
+                                alt={nearby.image.alt}
+                                className="h-20 w-full rounded-lg object-cover"
+                                src={nearby.image.url}
+                              />
+                              <span className="mt-1 block text-xs text-muted">
+                                {nearby.image.credit}
+                              </span>
+                            </span>
+                          )}
                         </Link>
                       ))}
                     </div>
@@ -289,28 +305,48 @@ export function SpotPage() {
                       <p>{state.data.spot.address}</p>
                     </InfoRow>
                     <InfoRow label="운영시간">
-                      <p>평일 · {state.data.spot.hours?.weekday ?? '방문 전 확인'}</p>
-                      <p>주말 · {state.data.spot.hours?.weekend ?? '방문 전 확인'}</p>
-                      <p>안내 · {state.data.spot.hours?.note ?? '방문 전 확인'}</p>
+                      {formatWeeklyHours(state.data.spot.hours).map((line) => (
+                        <p key={line}>{line}</p>
+                      ))}
+                      {state.data.spot.hours.lastEntryBeforeCloseMinutes !== undefined && (
+                        <p>
+                          닫기 {state.data.spot.hours.lastEntryBeforeCloseMinutes}분 전 입장 마감
+                        </p>
+                      )}
                     </InfoRow>
-                    <InfoRow label="휴무일">{state.data.spot.closed ?? '방문 전 확인'}</InfoRow>
-                    <InfoRow label="입장료">{state.data.spot.fee ?? '방문 전 확인'}</InfoRow>
-                    <InfoRow label="권장 체류">
-                      {formatDuration(state.data.spot.stayMinutes)}
-                    </InfoRow>
-                    <InfoRow label="문의">{state.data.spot.phone ?? '방문 전 확인'}</InfoRow>
+                    {state.data.spot.hours.note && (
+                      <InfoRow label="안내">{state.data.spot.hours.note}</InfoRow>
+                    )}
+                    {state.data.spot.kind === 'restaurant' && state.data.spot.meals && (
+                      <InfoRow label="식사">
+                        {state.data.spot.meals
+                          .map((meal) => (meal === 'lunch' ? '점심' : '저녁'))
+                          .join(' · ')}
+                      </InfoRow>
+                    )}
+                    {state.data.spot.fee && <InfoRow label="요금">{state.data.spot.fee}</InfoRow>}
+                    {state.data.spot.phone && (
+                      <InfoRow label="전화">
+                        <a
+                          className="inline-flex min-h-11 items-center text-ink underline decoration-line-strong underline-offset-4"
+                          href={`tel:${state.data.spot.phone}`}
+                        >
+                          {state.data.spot.phone}
+                        </a>
+                      </InfoRow>
+                    )}
+                    <InfoRow label="체류">{formatDuration(state.data.spot.stayMinutes)}</InfoRow>
                   </dl>
                   <p className="mt-4 text-xs leading-5 text-muted">
-                    {state.data.spot.checkedAt
-                      ? `출처: ${state.data.spot.source} · ${state.data.spot.checkedAt} 기준. 방문 전 확인하세요.`
-                      : `출처: ${state.data.spot.source}. 운영 정보는 방문 전 확인하세요.`}
+                    출처: {state.data.spot.source} · {state.data.spot.checkedAt} 기준. 방문 전
+                    확인하세요.
                   </p>
                 </section>
                 {hasCourse && (
                   <CourseContext
                     courseState={courseState}
-                    courseSearch={`?${fromQuery}`}
                     courseUrl={courseUrl}
+                    from={fromQuery ?? ''}
                     spotId={state.data.spot.id}
                   />
                 )}
@@ -334,55 +370,24 @@ function InfoRow({ children, label }: { children: ReactNode; label: string }) {
 
 function CourseContext({
   courseState,
-  courseSearch,
   courseUrl,
+  from,
   spotId,
 }: {
   courseState: CourseState;
-  courseSearch: string;
   courseUrl: string;
+  from: string;
   spotId: string;
 }) {
-  const state = courseState;
+  if (courseState.status !== 'success') return null;
 
-  if (state.status === 'loading') {
-    return (
-      <section
-        aria-labelledby="spot-course-heading"
-        className="rounded-card border border-line p-5"
-      >
-        <h2 className="text-lg font-semibold" id="spot-course-heading">
-          이 코스에서
-        </h2>
-        <p className="mt-3 text-sm text-muted" role="status">
-          코스 정보를 불러오고 있어요
-        </p>
-      </section>
-    );
-  }
+  const items = courseState.data.items;
+  const itemIndex = items.findIndex((item) => item.spot.id === spotId);
+  const item = items[itemIndex];
+  if (!item) return null;
 
-  if (state.status === 'error') {
-    return (
-      <section
-        aria-labelledby="spot-course-heading"
-        className="rounded-card border border-line p-5"
-      >
-        <h2 className="text-lg font-semibold" id="spot-course-heading">
-          이 코스에서
-        </h2>
-        <p className="mt-3 text-sm text-muted" role="alert">
-          코스 정보를 불러오지 못했어요. {state.error.message}
-        </p>
-      </section>
-    );
-  }
-
-  const stopIndex = state.data.stops.findIndex((stop) => stop.spot.id === spotId);
-  const stop = state.data.stops[stopIndex];
-  if (!stop) return null;
-
-  const previous = state.data.stops[stopIndex - 1];
-  const next = state.data.stops[stopIndex + 1];
+  const previous = items[itemIndex - 1];
+  const next = items[itemIndex + 1];
 
   return (
     <section
@@ -393,27 +398,32 @@ function CourseContext({
         이 코스에서
       </h2>
       <p className="mt-2 text-sm text-muted">
-        코스 안 순번 {stop.order} / {state.data.stops.length}
+        하루 일정 {item.order} / {items.length}번째 · {item.arriveAt}–{item.leaveAt}
       </p>
       <div className="mt-3 space-y-2">
         {previous ? (
           <Link
-            className="flex min-h-11 items-center justify-between gap-3 rounded-lg border border-line bg-surface px-3 text-sm hover:bg-surface-2"
-            to={`/spots/${previous.spot.id}?from=${encodeURIComponent(courseSearch.slice(1))}`}
+            className="flex min-h-11 items-center justify-between gap-3 rounded-lg border border-line bg-surface px-3 py-2 text-sm hover:bg-surface-2"
+            to={`/spots/${previous.spot.id}?from=${encodeURIComponent(from)}`}
           >
-            <span>이전 · {previous.spot.name}</span>
-            <span className="shrink-0 text-xs text-muted">차로 약 {stop.travelMinutes}분</span>
+            <span className="min-w-0 break-words">이전 · {previous.spot.name}</span>
+            <Chip className="shrink-0">{KIND_LABELS[previous.spot.kind]}</Chip>
           </Link>
         ) : (
           <p className="text-sm text-muted">이전 장소 없음</p>
         )}
         {next ? (
           <Link
-            className="flex min-h-11 items-center justify-between gap-3 rounded-lg border border-line bg-surface px-3 text-sm hover:bg-surface-2"
-            to={`/spots/${next.spot.id}?from=${encodeURIComponent(courseSearch.slice(1))}`}
+            className="flex min-h-11 items-center justify-between gap-3 rounded-lg border border-line bg-surface px-3 py-2 text-sm hover:bg-surface-2"
+            to={`/spots/${next.spot.id}?from=${encodeURIComponent(from)}`}
           >
-            <span>다음 · {next.spot.name}</span>
-            <span className="shrink-0 text-xs text-muted">차로 약 {next.travelMinutes}분</span>
+            <span className="min-w-0 break-words">다음 · {next.spot.name}</span>
+            <span className="shrink-0 text-xs text-muted">
+              <span className="block text-right">
+                <Chip>{KIND_LABELS[next.spot.kind]}</Chip>
+              </span>
+              차로 약 {next.travelMinutes}분
+            </span>
           </Link>
         ) : (
           <p className="text-sm text-muted">다음 장소 없음</p>
@@ -433,7 +443,7 @@ function SpotError({ error }: { error: Error }) {
   return (
     <div className="py-16 text-center">
       <p className="text-sm text-muted" role="alert">
-        관광지를 불러오지 못했어요. {error.message}
+        장소를 불러오지 못했어요. {error.message}
       </p>
       <Link
         className="mt-6 inline-flex min-h-11 items-center rounded-lg bg-ink px-5 text-sm font-medium text-white hover:bg-ink-2"

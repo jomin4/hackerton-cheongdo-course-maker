@@ -242,6 +242,32 @@ const scenarios: Scenario[] = [
     },
     notices: [],
   },
+  {
+    name: 'S9 keeps dinner within the selected end time',
+    query: familyQuery('2026-11-07', '10:00', '18:30'),
+    items: [
+      ['visit', null, 's-temple', 0, 0, 0, '10:00', '10:40', 10, ['nature']],
+      ['visit', null, 's-forest', 10, 0, 2.2, '10:50', '11:50', 15, ['nature']],
+      ['meal', 'lunch', 'r-allday', 10, 0, 1.4, '12:00', '13:00', 0, []],
+      ['rest', null, 'c-near', 10, 0, 1.8, '13:10', '13:40', 0, []],
+      ['visit', null, 's-luge', 10, 0, 0.7, '13:50', '14:50', 15, ['experience']],
+      ['visit', null, 's-museum', 10, 0, 2.1, '15:00', '16:00', 5, []],
+      ['meal', 'dinner', 'r-break', 10, 80, 1.5, '17:30', '18:30', 0, []],
+    ],
+    excluded: [
+      ['s-lights', 'NOT_ENOUGH_TIME'],
+      ['s-tunnel', 'NOT_ENOUGH_TIME'],
+    ],
+    totals: {
+      visitCount: 4,
+      stayMinutes: 370,
+      travelMinutes: 60,
+      startAt: '10:00',
+      endAt: '18:30',
+      slackMinutes: 80,
+    },
+    notices: [],
+  },
 ];
 
 function itemValues(item: DayPlanItem): ExpectedItem {

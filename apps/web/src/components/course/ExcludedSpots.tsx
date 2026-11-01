@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import type { DayPlan } from '@cheongdo/shared';
 import { Link } from 'react-router';
 
 import { toCourseUrl } from '../../lib/query.js';
 
 export function ExcludedSpots({ plan }: { plan: DayPlan }) {
+  const [expanded, setExpanded] = useState(false);
   if (plan.excluded.length === 0) return null;
 
   const canExtend = plan.excluded.some(({ reason }) => reason === 'NOT_ENOUGH_TIME');
+  const visibleSpots = expanded ? plan.excluded : plan.excluded.slice(0, 5);
+  const remainingCount = plan.excluded.length - visibleSpots.length;
 
   return (
     <section
@@ -17,7 +21,7 @@ export function ExcludedSpots({ plan }: { plan: DayPlan }) {
         이번 일정에서 빠진 장소
       </h2>
       <ul className="mt-3 divide-y divide-line-soft">
-        {plan.excluded.map(({ spot, reason }) => (
+        {visibleSpots.map(({ spot, reason }) => (
           <li
             className="flex min-h-11 items-center justify-between gap-3 py-2 text-sm"
             key={spot.id}
@@ -29,6 +33,16 @@ export function ExcludedSpots({ plan }: { plan: DayPlan }) {
           </li>
         ))}
       </ul>
+      {plan.excluded.length > 5 && (
+        <button
+          aria-expanded={expanded}
+          className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-accent-text underline underline-offset-4"
+          onClick={() => setExpanded((isExpanded) => !isExpanded)}
+          type="button"
+        >
+          {expanded ? '접기' : `${remainingCount}곳 더 보기`}
+        </button>
+      )}
       {canExtend && plan.conditions.end < '21:00' && (
         <Link
           className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-accent-text underline underline-offset-4"
