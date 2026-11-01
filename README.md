@@ -1,6 +1,6 @@
 # 청도 코스 메이커
 
-여행 시간 · 동행 · 관심사 세 가지만 고르면, 시간 안에 돌 수 있는 청도 관광 코스를 방문 순서와 이동 시간까지 계산해 보여주는 웹 서비스.
+자가용으로 청도에 당일치기로 오는 사람이 방문 날짜 · 시작 · 끝 시각, 동행, 관심사를 고르면 그날 문을 연 곳만으로 관광 · 점심 · 쉬어 가기(카페) · 저녁 · 야간 관광을 도착 · 출발 시각과 차 이동 시간까지 적은 하루 일정으로 보여주는 웹 서비스. 장소는 청도군 안 43곳(관광 27 · 식당 8 · 카페 8)이고, 운영시간은 한국관광공사(TourAPI) · 청도군 · 장소 공식 자료로 확인해 요일별로 넣었다.
 
 > 2026 청도 바이브코딩 해커톤 대비 연습 프로젝트 · GitHub Copilot으로 구현 · Azure에 배포
 
@@ -48,6 +48,8 @@ npm run dev          # http://localhost:5173
 ## 진행 상황
 
 - [x] 기획 · 설계 · UI 디자인
-- [x] Copilot 구현 (프롬프트 01~09) — [review-log](docs/05-copilot/review-log.md)
-- [ ] Azure 배포 (런북 01~07)
+- [x] v1 Copilot 구현 (프롬프트 01~09) — 여행 시간 2 · 4 · 6시간 코스
+- [x] v2 하루 일정 설계 · 장소 데이터 확인 — [설계](docs/01-product/day-course-design.md) · [장소 데이터](docs/01-product/spots-data.md) · [ADR 0005](docs/00-overview/decisions/0005-day-plan-coordinates-hours.md)
+- [x] v2 Copilot CLI 구현 (프롬프트 10~16) — [review-log](docs/05-copilot/review-log.md)
+- [ ] Azure 배포 — 다음 단계. Terraform으로 소유자가 직접 실행
 - [ ] 모의 해커톤

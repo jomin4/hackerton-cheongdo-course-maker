@@ -4,10 +4,10 @@ import pino from 'pino';
 
 import { createApp } from '../../src/app.js';
 import { createInMemoryRepository } from '../../src/data/spot-repository.js';
-import { spots } from '../fixtures/spots.js';
+import { fixtureSpots } from '../fixtures/spots.js';
 
 const app = createApp({
-  spots: createInMemoryRepository(spots),
+  spots: createInMemoryRepository(fixtureSpots),
   version: 'test-version',
   logger: pino({ level: 'silent' }),
 });
@@ -19,7 +19,7 @@ describe('GET /api/health', () => {
     expect(response.body).toMatchObject({
       status: 'ok',
       version: 'test-version',
-      spots: spots.length,
+      spots: 11,
     });
     expect(response.body.uptimeSeconds).toEqual(expect.any(Number));
     expect(response.headers['cache-control']).toBe('no-store');

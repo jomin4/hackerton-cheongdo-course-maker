@@ -1,132 +1,3404 @@
 [
   {
-    "id": "rail-bike",
-    "name": "청도 레일바이크",
-    "summary": "레일 위를 달리며 청도의 풍경을 즐기는 체험 공간이에요.",
+    "id": "eupseong",
+    "kind": "spot",
+    "name": "청도읍성",
+    "summary": "조선 시대 돌로 다시 쌓은 읍성. 복원된 성벽과 성문을 따라 걷기 좋아요.",
     "description": [
-      "철길을 따라 움직이며 주변 풍경을 감상하는 체험형 관광지예요.",
-      "바깥 풍경을 즐기며 일행과 함께 여유로운 시간을 보낼 수 있어요."
+      "고을을 지키려고 쌓은 읍성으로, 임진왜란 직전에 흙성을 돌성으로 고쳐 쌓았어요. 한때 성벽 대부분이 헐렸지만 지금은 성문과 성벽 일부가 복원되어 옛 고을의 윤곽을 볼 수 있어요.",
+      "성벽 위와 성 둘레를 따라 산책로가 이어지고, 가까이에 석빙고와 향교가 있어 함께 둘러보기 좋아요."
     ],
     "tips": [
-      "야외에서 즐기는 활동에 맞춰 편안한 복장으로 방문해 보세요.",
-      "주변 풍경을 함께 둘러보며 여유롭게 일정을 계획해 보세요."
+      "석빙고까지 걸어서 몇 분 거리라 한 번에 묶어 보세요.",
+      "성벽 위는 그늘이 적어 한낮에는 모자를 챙기면 좋아요."
     ],
-    "zone": "cheongdo-eup",
-    "routeOrder": 1,
-    "tags": ["experience", "nature"],
-    "goodFor": ["couple", "family", "friends"],
-    "stayMinutes": 60,
-    "address": "경상북도 청도군 청도읍",
-    "source": "확인 전 임시 정보"
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.650809,
+      "lng": 128.706588
+    },
+    "tags": ["history", "photo"],
+    "goodFor": ["solo", "couple", "family", "friends"],
+    "stayMinutes": 50,
+    "address": "경상북도 청도군 화양읍 동상리",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준"
+    },
+    "fee": "무료",
+    "phone": "054-370-6062",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/51/4118451_image2_1.jpg",
+        "alt": "청도읍성 성벽 위 누각",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "1621437"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "seokbinggo",
+    "kind": "spot",
+    "name": "청도 석빙고",
+    "summary": "조선 숙종 때 만든 얼음 창고. 남아 있는 석빙고 가운데 가장 오래됐어요.",
+    "description": [
+      "겨울에 강에서 뜬 얼음을 여름까지 보관하던 돌 창고예요. 읍성 동문 밖 언덕에 반쯤 땅에 묻힌 모습으로 남아 있어요.",
+      "입구 옆 비석에 만든 해와 공사 내용이 새겨져 있어 지어진 때를 정확히 알 수 있는 드문 유적이에요."
+    ],
+    "tips": [
+      "천장이 무너져 아치 구조가 드러나 있어 안쪽 짜임을 보기 좋아요.",
+      "청도읍성과 함께 짧게 들러 보세요."
+    ],
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.6494,
+      "lng": 128.7084
+    },
+    "tags": ["history"],
+    "goodFor": ["solo", "couple", "family"],
+    "stayMinutes": 20,
+    "address": "경상북도 청도군 화양읍 동상리 119-3",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준"
+    },
+    "fee": "무료",
+    "phone": "054-370-6065",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/25/4118425_image2_1.jpg",
+        "alt": "청도 석빙고의 돌 아치 구조",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "250347"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "beomgok-dolmen",
+    "kind": "spot",
+    "name": "청도 범곡리 지석묘군",
+    "summary": "청동기 시대 고인돌이 여러 기 모여 있는 곳. 솔밭 사이로 천천히 둘러봐요.",
+    "description": [
+      "청동기 시대 지배층의 무덤으로 알려진 고인돌이 세 무리로 나뉘어 남아 있어요. 큰 덮개돌이 솔밭과 밭 사이에 놓인 모습이 이색적이에요.",
+      "규모는 작지만 청도에 사람이 오래전부터 모여 살았다는 흔적을 직접 볼 수 있어요."
+    ],
+    "tips": ["근처 카페와 묶어 짧게 들르기 좋아요."],
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.650197,
+      "lng": 128.730612
+    },
+    "tags": ["history"],
+    "goodFor": ["solo", "couple", "family"],
+    "stayMinutes": 20,
+    "address": "경상북도 청도군 화양읍 범곡리 507-5",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준"
+    },
+    "fee": "무료",
+    "phone": "054-370-6063",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/99/3531199_image2_1.jpg",
+        "alt": "풀밭에 놓인 범곡리 고인돌",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "1621432"
+    },
+    "checkedAt": "2026-10-31"
   },
   {
     "id": "yudeung-yeonji",
+    "kind": "spot",
     "name": "유등연지",
-    "summary": "물가와 자연 풍경을 천천히 감상할 수 있는 장소예요.",
+    "summary": "정자와 둘레길이 있는 연꽃 연못. 여름에는 연꽃이 연못을 가득 덮어요.",
     "description": [
-      "연못과 주변 자연 풍경을 함께 감상할 수 있는 휴식 공간이에요.",
-      "계절에 따라 달라지는 풍경을 바라보며 산책하기 좋아요."
+      "조선 선비가 연을 심고 정자를 지은 데서 시작된 연못으로, 청도 9경 가운데 하나예요. 연못가에 군자정이 남아 있어요.",
+      "연못을 한 바퀴 도는 둘레길이 있어 가볍게 산책하기 좋고, 계절마다 풍경이 달라져요."
     ],
-    "tips": [
-      "주변 풍경을 천천히 둘러볼 수 있도록 여유를 두고 방문해 보세요.",
-      "산책과 사진 촬영을 함께 즐겨 보세요."
-    ],
+    "tips": ["연꽃은 한여름에 가장 많이 피어요.", "정자 쪽에서 보는 연못 풍경이 사진 찍기 좋아요."],
     "zone": "hwayang-eup",
-    "routeOrder": 1,
+    "location": {
+      "lat": 35.674792,
+      "lng": 128.6942
+    },
     "tags": ["nature", "photo"],
     "goodFor": ["solo", "couple", "family"],
-    "stayMinutes": 30,
-    "address": "경상북도 청도군 화양읍",
-    "source": "확인 전 임시 정보"
+    "stayMinutes": 40,
+    "address": "경상북도 청도군 화양읍 연지로 207",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준"
+    },
+    "fee": "무료",
+    "phone": "054-370-6702",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/79/4007679_image2_1.jpg",
+        "alt": "꽃밭 너머 정자가 보이는 유등연지",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "1621347"
+    },
+    "checkedAt": "2026-10-31"
   },
   {
     "id": "wine-tunnel",
+    "kind": "spot",
     "name": "청도 와인터널",
-    "summary": "옛 철도 터널을 와인 저장고로 바꾼 곳. 청도 반시로 만든 감와인을 시음할 수 있어요.",
+    "summary": "옛 철도 터널을 와인 저장고로 바꾼 곳. 청도 반시로 만든 감와인을 맛볼 수 있어요.",
     "description": [
-      "대한제국 말기 경부선 철도를 놓으며 뚫었던 옛 터널을 와인 저장고로 바꾼 곳이에요. 벽돌과 돌로 쌓은 아치형 터널이 약 1km 이어지고, 안쪽은 1년 내내 서늘해 와인을 숙성하기에 알맞아요.",
-      "청도 특산물인 반시로 만든 감와인을 시음하고 구매할 수 있고, 조명이 켜진 터널 내부는 사진 명소로도 알려져 있어요."
+      "더 이상 기차가 다니지 않는 옛 터널을 감와인 숙성 창고로 꾸몄어요. 안쪽은 사계절 서늘한 온도가 유지돼 여름에도 시원해요.",
+      "씨 없는 청도 반시로 만든 감와인을 시음하고 살 수 있고, 조명이 켜진 터널 안이 사진 명소로도 알려져 있어요."
     ],
     "tips": [
-      "터널 안은 연중 서늘해요. 여름에도 얇은 겉옷을 챙기면 좋아요.",
-      "주말과 연휴에는 입구 주변 도로가 붐빌 수 있어요. 이른 시간 방문을 추천해요.",
-      "청도 프로방스, 청도읍성과 같은 화양읍 권역이라 한 코스로 묶기 좋아요."
+      "터널 안은 서늘하니 얇은 겉옷을 챙기세요.",
+      "운전자는 시음 대신 와인을 사 가는 걸 권해요."
     ],
     "zone": "hwayang-eup",
-    "routeOrder": 2,
-    "tags": ["experience", "food", "photo"],
-    "goodFor": ["couple", "family", "friends"],
-    "stayMinutes": 40,
-    "address": "경상북도 청도군 화양읍 송금길 100",
-    "hours": {
-      "weekday": "09:30-18:00",
-      "weekend": "09:30-19:00",
-      "note": "마감 15분 전까지 퇴장"
+    "location": {
+      "lat": 35.715134,
+      "lng": 128.720536
     },
-    "closed": "연중무휴",
-    "fee": "관람 무료 · 시음 별도",
+    "tags": ["food", "experience", "photo"],
+    "goodFor": ["couple", "family", "friends"],
+    "stayMinutes": 60,
+    "address": "경상북도 청도군 화양읍 송금길 85",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:30",
+            "close": "17:45"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:30",
+            "close": "17:45"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:30",
+            "close": "17:45"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:30",
+            "close": "17:45"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:30",
+            "close": "17:45"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:30",
+            "close": "18:45"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:30",
+            "close": "18:45"
+          }
+        ]
+      },
+      "note": "평일 18:00 · 주말 19:00에 닫고, 닫기 15분 전까지 나와야 해요 (일정은 퇴장 시각 기준)."
+    },
+    "fee": "무료",
     "phone": "054-371-1904",
+    "images": [],
     "source": "한국관광공사",
-    "checkedAt": "2026-08-18"
-  },
-  {
-    "id": "eupseong",
-    "name": "청도읍성",
-    "summary": "성곽을 따라 역사와 주변 풍경을 함께 살펴볼 수 있어요.",
-    "description": [
-      "성곽과 주변 풍경을 둘러보며 청도의 역사적 분위기를 느낄 수 있는 장소예요.",
-      "걷는 동안 전통적인 경관과 자연을 함께 감상할 수 있어요."
-    ],
-    "tips": [
-      "성곽 주변을 걸을 수 있도록 편안한 신발을 준비해 보세요.",
-      "풍경을 감상하며 천천히 둘러보는 일정을 추천해요."
-    ],
-    "zone": "hwayang-eup",
-    "routeOrder": 3,
-    "tags": ["history", "nature", "photo"],
-    "goodFor": ["solo", "couple", "family"],
-    "stayMinutes": 40,
-    "address": "경상북도 청도군 화양읍",
-    "source": "확인 전 임시 정보"
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2660803"
+    },
+    "checkedAt": "2026-10-31"
   },
   {
     "id": "provence",
+    "kind": "spot",
     "name": "청도 프로방스",
-    "summary": "테마 공간의 다채로운 분위기와 사진을 즐길 수 있어요.",
+    "summary": "해가 지면 불빛 정원이 켜지는 테마파크. 저녁 일정의 마무리로 좋아요.",
     "description": [
-      "테마 공간의 색감과 분위기를 둘러보며 다양한 장면을 만날 수 있어요.",
-      "일행과 함께 공간을 구경하고 추억을 남기기 좋은 장소예요."
+      "유럽 시골 마을처럼 꾸민 공원에 빛 조형물과 포토존이 이어져 있어요. 어두워진 뒤 조명이 켜지면 분위기가 가장 좋아요.",
+      "양궁장 · 거울미로 같은 체험 시설과 사계절 썰매장도 있어 아이와 함께 가기에도 좋아요."
     ],
     "tips": [
-      "공간을 둘러보며 사진 촬영을 즐겨 보세요.",
-      "운영 정보는 방문 전에 공식 안내를 확인해 주세요."
+      "조명은 해가 진 뒤에 봐야 제대로 보여요. 저녁 식사 뒤에 들르세요.",
+      "체험 시설은 공원보다 일찍 닫아요."
     ],
     "zone": "hwayang-eup",
-    "routeOrder": 4,
+    "location": {
+      "lat": 35.6841,
+      "lng": 128.718183
+    },
     "tags": ["photo", "experience"],
     "goodFor": ["couple", "family", "friends"],
-    "stayMinutes": 100,
-    "address": "경상북도 청도군 화양읍",
-    "source": "확인 전 임시 정보"
+    "stayMinutes": 90,
+    "address": "경상북도 청도군 화양읍 이슬미로 272-23",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "16:00",
+            "close": "22:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "16:00",
+            "close": "22:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "16:00",
+            "close": "22:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "16:00",
+            "close": "22:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "16:00",
+            "close": "22:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "15:00",
+            "close": "23:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "15:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "note": "가을 시즌 운영시간 기준이에요. 계절과 날씨에 따라 바뀌니 방문 전에 확인하세요."
+    },
+    "fee": "입장권 10,900원~12,900원 (시즌별)",
+    "phone": "054-372-5050",
+    "images": [],
+    "source": "청도 프로방스 공식 홈페이지",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2729992"
+    },
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "bullfight-media",
+    "kind": "spot",
+    "name": "청도소싸움미디어체험관",
+    "summary": "청도 소싸움을 영상과 체험으로 배우는 실내 체험관. 아이와 함께 가기 좋아요.",
+    "description": [
+      "청도를 대표하는 민속 소싸움의 역사와 문화를 미디어 전시로 소개하는 곳이에요. 4D 영상관과 몸으로 해 보는 체험 공간이 있어요.",
+      "실내라 날씨와 상관없이 둘러볼 수 있고, 유아 놀이 공간도 따로 있어요."
+    ],
+    "tips": ["비 오는 날 일정에 넣기 좋아요.", "소싸움경기장과 군파크루지가 바로 옆이에요."],
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.685225,
+      "lng": 128.724201
+    },
+    "tags": ["experience", "history"],
+    "goodFor": ["family", "friends"],
+    "stayMinutes": 60,
+    "address": "경상북도 청도군 화양읍 남성현로 346",
+    "hours": {
+      "days": {
+        "mon": [],
+        "tue": [
+          {
+            "open": "09:30",
+            "close": "17:30"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:30",
+            "close": "17:30"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:30",
+            "close": "17:30"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:30",
+            "close": "17:30"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:30",
+            "close": "17:30"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:30",
+            "close": "17:30"
+          }
+        ]
+      },
+      "lastEntryBeforeCloseMinutes": 30,
+      "note": "12월~2월은 17:00까지(입장 16:30) 운영해요. 1월 1일 · 설 · 추석 당일 휴관."
+    },
+    "fee": "일반 3,000원 · 청소년 · 어린이 2,000원",
+    "phone": "054-373-9612",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/42/4119442_image2_1.jpg",
+        "alt": "청도소싸움미디어체험관 건물 외관",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "3444315"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "gunpark-luge",
+    "kind": "spot",
+    "name": "군파크루지",
+    "summary": "숲속 긴 트랙을 썰매 카트로 내려오는 루지 체험장.",
+    "description": [
+      "산비탈 지형을 살린 긴 트랙을 바퀴 달린 썰매로 내려오는 체험 시설이에요. 직선과 곡선이 섞여 속도감이 있어요.",
+      "출발 지점에서 청도 풍경이 내려다보이고, 소싸움경기장 바로 뒤라 주변과 묶어 다니기 좋아요."
+    ],
+    "tips": [
+      "탑승 횟수별 이용권이라 일행과 몇 번 탈지 정하고 가세요.",
+      "어린이 탑승 기준은 현장에서 확인하세요."
+    ],
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.68683,
+      "lng": 128.726912
+    },
+    "tags": ["experience"],
+    "goodFor": ["couple", "family", "friends"],
+    "stayMinutes": 60,
+    "address": "경상북도 청도군 화양읍 남성현로 350-30",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [],
+        "thu": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ]
+      }
+    },
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2826337"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "nakdae-falls",
+    "kind": "spot",
+    "name": "낙대폭포",
+    "summary": "남산 중턱 계곡에 있는 30m 높이 폭포. 숲길을 따라 걸어 올라가요.",
+    "description": [
+      "청도 9경에 드는 폭포로, 바위 절벽 위에서 물줄기가 길게 떨어져요. 주변 계곡을 따라 숲이 울창해요.",
+      "폭포 입구에 쉼터가 있고, 폭포를 지나 남산으로 이어지는 등산로도 있어요."
+    ],
+    "tips": ["비가 온 뒤에 물줄기가 가장 시원해요.", "계곡 길이라 미끄럽지 않은 신발을 신으세요."],
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.635166,
+      "lng": 128.72519
+    },
+    "tags": ["nature"],
+    "goodFor": ["solo", "couple", "family", "friends"],
+    "stayMinutes": 60,
+    "address": "경상북도 청도군 화양읍 범곡리 산120",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준 (산길이라 해 지기 전에 내려오도록 17:00로 잡았어요)."
+    },
+    "fee": "무료",
+    "phone": "054-371-9282",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "4072338"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "darori-mural",
+    "kind": "spot",
+    "name": "다로리벽화마을",
+    "summary": "주민들의 이야기를 담은 벽화가 골목마다 이어진 마을.",
+    "description": [
+      "집집마다 그 집에 사는 사람의 이야기와 추억을 벽화로 그린 마을이에요. 그림마다 재치 있는 문구가 있어 읽는 재미가 있어요.",
+      "옛 남성현역 근처 골목을 천천히 걸으며 둘러보면 돼요."
+    ],
+    "tips": ["주민이 사는 마을이니 조용히 둘러봐 주세요.", "와인터널과 차로 몇 분 거리예요."],
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.704115,
+      "lng": 128.716393
+    },
+    "tags": ["photo"],
+    "goodFor": ["solo", "couple", "friends"],
+    "stayMinutes": 30,
+    "address": "경상북도 청도군 화양읍 다로리 426-9",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준"
+    },
+    "fee": "무료",
+    "phone": "054-371-9282",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/50/3572750_image2_1.JPG",
+        "alt": "다로리 마을 담장에 그려진 벽화",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2999867"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "yongam-spa",
+    "kind": "spot",
+    "name": "청도 용암온천",
+    "summary": "지하 깊은 암반에서 나오는 온천. 저녁에 하루 피로를 풀기 좋아요.",
+    "description": [
+      "땅속 1km 아래 암반에서 끌어올린 따뜻한 온천수를 쓰는 온천이에요. 대온천장과 노천탕, 수압 마사지를 하는 바데풀이 있어요.",
+      "저녁까지 운영해 하루 여행을 마무리하는 곳으로 좋아요."
+    ],
+    "tips": ["수건 등 준비물은 현장에서 확인하세요.", "토요일은 한 시간 더 늦게까지 열어요."],
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.688732,
+      "lng": 128.719043
+    },
+    "tags": ["experience"],
+    "goodFor": ["solo", "couple", "family", "friends"],
+    "stayMinutes": 90,
+    "address": "경상북도 청도군 화양읍 온천길 23",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "06:00",
+            "close": "20:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "06:00",
+            "close": "20:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "06:00",
+            "close": "20:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "06:00",
+            "close": "20:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "06:00",
+            "close": "20:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "06:00",
+            "close": "21:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "06:00",
+            "close": "20:00"
+          }
+        ]
+      }
+    },
+    "fee": "온천 15,000원",
+    "phone": "054-371-5500",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "126541"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "daejeoksa",
+    "kind": "spot",
+    "name": "대적사",
+    "summary": "와인터널 위쪽 산자락의 작은 절. 오래된 극락전이 남아 있어요.",
+    "description": [
+      "신라 때 토굴에서 시작했다고 전하는 절로, 임진왜란 뒤 다시 지어 지금 모습이 됐어요. 조선 중기 이후 지은 극락전이 중심이에요.",
+      "규모는 작지만 조용해서 잠시 쉬어 가기 좋아요."
+    ],
+    "tips": ["와인터널 바로 위라 함께 둘러보세요.", "수행 공간이니 조용히 관람해 주세요."],
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.715995,
+      "lng": 128.719745
+    },
+    "tags": ["history", "nature"],
+    "goodFor": ["solo", "couple"],
+    "stayMinutes": 30,
+    "address": "경상북도 청도군 화양읍 송금길 113",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준"
+    },
+    "phone": "054-373-1964",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/90/3572990_image2_1.JPG",
+        "alt": "대적사 극락전과 마당",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "300084"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "rail-bike",
+    "kind": "spot",
+    "name": "청도 레일바이크",
+    "summary": "청도천을 따라 놓인 순환 철길을 4인 레일바이크로 달려요.",
+    "description": [
+      "청도천 물길을 따라 도는 순환 선로를 레일바이크로 달리는 체험이에요. LED 터널과 장미 터널 같은 볼거리가 중간중간 있어요.",
+      "오르막은 자동 견인 장치가 있어 아이와 어르신도 함께 탈 수 있어요."
+    ],
+    "tips": ["휴무일이 달마다 달라 방문 전에 꼭 확인하세요.", "주말에는 예약하고 가는 게 좋아요."],
+    "zone": "cheongdo-eup",
+    "location": {
+      "lat": 35.5903,
+      "lng": 128.7634
+    },
+    "tags": ["experience", "nature"],
+    "goodFor": ["couple", "family", "friends"],
+    "stayMinutes": 60,
+    "address": "경상북도 청도군 청도읍 하지길 46-51",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ]
+      },
+      "note": "휴무일이 달마다 달라 일정 계산에는 반영하지 못했어요. 봄 · 가을 주말은 18:00까지 운영해요."
+    },
+    "phone": "054-373-2426",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/06/4017006_image2_1.jpg",
+        "alt": "레일 위로 이어진 색색의 아치",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2729978"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "yucheon-street",
+    "kind": "spot",
+    "name": "청도유천마을 근대거리",
+    "summary": "70~80년대 다방 · 약방 · 정미소가 남은 골목. 옛 장터 마을을 걸어 봐요.",
+    "description": [
+      "예전에 큰 장이 서던 유천마을의 옛 건물과 간판을 살려 근대거리로 꾸민 곳이에요. 오래된 정미소와 전파사, 다방 같은 건물이 이어져요.",
+      "그 시절 생활 모습을 그린 벽화도 골목 곳곳에 있어 산책하며 보기 좋아요."
+    ],
+    "tips": ["이호우 · 이영도 생가가 걸어서 몇 분 거리예요."],
+    "zone": "cheongdo-eup",
+    "location": {
+      "lat": 35.5706,
+      "lng": 128.773
+    },
+    "tags": ["history", "photo"],
+    "goodFor": ["solo", "couple", "family", "friends"],
+    "stayMinutes": 40,
+    "address": "경상북도 청도군 청도읍 내호리 276-63",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준"
+    },
+    "fee": "무료",
+    "phone": "054-371-9282",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/36/4118436_image2_1.jpg",
+        "alt": "유천마을 근대거리의 옛 건물",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "3036570"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "poet-house",
+    "kind": "spot",
+    "name": "청도 이호우와 이영도 생가",
+    "summary": "시조 시인 남매가 나고 자란 한옥. 근대거리와 함께 들러요.",
+    "description": [
+      "현대 시조를 대표하는 이호우 · 이영도 남매가 태어나 자란 집이에요. 1910년 무렵 지은 한옥으로 안채와 사랑채가 ㄱ자로 놓여 있어요.",
+      "마당에 두 시인의 작품을 소개하는 안내가 있어 짧게 둘러보기 좋아요."
+    ],
+    "tips": ["유천마을 근대거리와 같은 동네라 한 번에 둘러보세요."],
+    "zone": "cheongdo-eup",
+    "location": {
+      "lat": 35.5707,
+      "lng": 128.7721
+    },
+    "tags": ["history"],
+    "goodFor": ["solo", "couple"],
+    "stayMinutes": 20,
+    "address": "경상북도 청도군 청도읍 유천길 46",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준"
+    },
+    "fee": "무료",
+    "phone": "054-370-2063",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/58/4119458_image2_1.jpg",
+        "alt": "이호우와 이영도 생가 한옥 마루",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "3036448"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "jeokcheonsa",
+    "kind": "spot",
+    "name": "적천사",
+    "summary": "원효 대사가 수도했다고 전하는 산사. 큰 은행나무가 유명해요.",
+    "description": [
+      "신라 때 원효 대사가 수도하던 토굴에서 시작했다고 전하는 절이에요. 맞배지붕의 대웅전은 경상북도 문화유산이에요.",
+      "절 입구의 오래된 은행나무는 가을에 노랗게 물들어 특히 아름다워요."
+    ],
+    "tips": ["은행나무는 늦가을에 가장 보기 좋아요.", "산길을 올라가야 해서 운전에 조심하세요."],
+    "zone": "cheongdo-eup",
+    "location": {
+      "lat": 35.612974,
+      "lng": 128.738235
+    },
+    "tags": ["history", "nature"],
+    "goodFor": ["solo", "couple", "family"],
+    "stayMinutes": 40,
+    "address": "경상북도 청도군 청도읍 원동길 304",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준"
+    },
+    "phone": "054-373-0307",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/35/3572735_image2_1.jpg",
+        "alt": "적천사 대웅전 앞마당",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "479693"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "museum",
+    "kind": "spot",
+    "name": "청도박물관",
+    "summary": "폐교를 고쳐 만든 군립 박물관. 선사 시대부터 근대까지 청도 역사를 한눈에.",
+    "description": [
+      "문 닫은 초등학교를 고쳐 만든 박물관으로, 청도에서 나온 빗살무늬토기부터 고려청자, 조선 목판까지 시대별로 전시해요.",
+      "바깥 잔디 마당에서 전통 놀이를 해 볼 수 있어 아이와 함께 가기 좋아요."
+    ],
+    "tips": ["한국코미디타운이 바로 옆이에요.", "월요일이 공휴일이면 다음 평일에 쉬어요."],
+    "zone": "iseo-myeon",
+    "location": {
+      "lat": 35.69424,
+      "lng": 128.686525
+    },
+    "tags": ["history"],
+    "goodFor": ["solo", "family"],
+    "stayMinutes": 60,
+    "address": "경상북도 청도군 이서면 이서로 567",
+    "hours": {
+      "days": {
+        "mon": [],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "lastEntryBeforeCloseMinutes": 30,
+      "note": "1월 1일 · 설 · 추석 당일 휴관. 월요일이 공휴일이면 다음 평일 휴관."
+    },
+    "fee": "무료 (일부 기획전 유료)",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/38/4119438_image2_1.jpg",
+        "alt": "청도박물관 건물과 잔디 마당",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2753371"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "comedy-town",
+    "kind": "spot",
+    "name": "한국코미디타운",
+    "summary": "한국 코미디 100년을 전시와 체험으로 보는 곳. 주말에는 공연도 있어요.",
+    "description": [
+      "만담과 악극부터 방송 코미디까지 한국 코미디의 흐름을 다섯 개 전시 공간으로 소개해요. 직접 해 보는 체험 거리가 많아요.",
+      "주말 오후에는 대공연장에서 코미디 공연이 열려요."
+    ],
+    "tips": ["주말 공연은 14:00 · 16:00이에요.", "청도박물관과 같은 길에 있어요."],
+    "zone": "iseo-myeon",
+    "location": {
+      "lat": 35.693529,
+      "lng": 128.686208
+    },
+    "tags": ["experience"],
+    "goodFor": ["couple", "family", "friends"],
+    "stayMinutes": 60,
+    "address": "경상북도 청도군 이서면 이서로 565",
+    "hours": {
+      "days": {
+        "mon": [],
+        "tue": [
+          {
+            "open": "09:30",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:30",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:30",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:30",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:30",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:30",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "1월 1일 · 설 · 추석 당일 휴관."
+    },
+    "fee": "일반 5,000원 · 청소년 · 어린이 4,000원",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2753376"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "forest-gakbuk",
+    "kind": "spot",
+    "name": "청도자연휴양림",
+    "summary": "비슬산 자락의 새 휴양림. 숲속 둘레길을 걸으며 쉬어 가요.",
+    "description": [
+      "비슬산 아래 각북면에 문을 연 비교적 새 휴양림이에요. 깨끗한 시설과 숲길이 있어 가볍게 걷기 좋아요.",
+      "숙박 시설도 있지만 낮에 들러 산책만 하고 가도 충분해요."
+    ],
+    "tips": ["둘레길은 편한 운동화를 신고 걸으세요.", "카페월든이 가까워요."],
+    "zone": "gakbuk-myeon",
+    "location": {
+      "lat": 35.710794,
+      "lng": 128.548751
+    },
+    "tags": ["nature"],
+    "goodFor": ["solo", "couple", "family"],
+    "stayMinutes": 90,
+    "address": "경상북도 청도군 각북면 비슬산길 111-25",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "화요일 휴무지만 성수기와 공휴일에는 문을 열어요."
+    },
+    "phone": "054-371-9200",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "3507139"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "seongsuwol",
+    "kind": "spot",
+    "name": "청도 성수월마을",
+    "summary": "성곡댐 둘레를 자전거로 달리는 체험 마을. 한적한 시골 풍경이 매력이에요.",
+    "description": [
+      "성곡댐 주변 길을 자전거로 도는 코스가 알려진 체험 마을이에요. 댐 물가와 들판이 이어지는 한적한 풍경을 즐길 수 있어요.",
+      "마을 체험센터에서 청도 미나리를 쓴 음식을 맛볼 수도 있어요."
+    ],
+    "tips": ["자전거 코스는 평지가 많아 가족도 탈 만해요."],
+    "zone": "punggak-myeon",
+    "location": {
+      "lat": 35.660527,
+      "lng": 128.583675
+    },
+    "tags": ["nature", "experience"],
+    "goodFor": ["couple", "family", "friends"],
+    "stayMinutes": 90,
+    "address": "경상북도 청도군 풍각면 장기길 7",
+    "hours": {
+      "days": {
+        "mon": [],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      }
+    },
+    "phone": "010-2102-0058",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/27/3572727_image2_1.jpg",
+        "alt": "성수월마을 체험센터 건물",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2002505"
+    },
+    "checkedAt": "2026-10-31"
   },
   {
     "id": "unmunsa",
+    "kind": "spot",
     "name": "운문사",
-    "summary": "사찰의 고즈넉한 분위기와 자연을 함께 느낄 수 있어요.",
+    "summary": "신라 때 세운 천년 고찰이자 국내 최대 비구니 승가대학이 있는 절.",
     "description": [
-      "사찰의 공간과 주변 자연을 함께 살펴볼 수 있는 장소예요.",
-      "차분한 분위기 속에서 여유롭게 둘러보며 마음을 쉬어 갈 수 있어요."
+      "신라 진흥왕 때 처음 세웠다고 전하는 절로, 원광법사가 다시 일으키며 세속오계를 내린 곳으로 알려져 화랑 정신과도 이어져 있어요.",
+      "지금은 전국에서 가장 큰 비구니 승가대학이 있는 수행 도량이에요. 넓은 경내와 소나무 숲길이 아름다워 청도 9경에 꼽혀요."
     ],
     "tips": [
-      "조용한 분위기를 배려하며 천천히 둘러봐 주세요.",
-      "사찰과 자연 경관을 함께 즐길 수 있도록 여유를 두고 방문해 보세요."
+      "매표소 입구부터 절까지 솔숲 길을 걸어 보세요.",
+      "수행 공간이 많으니 출입 제한 표시를 지켜 주세요."
     ],
     "zone": "unmun-myeon",
-    "routeOrder": 1,
-    "tags": ["history", "nature"],
+    "location": {
+      "lat": 35.6618,
+      "lng": 128.9605
+    },
+    "tags": ["history", "nature", "photo"],
+    "goodFor": ["solo", "couple", "family", "friends"],
+    "stayMinutes": 90,
+    "address": "경상북도 청도군 운문면 운문사길 264",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "관람시간이 공식 자료에 없어 추천 관람 시간 기준으로 넣었어요."
+    },
+    "phone": "054-372-8800",
+    "images": [],
+    "source": "청도군 문화관광 (청도관광 9경)",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "skytrail",
+    "kind": "spot",
+    "name": "청도신화랑풍류마을 스카이트레일",
+    "summary": "4층 높이 구조물에서 줄을 매고 건너는 공중 체험 코스.",
+    "description": [
+      "여러 층으로 쌓은 구조물 위에서 안전줄을 매고 다리와 줄을 건너는 공중 체험 시설이에요. 어른 · 청소년 코스와 유아 코스가 따로 있어요.",
+      "신화랑풍류마을 안에 있어 마을 전시와 함께 즐기기 좋아요."
+    ],
+    "tips": ["움직이기 편한 옷과 운동화를 신으세요.", "주말은 평일보다 일찍 닫아요."],
+    "zone": "unmun-myeon",
+    "location": {
+      "lat": 35.718749,
+      "lng": 128.92073
+    },
+    "tags": ["experience"],
+    "goodFor": ["family", "friends"],
+    "stayMinutes": 120,
+    "address": "경상북도 청도군 운문면 신화랑길 1",
+    "hours": {
+      "days": {
+        "mon": [],
+        "tue": [
+          {
+            "open": "09:30",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:30",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:30",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:30",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:30",
+            "close": "17:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:30",
+            "close": "17:00"
+          }
+        ]
+      },
+      "note": "1월 1일 · 설 · 추석 당일 휴무."
+    },
+    "fee": "성인 20,000원 · 청소년 18,000원 · 유아 10,000원",
+    "phone": "054-370-7300",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/80/4066080_image2_1.jpg",
+        "alt": "스카이트레일 철골 체험 구조물",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "3401600"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "hwarang-village",
+    "kind": "spot",
+    "name": "청도신화랑풍류마을",
+    "summary": "화랑 정신을 주제로 한 문화 단지. 전시와 활쏘기 체험이 있어요.",
+    "description": [
+      "화랑의 정신과 문화를 주제로 만든 복합 문화 단지예요. 전시관과 명상실, 체험 교육실이 있어요.",
+      "실제 과녁에 활을 쏘아 보는 궁도장이 있어 신라 화랑이 된 기분을 느껴 볼 수 있어요."
+    ],
+    "tips": ["12:00~13:00은 점심 휴게 시간이에요.", "스카이트레일과 같은 단지에 있어요."],
+    "zone": "unmun-myeon",
+    "location": {
+      "lat": 35.718118,
+      "lng": 128.922335
+    },
+    "tags": ["history", "experience"],
+    "goodFor": ["family", "friends"],
+    "stayMinutes": 60,
+    "address": "경상북도 청도군 운문면 신화랑길 1",
+    "hours": {
+      "days": {
+        "mon": [],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "12:00"
+          },
+          {
+            "open": "13:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "12:00"
+          },
+          {
+            "open": "13:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "12:00"
+          },
+          {
+            "open": "13:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "12:00"
+          },
+          {
+            "open": "13:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "12:00"
+          },
+          {
+            "open": "13:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "12:00"
+          },
+          {
+            "open": "13:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "1월 1일 · 설 · 추석 당일 휴무."
+    },
+    "phone": "054-370-7300",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2663350"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "unmun-lake",
+    "kind": "spot",
+    "name": "운문댐 · 운문호",
+    "summary": "산과 구름을 담은 넓은 호수. 호숫가 길을 따라 드라이브하기 좋아요.",
+    "description": [
+      "운문댐이 생기며 만들어진 넓은 호수로, 굽은 호숫가 길을 따라 풍경이 계속 바뀌어요.",
+      "호수를 따라 긴 둘레길이 있고, 댐이 생기며 물에 잠긴 마을의 이야기도 함께 전해져요."
+    ],
+    "tips": [
+      "전망 좋은 곳에 잠깐 차를 세우고 사진을 찍어 보세요.",
+      "운문사 가는 길에 들르기 좋아요."
+    ],
+    "zone": "unmun-myeon",
+    "location": {
+      "lat": 35.728795,
+      "lng": 128.926737
+    },
+    "tags": ["nature", "photo"],
     "goodFor": ["solo", "couple", "family"],
-    "stayMinutes": 80,
+    "stayMinutes": 40,
     "address": "경상북도 청도군 운문면",
-    "source": "확인 전 임시 정보"
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준"
+    },
+    "phone": "054-370-6114",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/52/3572752_image2_1.JPG",
+        "alt": "산 사이로 펼쳐진 운문호",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "126555"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "samgye-valley",
+    "kind": "spot",
+    "name": "삼계리계곡",
+    "summary": "세 줄기 계곡이 만나는 맑은 계곡. 바위와 숲이 어우러져요.",
+    "description": [
+      "세 갈래 계곡이 모여 삼계라는 이름이 붙었어요. 도로에서 조금만 내려가면 크고 작은 바위와 숲 사이로 맑은 물이 흘러요.",
+      "여름 물놀이로 많이 찾지만 다른 계절에도 계곡 산책을 즐기기 좋아요."
+    ],
+    "tips": ["물가 바위는 미끄러우니 조심하세요."],
+    "zone": "unmun-myeon",
+    "location": {
+      "lat": 35.672354,
+      "lng": 129.001418
+    },
+    "tags": ["nature"],
+    "goodFor": ["couple", "family", "friends"],
+    "stayMinutes": 60,
+    "address": "경상북도 청도군 운문면 신원리 1809",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "17:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준 (계곡이라 해 지기 전 17:00로 잡았어요)."
+    },
+    "fee": "무료",
+    "phone": "054-370-6707",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2753964"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "samjokdae",
+    "kind": "spot",
+    "name": "청도 삼족대",
+    "summary": "동창천을 내려다보는 조선 선비의 정자. 조용히 강 풍경을 보기 좋아요.",
+    "description": [
+      "조선 문인 김대유가 벼슬을 내려놓고 제자를 가르치며 지내려고 지은 별장이에요. 벼슬과 먹을 것과 수명에 모두 만족한다는 뜻에서 삼족이라 이름 지었어요.",
+      "강 쪽으로 튀어나온 언덕에 있어 동창천 물줄기가 내려다보여요."
+    ],
+    "tips": ["운문 쪽으로 가는 길에 잠깐 들르기 좋아요."],
+    "zone": "maejeon-myeon",
+    "location": {
+      "lat": 35.674943,
+      "lng": 128.867148
+    },
+    "tags": ["history", "nature"],
+    "goodFor": ["solo", "couple"],
+    "stayMinutes": 30,
+    "address": "경상북도 청도군 매전면 청려로 3836-15",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준"
+    },
+    "fee": "무료",
+    "phone": "054-370-6063",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "3036416"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "daebisa",
+    "kind": "spot",
+    "name": "대비사",
+    "summary": "운문사와 함께 세워진 다섯 절 가운데 하나. 산속 조용한 절이에요.",
+    "description": [
+      "신라 때 운문사를 중심으로 세운 다섯 절 가운데 하나에서 시작했다고 전하는 절이에요. 고려 때 지금 자리로 옮겼어요.",
+      "산 깊숙이 있어 찾는 사람이 적고 고요해요."
+    ],
+    "tips": ["길이 좁은 구간이 있어 천천히 운전하세요."],
+    "zone": "geumcheon-myeon",
+    "location": {
+      "lat": 35.656231,
+      "lng": 128.9364
+    },
+    "tags": ["history", "nature"],
+    "goodFor": ["solo", "couple"],
+    "stayMinutes": 40,
+    "address": "경상북도 청도군 금천면 박곡길 590",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "note": "상시 개방 · 추천 관람 시간 기준"
+    },
+    "phone": "054-372-3876",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/14/3573014_image2_1.JPG",
+        "alt": "산속에 자리한 대비사 경내",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "299997"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "uiseong-chueotang",
+    "kind": "restaurant",
+    "name": "의성식당",
+    "summary": "시래기를 듬뿍 넣은 추어탕 한 가지만 내는 오래된 식당.",
+    "description": [
+      "추어탕 한 메뉴만 파는 집으로, 시래기를 넉넉히 넣어 맛이 구수하고 담백해요.",
+      "아침 일찍 문을 열어 이른 출발 때 아침을 먹기에도 좋아요."
+    ],
+    "tips": ["주말에는 아침 7시 40분부터 열어요."],
+    "zone": "cheongdo-eup",
+    "location": {
+      "lat": 35.640878,
+      "lng": 128.746012
+    },
+    "tags": [],
+    "goodFor": ["solo", "couple", "family", "friends"],
+    "stayMinutes": 60,
+    "meals": ["lunch", "dinner"],
+    "address": "경상북도 청도군 청도읍 청화로 202-3",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "19:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "09:00",
+            "close": "19:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "19:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "19:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "19:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "07:40",
+            "close": "19:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "07:40",
+            "close": "19:00"
+          }
+        ]
+      }
+    },
+    "phone": "054-371-2349",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "765447"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "chilseong-farm",
+    "kind": "restaurant",
+    "name": "칠성농장식육식당",
+    "summary": "한우를 넣고 얼큰하게 끓인 소찌개로 알려진 한우 식당.",
+    "description": [
+      "한우와 콩나물, 두부, 당면을 넣고 끓인 소찌개가 대표 메뉴예요. 불고기전골과 곱창전골, 한우 구이도 있어요.",
+      "자리가 넓고 주차장이 있어 가족 단위로 가기 편해요."
+    ],
+    "tips": ["15:00~17:00은 준비 시간이에요."],
+    "zone": "cheongdo-eup",
+    "location": {
+      "lat": 35.650286,
+      "lng": 128.745283
+    },
+    "tags": [],
+    "goodFor": ["couple", "family", "friends"],
+    "stayMinutes": 60,
+    "meals": ["lunch", "dinner"],
+    "address": "경상북도 청도군 청도신기길 84-1",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "lastEntryBeforeCloseMinutes": 30,
+      "note": "매월 셋째 화요일 휴무 (일정 계산에는 반영하지 못했어요)."
+    },
+    "phone": "054-373-7588",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2900327"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "hanjae-minari",
+    "kind": "restaurant",
+    "name": "한재 참 미나리 식육식당",
+    "summary": "청도 한재미나리를 삼겹살과 함께 즐기는 식당. 미나리철에 특히 붐벼요.",
+    "description": [
+      "청도 특산물인 한재미나리를 생삼겹살에 곁들여 먹는 미나리 삼겹살이 대표예요. 미나리 비빔밥과 알밥도 있어요.",
+      "미나리가 나지 않는 여름에는 오리와 백숙 같은 보양 메뉴를 내요."
+    ],
+    "tips": ["미나리 메뉴는 늦가을부터 봄까지 즐길 수 있어요."],
+    "zone": "cheongdo-eup",
+    "location": {
+      "lat": 35.584569,
+      "lng": 128.744913
+    },
+    "tags": [],
+    "goodFor": ["couple", "family", "friends"],
+    "stayMinutes": 60,
+    "meals": ["lunch", "dinner"],
+    "address": "경상북도 청도군 청도읍 한재로 225-7",
+    "hours": {
+      "days": {
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": [
+          {
+            "open": "10:00",
+            "close": "20:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "10:00",
+            "close": "20:00"
+          }
+        ]
+      },
+      "lastEntryBeforeCloseMinutes": 60,
+      "note": "5월~12월은 주말에만 열고, 1월~4월 미나리철에는 매일 열어요 (지금은 주말 기준)."
+    },
+    "phone": "054-373-2866",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2000403"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "cheongdo-hanwoo",
+    "kind": "restaurant",
+    "name": "청도참한우식육식당",
+    "summary": "소의 고장 청도에서 국내산 한우를 돌판에 구워 먹는 식당.",
+    "description": [
+      "국내산 한우만 쓰는 고깃집으로, 여러 부위를 모은 스페셜 메뉴와 꽃등심, 육회가 인기예요.",
+      "식사 메뉴로 육회비빔밥과 불고기전골, 된장찌개도 있어요."
+    ],
+    "tips": ["평일에는 15:00~17:00 쉬는 시간이 있어요.", "수요일은 쉬어요."],
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.668413,
+      "lng": 128.745395
+    },
+    "tags": [],
+    "goodFor": ["couple", "family", "friends"],
+    "stayMinutes": 60,
+    "meals": ["lunch", "dinner"],
+    "address": "경상북도 청도군 화양읍 남성현로 57",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "wed": [],
+        "thu": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "11:30",
+            "close": "21:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "11:30",
+            "close": "20:00"
+          }
+        ]
+      }
+    },
+    "phone": "054-373-9898",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "1828198"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "byeokodong",
+    "kind": "restaurant",
+    "name": "벽오동",
+    "summary": "읍성 가까이에 있는 깔끔한 한우 전문점. 갈비탕 같은 식사 메뉴도 있어요.",
+    "description": [
+      "한우 여러 부위를 모은 스페셜 메뉴가 대표이고, 갈비탕과 불고기 같은 식사 메뉴도 있어요.",
+      "단체석과 룸이 있어 가족 모임에도 좋아요."
+    ],
+    "tips": ["월요일은 쉬어요."],
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.652833,
+      "lng": 128.707184
+    },
+    "tags": [],
+    "goodFor": ["couple", "family", "friends"],
+    "stayMinutes": 60,
+    "meals": ["lunch", "dinner"],
+    "address": "경상북도 청도군 청려로 1724",
+    "hours": {
+      "days": {
+        "mon": [],
+        "tue": [
+          {
+            "open": "11:30",
+            "close": "21:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "11:30",
+            "close": "21:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "11:30",
+            "close": "21:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "11:30",
+            "close": "21:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "11:30",
+            "close": "21:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "11:30",
+            "close": "21:00"
+          }
+        ]
+      },
+      "lastEntryBeforeCloseMinutes": 60
+    },
+    "phone": "0507-1482-2351",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2832797"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "kkukkune",
+    "kind": "restaurant",
+    "name": "꾸꾸네",
+    "summary": "청도 버섯으로 만든 페스토 요리와 디저트를 내는 청년 식당.",
+    "description": [
+      "지역 청년들이 운영하는 곳으로, 청도 버섯으로 만든 페스토와 쌈장을 활용한 식사와 디저트를 내요.",
+      "농촌 체험 프로그램도 함께 운영해요."
+    ],
+    "tips": ["화요일은 쉬어요."],
+    "zone": "unmun-myeon",
+    "location": {
+      "lat": 35.683831,
+      "lng": 128.961277
+    },
+    "tags": [],
+    "goodFor": ["solo", "couple", "family", "friends"],
+    "stayMinutes": 60,
+    "meals": ["lunch", "dinner"],
+    "address": "경상북도 청도군 운문면 운문로 1551",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "09:00",
+            "close": "20:00"
+          }
+        ],
+        "tue": [],
+        "wed": [
+          {
+            "open": "09:00",
+            "close": "20:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "09:00",
+            "close": "20:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "09:00",
+            "close": "20:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "09:00",
+            "close": "20:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "09:00",
+            "close": "20:00"
+          }
+        ]
+      }
+    },
+    "phone": "054-371-6365",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/99/3353599_image2_1.jpg",
+        "alt": "꾸꾸네 버섯 페스토 상품 진열대",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "3353714"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "sanyuhwa",
+    "kind": "restaurant",
+    "name": "산유화",
+    "summary": "운문사 앞 먹거리촌의 식당. 잡어매운탕과 미나리생삼겹살을 내요.",
+    "description": [
+      "운문사 들어가는 길의 토속 먹거리촌에 있는 식당이에요. 민물고기로 끓인 잡어매운탕과 미나리생삼겹살이 대표예요.",
+      "아침 일찍부터 밤까지 열어 운문사 일정 앞뒤로 들르기 좋아요."
+    ],
+    "tips": ["운문사까지 차로 몇 분 거리예요."],
+    "zone": "unmun-myeon",
+    "location": {
+      "lat": 35.6729,
+      "lng": 128.9579
+    },
+    "tags": [],
+    "goodFor": ["couple", "family", "friends"],
+    "stayMinutes": 60,
+    "meals": ["lunch", "dinner"],
+    "address": "경상북도 청도군 운문면 운문사길 125",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "08:00",
+            "close": "21:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "08:00",
+            "close": "21:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "08:00",
+            "close": "21:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "08:00",
+            "close": "21:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "08:00",
+            "close": "21:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "08:00",
+            "close": "21:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "08:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "note": "휴무일은 공식 자료에 없어요. 방문 전에 전화로 확인하세요."
+    },
+    "phone": "054-373-6030",
+    "images": [],
+    "source": "청도군 맛나들이 (운문토속먹거리촌)",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "tula-unmun",
+    "kind": "restaurant",
+    "name": "툴라운문점",
+    "summary": "운문사 앞 먹거리촌에서 독일 가정식을 내는 식당.",
+    "description": [
+      "운문사 앞 먹거리촌에 있는 독일 가정식 식당이에요. 한식 위주인 운문 쪽에서 색다른 식사를 하고 싶을 때 좋아요."
+    ],
+    "tips": ["15:30~17:00은 쉬는 시간이에요."],
+    "zone": "unmun-myeon",
+    "location": {
+      "lat": 35.6725,
+      "lng": 128.9585
+    },
+    "tags": [],
+    "goodFor": ["couple", "family", "friends"],
+    "stayMinutes": 60,
+    "meals": ["lunch", "dinner"],
+    "address": "경상북도 청도군 운문면 운문사길 129-9",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "11:30",
+            "close": "15:30"
+          },
+          {
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "11:30",
+            "close": "15:30"
+          },
+          {
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "11:30",
+            "close": "15:30"
+          },
+          {
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "11:30",
+            "close": "15:30"
+          },
+          {
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "11:30",
+            "close": "15:30"
+          },
+          {
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "11:30",
+            "close": "15:30"
+          },
+          {
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "11:30",
+            "close": "15:30"
+          },
+          {
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ]
+      },
+      "note": "휴무일은 공식 자료에 없어요. 방문 전에 전화로 확인하세요."
+    },
+    "phone": "054-372-8410",
+    "images": [],
+    "source": "청도군 맛나들이 (운문토속먹거리촌)",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "painos",
+    "kind": "cafe",
+    "name": "파이노스",
+    "summary": "소나무 숲에 둘러싸인 3층 카페. 연지커피와 한재푸딩이 대표예요.",
+    "description": [
+      "소나무 숲 옆에 3층으로 넓게 지은 카페예요. 청도 특산물을 활용한 연지커피와 한재푸딩을 맛볼 수 있어요.",
+      "자리가 넉넉해 식사 뒤 느긋하게 쉬어 가기 좋아요."
+    ],
+    "tips": ["범곡리 고인돌과 가까워요."],
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.655347,
+      "lng": 128.734368
+    },
+    "tags": [],
+    "goodFor": ["solo", "couple", "family", "friends"],
+    "stayMinutes": 40,
+    "address": "경상북도 청도군 화양읍 산성강변길 432",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "wed": [],
+        "thu": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "lastEntryBeforeCloseMinutes": 60,
+      "note": "격주 수요일 휴무라 수요일은 일정에서 빼요."
+    },
+    "phone": "054-371-9237",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/79/3454879_image2_1.jpg",
+        "alt": "파이노스 실내 좌석",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "3457040"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "objeto",
+    "kind": "cafe",
+    "name": "오브제토",
+    "summary": "직접 구운 빵과 브런치로 알려진 카페. 유등연지에서 가까워요.",
+    "description": [
+      "베이커리에서 직접 구운 빵과 파스타, 스테이크 같은 브런치를 내는 카페예요. 청도 미나리로 만든 페스토 파스타도 있어요.",
+      "2층 야외 정원 자리가 좋아요."
+    ],
+    "tips": ["브런치는 18:00에 주문을 마감해요."],
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.680461,
+      "lng": 128.69841
+    },
+    "tags": [],
+    "goodFor": ["solo", "couple", "family", "friends"],
+    "stayMinutes": 40,
+    "address": "경상북도 청도군 이슬미로 61-7",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "tue": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "wed": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "thu": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "fri": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "sat": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "sun": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ]
+      },
+      "lastEntryBeforeCloseMinutes": 30
+    },
+    "phone": "054-371-7277",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/75/3446875_image2_1.jpg",
+        "alt": "오브제토 건물 외관",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2832850"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "ohmybook",
+    "kind": "cafe",
+    "name": "오마이북",
+    "summary": "시골 계곡 옆 작은 마을의 북카페. 책과 함께 쉬어 가요.",
+    "description": [
+      "계곡 옆 조용한 마을에 있는 북카페로, 책을 읽으며 음료를 즐길 수 있어요. 흑임자카페라떼가 대표 메뉴예요.",
+      "넓은 실내와 야외 자리가 있어요."
+    ],
+    "tips": ["청도읍성에서 차로 가까워요."],
+    "zone": "hwayang-eup",
+    "location": {
+      "lat": 35.646811,
+      "lng": 128.711756
+    },
+    "tags": [],
+    "goodFor": ["solo", "couple", "family"],
+    "stayMinutes": 40,
+    "address": "경상북도 청도군 화양읍 동천3길 67",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ]
+      }
+    },
+    "phone": "054-371-3030",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2736716"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "orvieto",
+    "kind": "cafe",
+    "name": "오르비에토",
+    "summary": "전망 좋은 언덕의 카페 겸 레스토랑. 밤 10시까지 열어요.",
+    "description": [
+      "청도 시내가 내려다보이는 언덕에 있는 카페 겸 레스토랑이에요. 커피와 디저트, 미나리불고기파스타 같은 식사도 있어요.",
+      "늦게까지 열어 저녁 뒤에 들르기도 좋아요."
+    ],
+    "tips": ["평일 15:00~17:00은 브런치 쉬는 시간이에요 (음료는 주문 가능)."],
+    "zone": "cheongdo-eup",
+    "location": {
+      "lat": 35.634822,
+      "lng": 128.74807
+    },
+    "tags": [],
+    "goodFor": ["solo", "couple", "family", "friends"],
+    "stayMinutes": 40,
+    "address": "경상북도 청도군 청도읍 고수산복길 176",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ]
+      }
+    },
+    "phone": "0507-1417-8869",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/31/3446931_image2_1.jpg",
+        "alt": "빨간 벽의 오르비에토 외관",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "3446972"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "wonri73",
+    "kind": "cafe",
+    "name": "원리73",
+    "summary": "청도천이 보이는 베이커리 카페. 반시슈페너와 소금빵이 인기예요.",
+    "description": [
+      "모든 자리에서 강이 보이는 베이커리 카페예요. 파티시에가 구운 소금빵과 크루아상, 브런치 메뉴가 있어요.",
+      "반려동물과 함께 갈 수 있어요."
+    ],
+    "tips": ["요일마다 닫는 시간이 달라요 (화 18:00, 주말 20:00)."],
+    "zone": "cheongdo-eup",
+    "location": {
+      "lat": 35.617404,
+      "lng": 128.762858
+    },
+    "tags": [],
+    "goodFor": ["solo", "couple", "family", "friends"],
+    "stayMinutes": 40,
+    "address": "경상북도 청도군 청도읍 새마을로 904",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "11:00",
+            "close": "19:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "11:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "11:00",
+            "close": "19:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "11:00",
+            "close": "19:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "11:00",
+            "close": "19:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ]
+      },
+      "lastEntryBeforeCloseMinutes": 60
+    },
+    "phone": "054-371-6394",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/99/3446099_image2_1.JPG",
+        "alt": "원리73 빵 진열대",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "3446220"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "ierba",
+    "kind": "cafe",
+    "name": "이에르바",
+    "summary": "정원 안에 있는 갤러리 카페. 운문 가는 길에 쉬어 가기 좋아요.",
+    "description": [
+      "정원 속 갤러리 카페로, 수묵화라떼 같은 개성 있는 음료가 있어요. 해가 지면 건물과 정원에 조명이 들어와요.",
+      "좌석 종류가 다양해 취향대로 고를 수 있어요."
+    ],
+    "tips": ["3층 루프탑은 13세 이하 출입이 안 돼요.", "목요일은 쉬어요."],
+    "zone": "geumcheon-myeon",
+    "location": {
+      "lat": 35.676703,
+      "lng": 128.888992
+    },
+    "tags": [],
+    "goodFor": ["solo", "couple", "friends"],
+    "stayMinutes": 40,
+    "address": "경상북도 청도군 금천면 신지리 442-17",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "10:30",
+            "close": "19:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "10:30",
+            "close": "19:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "10:30",
+            "close": "19:00"
+          }
+        ],
+        "thu": [],
+        "fri": [
+          {
+            "open": "10:30",
+            "close": "19:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "10:30",
+            "close": "19:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "10:30",
+            "close": "19:00"
+          }
+        ]
+      }
+    },
+    "phone": "0507-1377-1964",
+    "images": [],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "2842356"
+    },
+    "checkedAt": "2026-10-31"
+  },
+  {
+    "id": "araora-cafe",
+    "kind": "cafe",
+    "name": "아라오라카페",
+    "summary": "운문사 앞 먹거리촌의 카페. 발효커피를 마시며 쉬어 가요.",
+    "description": [
+      "운문사 들어가는 길의 먹거리촌에 있는 카페로, 발효커피가 대표 메뉴예요.",
+      "운문사 관람 전후로 잠깐 쉬어 가기 좋아요."
+    ],
+    "tips": ["아침 8시부터 열어요."],
+    "zone": "unmun-myeon",
+    "location": {
+      "lat": 35.6724,
+      "lng": 128.9584
+    },
+    "tags": [],
+    "goodFor": ["solo", "couple", "family", "friends"],
+    "stayMinutes": 30,
+    "address": "경상북도 청도군 운문면 운문사길 129-7",
+    "hours": {
+      "days": {
+        "mon": [
+          {
+            "open": "08:00",
+            "close": "19:00"
+          }
+        ],
+        "tue": [
+          {
+            "open": "08:00",
+            "close": "19:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "08:00",
+            "close": "19:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "08:00",
+            "close": "19:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "08:00",
+            "close": "19:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "08:00",
+            "close": "19:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "08:00",
+            "close": "19:00"
+          }
+        ]
+      },
+      "note": "휴무일은 공식 자료에 없어요. 방문 전에 전화로 확인하세요."
+    },
+    "phone": "054-371-6649",
+    "images": [],
+    "source": "청도군 맛나들이 (운문토속먹거리촌)",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "cafe-walden",
+    "kind": "cafe",
+    "name": "카페월든",
+    "summary": "산자락의 목조 숲속 카페. 넓은 잔디 정원을 보며 쉬어요.",
+    "description": [
+      "유럽 시골 별장을 닮은 목조 건물의 숲속 카페예요. 높은 천장과 큰 창으로 정원과 산이 보여요.",
+      "국내산 통밀로 만든 비건 스콘 같은 건강한 디저트가 있어요."
+    ],
+    "tips": ["월요일은 쉬고, 17:30에 주문을 마감해요."],
+    "zone": "gakbuk-myeon",
+    "location": {
+      "lat": 35.715542,
+      "lng": 128.56311
+    },
+    "tags": [],
+    "goodFor": ["solo", "couple", "family"],
+    "stayMinutes": 40,
+    "address": "경상북도 청도군 각북면 헐티로 1262",
+    "hours": {
+      "days": {
+        "mon": [],
+        "tue": [
+          {
+            "open": "11:00",
+            "close": "18:00"
+          }
+        ],
+        "wed": [
+          {
+            "open": "11:00",
+            "close": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "open": "11:00",
+            "close": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "open": "11:00",
+            "close": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "open": "11:00",
+            "close": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "open": "11:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "lastEntryBeforeCloseMinutes": 30
+    },
+    "phone": "054-372-7200",
+    "images": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/84/4066184_image2_1.jpg",
+        "alt": "카페월든 목조 건물과 정원",
+        "license": "kogl-1",
+        "credit": "ⓒ한국관광공사"
+      }
+    ],
+    "source": "한국관광공사",
+    "sourceRef": {
+      "provider": "tourapi",
+      "contentId": "4066325"
+    },
+    "checkedAt": "2026-10-31"
   }
 ]

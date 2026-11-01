@@ -7,9 +7,9 @@
 | [`00-overview/`](00-overview/project-brief.md) | 프로젝트 개요, 역할 분담, 결정 기록(ADR) | Claude | 확정 |
 | [`01-product/`](01-product/mvp-spec.md) | MVP 기능 명세, 사용자 흐름, 관광지 데이터 | Claude | 확정 (데이터 수집 진행 중) |
 | [`02-design/`](02-design/ui-screens.md) | 화면 구성, 디자인 토큰 | Claude | 확정 |
-| [`03-architecture/`](03-architecture/system-overview.md) | 시스템 구조, API, 데이터 모델, 추천 알고리즘 | Claude | 확정 |
+| [`03-architecture/`](03-architecture/system-overview.md) | 시스템 구조, API, 데이터 모델, 하루 일정 계산 | Claude | 확정 |
 | [`04-dev/`](04-dev/local-setup.md) | 로컬 환경, 코드 규칙, 테스트 | Claude | 확정 |
-| [`05-copilot/`](05-copilot/README.md) | Copilot 프롬프트 01~09, 리뷰 기록 | Claude → Copilot | 완료 (2026-10-30) |
+| [`05-copilot/`](05-copilot/README.md) | Copilot 프롬프트 01~16 · v2 구현 계획, 리뷰 기록 | Claude → Copilot | 완료 (v1 2026-10-30, v2 2026-11-01) |
 | [`06-deploy/`](06-deploy/README.md) | Azure 배포 런북 01~07, 체크리스트, 트러블슈팅 | 본인 직접 | 진행 전 |
 | [`07-study/`](07-study/learning-log.md) | MS Learn 학습 기록, 해커톤 치트시트 | 본인 | 진행 중 |
 

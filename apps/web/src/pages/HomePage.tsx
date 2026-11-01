@@ -3,13 +3,11 @@ import { Link, useNavigate, useSearchParams } from 'react-router';
 import {
   COMPANIONS,
   COMPANION_LABELS,
-  HOURS,
   TAGS,
   TAG_LABELS,
   ZONE_LABELS,
   type Companion,
-  type CourseQuery,
-  type Hours as CourseHours,
+  type DayQuery,
   type SpotSummary,
   type Tag,
 } from '@cheongdo/shared';
@@ -21,20 +19,21 @@ import { SectionLabel } from '../components/ui/SectionLabel.js';
 import { Tag as TagPill } from '../components/ui/Tag.js';
 import { ArrowRight, Check, Clock, Link as LinkIcon, MapPin } from '../components/ui/icons.js';
 import { fetchJson } from '../lib/api.js';
+import { formatDateLabel, todayInSeoul } from '../lib/date.js';
 import { formatDuration } from '../lib/format.js';
-import { fromCourseSearchParams, sortTags, toCourseUrl } from '../lib/query.js';
-
-const hourDescriptions: Record<CourseHours, string> = {
-  2: '가볍게 한두 곳',
-  4: '반나절',
-  6: '하루 코스',
-};
+import {
+  endOptions,
+  fromDaySearchParams,
+  sortTags,
+  START_OPTIONS,
+  toCourseUrl,
+} from '../lib/query.js';
 
 const steps = [
   {
     number: '01',
     title: '조건 고르기',
-    description: '여행 시간과 동행, 관심사를 선택해요.',
+    description: '방문 날짜와 시간, 동행, 관심사를 선택해요.',
   },
   {
     number: '02',
@@ -50,7 +49,8 @@ const steps = [
 
 export function HomePage() {
   const [searchParams] = useSearchParams();
-  const [query, setQuery] = useState<CourseQuery>(() => fromCourseSearchParams(searchParams));
+  const [today] = useState(() => todayInSeoul(new Date()));
+  const [query, setQuery] = useState<DayQuery>(() => fromDaySearchParams(searchParams, today));
   const [spots, setSpots] = useState<SpotSummary[]>([]);
   const [spotsError, setSpotsError] = useState('');
   const [spotsLoading, setSpotsLoading] = useState(true);
@@ -62,10 +62,10 @@ export function HomePage() {
   useEffect(() => {
     let active = true;
 
-    void fetchJson<{ items: SpotSummary[] }>('/api/spots')
+    void fetchJson<{ items: SpotSummary[] }>('/api/spots?kind=spot')
       .then(({ items }) => {
         if (active) {
-          setSpots(items);
+          setSpots(items.slice(0, 6));
           setSpotsLoading(false);
         }
       })
@@ -81,8 +81,29 @@ export function HomePage() {
     };
   }, [retryCount]);
 
-  function updateHours(hours: CourseHours) {
-    setQuery((current) => ({ ...current, hours }));
+  function updateDate(date: string) {
+    setQuery((current) => ({
+      ...current,
+      date: !date || date < today ? today : date,
+    }));
+  }
+
+  function updateStart(start: string) {
+    setQuery((current) => {
+      const availableEndOptions = endOptions(start);
+
+      return {
+        ...current,
+        start,
+        end: availableEndOptions.includes(current.end)
+          ? current.end
+          : (availableEndOptions[0] ?? current.end),
+      };
+    });
+  }
+
+  function updateEnd(end: string) {
+    setQuery((current) => ({ ...current, end }));
   }
 
   function updateCompanion(companion: Companion) {
@@ -127,7 +148,8 @@ export function HomePage() {
               코스가 됩니다.
             </h1>
             <p className="mt-5 max-w-lg text-base leading-7 text-ink-3 md:text-[17px]">
-              여행 시간과 함께하는 사람, 관심사를 선택하면 청도에 꼭 맞는 여행 코스를 추천해 드려요.
+              방문 날짜와 시간, 함께하는 사람, 관심사를 선택하면 청도에 꼭 맞는 여행 코스를 추천해
+              드려요.
             </p>
             <ul className="mt-7 grid gap-3 text-sm text-ink-2 sm:grid-cols-3 md:grid-cols-1">
               {['가입 없이 바로', '이동 시간 자동 계산', '링크 하나로 공유'].map((benefit) => (
@@ -157,19 +179,51 @@ export function HomePage() {
               <fieldset>
                 <legend className="mb-3 text-sm font-semibold">
                   <span className="mr-2 font-mono text-xs text-subtle">01</span>
-                  여행 시간
+                  방문 날짜와 시간
                 </legend>
-                <div className="grid grid-cols-3 gap-2">
-                  {HOURS.map((hours) => (
-                    <ChoiceButton
-                      key={hours}
-                      label={`${hours}시간`}
-                      onClick={() => updateHours(hours)}
-                      pressed={query.hours === hours}
-                      supportingText={hourDescriptions[hours]}
+                <div className="grid gap-3 sm:grid-cols-3">
+                  <label className="block text-xs font-medium text-muted">
+                    방문 날짜
+                    <input
+                      className="mt-1 min-h-11 w-full rounded-control border border-line-strong bg-surface px-3 text-sm text-ink"
+                      min={today}
+                      onChange={(event) => updateDate(event.target.value)}
+                      type="date"
+                      value={query.date}
                     />
-                  ))}
+                  </label>
+                  <label className="block text-xs font-medium text-muted">
+                    시작
+                    <select
+                      className="mt-1 min-h-11 w-full rounded-control border border-line-strong bg-surface px-3 text-sm text-ink"
+                      onChange={(event) => updateStart(event.target.value)}
+                      value={query.start}
+                    >
+                      {START_OPTIONS.map((start) => (
+                        <option key={start} value={start}>
+                          {start}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="block text-xs font-medium text-muted">
+                    끝
+                    <select
+                      className="mt-1 min-h-11 w-full rounded-control border border-line-strong bg-surface px-3 text-sm text-ink"
+                      onChange={(event) => updateEnd(event.target.value)}
+                      value={query.end}
+                    >
+                      {endOptions(query.start).map((end) => (
+                        <option key={end} value={end}>
+                          {end}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
                 </div>
+                <p className="mt-2 text-xs leading-5 text-muted">
+                  점심 · 쉬어 가기 · 저녁까지 시간에 맞춰 넣어 드려요.
+                </p>
               </fieldset>
 
               <fieldset>
@@ -212,7 +266,8 @@ export function HomePage() {
             <div className="border-t border-line bg-surface-2 px-5 py-5 sm:px-6">
               <p className="text-xs font-medium text-muted">선택한 조건</p>
               <p className="mt-1 text-sm font-medium">
-                {query.hours}시간 <span className="mx-1 text-subtle">·</span>
+                {formatDateLabel(query.date)} {query.start}–{query.end}
+                <span className="mx-1 text-subtle">·</span>
                 {COMPANION_LABELS[query.with]}
                 {query.tags.map((tag) => (
                   <span key={tag}>
@@ -378,6 +433,12 @@ function SpotCard({ number, spot }: { number: number; spot: SpotSummary }) {
       className="group overflow-hidden rounded-card border border-line bg-surface transition-colors hover:border-line-strong"
       to={`/spots/${spot.id}`}
     >
+      {spot.image && (
+        <>
+          <img alt={spot.image.alt} className="h-40 w-full object-cover" src={spot.image.url} />
+          <p className="px-5 pt-2 text-xs text-muted">{spot.image.credit}</p>
+        </>
+      )}
       <div className="flex h-16 items-start justify-between border-b border-line bg-[radial-gradient(var(--color-line-strong)_0.7px,transparent_0.7px)] [background-size:10px_10px] px-5 py-4">
         <span className="font-mono text-sm text-subtle">{String(number).padStart(2, '0')}</span>
         <Chip className="bg-surface">{ZONE_LABELS[spot.zone]}</Chip>

@@ -1,68 +1,94 @@
-import type { Companion, Hours, Tag, Zone } from './constants.js';
+import type { Companion, Kind, Meal, Tag, Weekday, Zone } from './constants.js';
 
-export interface OpeningHours {
-  weekday?: string;
-  weekend?: string;
+export interface TimeRange {
+  open: string;
+  close: string;
+}
+
+export interface WeeklyHours {
+  days: Record<Weekday, TimeRange[]>;
+  lastEntryBeforeCloseMinutes?: number;
   note?: string;
+}
+
+export interface SpotImage {
+  url: string;
+  alt: string;
+  license: 'kogl-1';
+  credit: string;
 }
 
 export interface Spot {
   id: string;
+  kind: Kind;
   name: string;
   summary: string;
   description: string[];
   tips: string[];
   zone: Zone;
-  routeOrder: number;
+  location: { lat: number; lng: number };
   tags: Tag[];
   goodFor: Companion[];
   stayMinutes: number;
+  meals?: Meal[];
   address: string;
-  hours?: OpeningHours;
-  closed?: string;
+  hours: WeeklyHours;
   fee?: string;
   phone?: string;
+  images: SpotImage[];
   source: string;
-  checkedAt?: string;
+  sourceRef?: { provider: 'tourapi'; contentId: string };
+  checkedAt: string;
 }
 
-export type SpotSummary = Pick<Spot, 'id' | 'name' | 'summary' | 'zone' | 'tags' | 'stayMinutes'>;
+export type SpotSummary = Pick<
+  Spot,
+  'id' | 'kind' | 'name' | 'summary' | 'zone' | 'tags' | 'stayMinutes' | 'location'
+> & { image?: SpotImage };
 
-export interface CourseQuery {
-  hours: Hours;
+export interface DayQuery {
+  date: string;
+  start: string;
+  end: string;
   with: Companion;
   tags: Tag[];
   exclude: string[];
 }
 
-export interface CourseStop {
+export interface DayPlanItem {
   order: number;
+  type: 'visit' | 'meal' | 'rest';
+  meal?: Meal;
   spot: SpotSummary;
   travelMinutes: number;
-  startMinute: number;
-  endMinute: number;
+  waitMinutes: number;
+  distanceKm: number;
+  arriveAt: string;
+  leaveAt: string;
   matchedTags: Tag[];
-  companionMatch: boolean;
   score: number;
 }
 
+export type ExcludedReason = 'NOT_ENOUGH_TIME' | 'CLOSED_ON_DAY';
+
 export interface ExcludedSpot {
   spot: SpotSummary;
-  reason: 'NOT_ENOUGH_TIME';
+  reason: ExcludedReason;
 }
 
-export interface CourseTotals {
-  budgetMinutes: number;
+export interface DayPlanTotals {
+  visitCount: number;
   stayMinutes: number;
   travelMinutes: number;
-  totalMinutes: number;
+  startAt: string;
+  endAt: string;
   slackMinutes: number;
 }
 
-export interface Course {
-  conditions: CourseQuery;
-  stops: CourseStop[];
+export interface DayPlan {
+  conditions: DayQuery & { weekday: Weekday };
+  items: DayPlanItem[];
   excluded: ExcludedSpot[];
-  totals: CourseTotals;
-  zones: Zone[];
+  totals: DayPlanTotals;
+  notices: string[];
 }

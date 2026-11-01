@@ -1,39 +1,54 @@
-import { HOURS, type Course } from '@cheongdo/shared';
+import { useState } from 'react';
+import type { DayPlan } from '@cheongdo/shared';
 import { Link } from 'react-router';
 
-import { formatDuration } from '../../lib/format.js';
 import { toCourseUrl } from '../../lib/query.js';
 
-export function ExcludedSpots({ course }: { course: Course }) {
-  if (course.excluded.length === 0) return null;
+export function ExcludedSpots({ plan }: { plan: DayPlan }) {
+  const [expanded, setExpanded] = useState(false);
+  if (plan.excluded.length === 0) return null;
 
-  const nextHours = HOURS.find((hours) => hours > course.conditions.hours) ?? null;
+  const canExtend = plan.excluded.some(({ reason }) => reason === 'NOT_ENOUGH_TIME');
+  const visibleSpots = expanded ? plan.excluded : plan.excluded.slice(0, 5);
+  const remainingCount = plan.excluded.length - visibleSpots.length;
 
   return (
     <section
       aria-labelledby="excluded-spots-heading"
-      className="rounded-card border border-line bg-surface p-5"
+      className="min-w-0 rounded-card border border-line bg-surface p-5"
     >
       <h2 className="text-sm font-semibold" id="excluded-spots-heading">
-        시간이 부족해 빠진 장소
+        이번 일정에서 빠진 장소
       </h2>
       <ul className="mt-3 divide-y divide-line-soft">
-        {course.excluded.map(({ spot }) => (
+        {visibleSpots.map(({ spot, reason }) => (
           <li
             className="flex min-h-11 items-center justify-between gap-3 py-2 text-sm"
             key={spot.id}
           >
-            <span>{spot.name}</span>
-            <span className="shrink-0 text-xs text-muted">{formatDuration(spot.stayMinutes)}</span>
+            <span className="min-w-0 break-words">{spot.name}</span>
+            <span className="shrink-0 rounded-md bg-fill px-2 py-1 text-xs text-ink-3">
+              {reason === 'CLOSED_ON_DAY' ? '이날 휴무' : '시간 부족'}
+            </span>
           </li>
         ))}
       </ul>
-      {nextHours !== null && (
+      {plan.excluded.length > 5 && (
+        <button
+          aria-expanded={expanded}
+          className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-accent-text underline underline-offset-4"
+          onClick={() => setExpanded((isExpanded) => !isExpanded)}
+          type="button"
+        >
+          {expanded ? '접기' : `${remainingCount}곳 더 보기`}
+        </button>
+      )}
+      {canExtend && plan.conditions.end < '21:00' && (
         <Link
           className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-accent-text underline underline-offset-4"
-          to={toCourseUrl({ ...course.conditions, hours: nextHours })}
+          to={toCourseUrl({ ...plan.conditions, end: '21:00' })}
         >
-          {nextHours}시간 코스로 다시 만들기
+          끝 시각을 21:00으로 늦춰 다시 만들기
         </Link>
       )}
     </section>

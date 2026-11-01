@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router';
-import { COMPANION_LABELS, TAG_LABELS, type Course } from '@cheongdo/shared';
+import { COMPANION_LABELS, TAG_LABELS, type Companion, type DayPlan } from '@cheongdo/shared';
 
 import { NotFoundState } from '../components/ui/NotFoundState.js';
 import { CourseSummary } from '../components/course/CourseSummary.js';
@@ -12,13 +12,16 @@ import { Container } from '../components/ui/Container.js';
 import { AlertTriangle, Check, Clock, Copy, RefreshCw, Search } from '../components/ui/icons.js';
 import { useCourse } from '../hooks/useCourse.js';
 import { ApiError, type ApiErrorDetail } from '../lib/api.js';
+import { formatDateLabel } from '../lib/date.js';
+import { formatTimeRange } from '../lib/format.js';
 import { toCourseUrl } from '../lib/query.js';
 
-const companionHeadlines = {
+const companionHeadlines: Record<Companion, string> = {
+  solo: '혼자 떠나는',
   couple: '커플과 함께하는',
   family: '가족과 함께하는',
   friends: '친구들과 함께하는',
-} as const;
+};
 
 export function CoursePage() {
   const location = useLocation();
@@ -70,14 +73,16 @@ export function CoursePage() {
           {state.status === 'success' ? (
             <>
               <h1 className="mt-3 text-[clamp(28px,3.4vw,42px)] leading-tight font-bold tracking-[-0.035em]">
-                {state.data.conditions.with === 'solo'
-                  ? `혼자 떠나는 ${state.data.conditions.hours}시간 청도 코스`
-                  : `${companionHeadlines[state.data.conditions.with]} ${state.data.conditions.hours}시간 청도 코스`}
+                {formatDateLabel(state.data.conditions.date)}{' '}
+                {companionHeadlines[state.data.conditions.with]} 청도 하루
               </h1>
               <div className="mt-5 flex flex-wrap gap-2">
                 <Chip className="border border-line bg-surface">
+                  {formatDateLabel(state.data.conditions.date)}
+                </Chip>
+                <Chip className="border border-line bg-surface">
                   <Clock className="mr-1.5 h-3.5 w-3.5" />
-                  {state.data.conditions.hours}시간
+                  {formatTimeRange(state.data.conditions.start, state.data.conditions.end)}
                 </Chip>
                 <Chip className="border border-line bg-surface">
                   {COMPANION_LABELS[state.data.conditions.with]}
@@ -124,7 +129,7 @@ export function CoursePage() {
         </Container>
       </section>
 
-      <Container className="flex flex-wrap gap-6 py-8 sm:py-10">
+      <Container className="grid grid-cols-1 gap-6 py-8 sm:py-10 md:grid-cols-[minmax(0,1.75fr)_minmax(280px,1fr)] md:items-start">
         {state.status === 'loading' ? (
           <CourseSkeleton />
         ) : state.status === 'error' ? (
@@ -133,23 +138,36 @@ export function CoursePage() {
             onRetry={() => setRetryCount((count) => count + 1)}
             search={location.search}
           />
-        ) : state.data.stops.length === 0 ? (
-          <EmptyCourse course={state.data} />
+        ) : state.data.items.filter((item) => item.type === 'visit').length === 0 ? (
+          <EmptyCourse plan={state.data} />
         ) : (
           <>
-            <div className="order-2 w-full min-w-0 flex-[999_1_560px] md:order-1">
-              <CourseTimeline course={state.data} />
+            <div className="order-1 min-w-0 md:col-start-2 md:row-start-1">
+              <CourseSummary plan={state.data} />
             </div>
-            <aside className="order-1 w-full min-w-0 flex-[1_1_320px] md:order-2">
-              <div className="space-y-4">
-                <CourseSummary course={state.data} />
-                <ExcludedSpots course={state.data} />
-                <p className="rounded-card border border-line bg-surface-2 p-4 text-xs leading-5 text-muted">
-                  이동 시간은 같은 권역 10분, 권역 간 25분으로 계산했어요. 실제 교통 상황에 따라
-                  달라질 수 있어요.
-                </p>
-              </div>
-            </aside>
+            <div className="order-2 min-w-0 md:col-start-1 md:row-start-1">
+              {state.data.notices.length > 0 && (
+                <div
+                  aria-label="일정 안내"
+                  className="mb-5 rounded-card border border-line bg-surface-2 p-4 text-sm leading-6 text-ink-2"
+                  role="status"
+                >
+                  {state.data.notices.map((notice) => (
+                    <p className="break-words" key={notice}>
+                      {notice}
+                    </p>
+                  ))}
+                </div>
+              )}
+              <CourseTimeline plan={state.data} />
+            </div>
+            <div className="order-3 min-w-0 space-y-4 md:col-start-2 md:row-start-2">
+              <ExcludedSpots plan={state.data} />
+              <p className="rounded-card border border-line bg-surface-2 p-4 text-sm leading-6 text-muted">
+                이동 시간은 직선거리에 도로 보정을 더해 어림한 값이에요. 실제 교통 상황에 따라
+                달라질 수 있어요.
+              </p>
+            </div>
           </>
         )}
       </Container>
@@ -221,6 +239,10 @@ function ErrorState({
           {renderQuery(search, error.details)}
         </code>
         <p className="mt-3 text-sm leading-6 text-ink-2">{error.message}</p>
+        <p className="mt-2 text-sm leading-6 text-muted">
+          방문 날짜(오늘 이후), 시작 08:00~14:00, 끝은 시작 3시간 뒤~21:00(30분 단위), 동행,
+          관심사를 확인해 주세요.
+        </p>
         <Link
           className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-ink px-5 text-sm font-medium text-white hover:bg-ink-2"
           to={`/${search}`}
@@ -279,11 +301,10 @@ function decodeQueryPart(value: string) {
   }
 }
 
-function EmptyCourse({ course }: { course: Course }) {
-  const { conditions } = course;
+function EmptyCourse({ plan }: { plan: DayPlan }) {
+  const { conditions } = plan;
   const interestLabels = conditions.tags.map((tag) => TAG_LABELS[tag]).join(', ');
   const homeUrl = toCourseUrl(conditions).replace(/^\/course/, '/');
-  const nextHours = conditions.hours === 2 ? 4 : conditions.hours === 4 ? 6 : null;
 
   return (
     <section aria-labelledby="empty-course-title" className="w-full max-w-2xl py-10">
@@ -294,16 +315,16 @@ function EmptyCourse({ course }: { course: Course }) {
         조건에 맞는 장소를 찾지 못했어요
       </h2>
       <p className="mt-3 text-sm leading-6 text-muted">
-        {conditions.hours}시간 안에 담을 수 있는 '{interestLabels}' 장소가 없어요. 여행 시간을
-        늘리거나 관심사를 더 골라보세요.
+        {formatTimeRange(conditions.start, conditions.end)} 안에 담을 수 있는 '{interestLabels}'
+        장소가 없어요. 끝 시각을 늦추거나 관심사를 더 골라보세요.
       </p>
       <div className="mt-6 flex flex-wrap gap-2">
-        {nextHours !== null && (
+        {conditions.end < '21:00' && (
           <Link
             className="inline-flex min-h-11 items-center justify-center rounded-lg bg-ink px-5 text-sm font-medium text-white hover:bg-ink-2"
-            to={toCourseUrl({ ...conditions, hours: nextHours })}
+            to={toCourseUrl({ ...conditions, end: '21:00' })}
           >
-            {nextHours}시간으로 늘리기
+            끝 시각 늦추기
           </Link>
         )}
         <Link

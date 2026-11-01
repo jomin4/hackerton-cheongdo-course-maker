@@ -25,6 +25,20 @@
 
 02와 03, 05는 01 이후 서로 독립이라 순서를 바꿔도 된다.
 
+### v2 — 하루 일정 ([`plan-v2.md`](plan-v2.md))
+
+v2부터는 Claude가 Copilot CLI로 프롬프트를 직접 투입하고 리뷰 · 머지까지 한다 (통합 브랜치 `feat/day-course-v2`). 03 · 04 · 06의 v1 결과물은 v2에서 대체됐다.
+
+| # | 프롬프트 | 산출물 | 의존 |
+|---|---|---|---|
+| 10 | [tourapi-tools](prompts/10-tourapi-tools.md) | TourAPI 수집 도구 (`tools/tourapi/`, 결과는 git 밖) | — |
+| 11 | [shared-v2](prompts/11-shared-v2.md) | 종류 · 요일 · 9개 읍면 상수, WeeklyHours · DayPlan 타입, 시각 도우미 | 10 |
+| 12 | [plan-day](prompts/12-plan-day.md) | 하루 일정 계산 `planDay` + 시나리오 S1~S9 | 11 |
+| 13 | [api-v2](prompts/13-api-v2.md) | `/api/course` 하루 일정, `/api/spots` 종류 · 거리순 주변 | 12 |
+| 14 | [web-home-v2](prompts/14-web-home-v2.md) | 홈 입력(방문 날짜 · 시작 · 끝) | 13 |
+| 15 | [web-course-timeline](prompts/15-web-course-timeline.md) | 결과 타임라인 | 14 |
+| 16 | [web-spot-footer-v2](prompts/16-web-spot-footer-v2.md) | 장소 상세 · 푸터 출처 · 상태 화면 | 15 |
+
 ## 한 사이클 (프롬프트 1개)
 
 1. **브랜치**: `git switch -c feat/03-recommend-course`

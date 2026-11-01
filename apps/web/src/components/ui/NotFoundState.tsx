@@ -16,7 +16,7 @@ export function NotFoundState({ description, title }: { description: string; tit
           className="inline-flex min-h-11 items-center justify-center rounded-lg bg-ink px-5 text-sm font-medium text-white hover:bg-ink-2"
           to="/#spots"
         >
-          관광지 목록으로
+          장소 목록으로
         </Link>
         <Link
           className="inline-flex min-h-11 items-center justify-center rounded-lg border border-line-strong bg-surface px-5 text-sm font-medium hover:bg-surface-2"

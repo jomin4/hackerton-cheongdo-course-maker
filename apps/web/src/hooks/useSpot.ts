@@ -38,7 +38,7 @@ export function useSpot(): SpotState {
           state: {
             status: 'error',
             data: null,
-            error: error instanceof Error ? error : new Error('관광지를 불러오지 못했어요.'),
+            error: error instanceof Error ? error : new Error('장소를 불러오지 못했어요.'),
           },
         });
       });

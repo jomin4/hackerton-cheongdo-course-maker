@@ -4,134 +4,136 @@ import pino from 'pino';
 
 import { createApp } from '../../src/app.js';
 import { createInMemoryRepository } from '../../src/data/spot-repository.js';
-import { spots } from '../fixtures/spots.js';
+import { fixtureSpots } from '../fixtures/spots.js';
 
 const app = createApp({
-  spots: createInMemoryRepository(spots),
+  spots: createInMemoryRepository(fixtureSpots),
   version: 'test',
   logger: pino({ level: 'silent' }),
 });
 
 describe('GET /api/course', () => {
-  it('returns the documented T1 course and cache header', async () => {
+  it('returns a day plan and cache header', async () => {
     const response = await request(app)
-      .get('/api/course?hours=4&with=family&tags=nature,experience')
+      .get('/api/course?date=2026-11-07&start=10:00&end=19:00&with=family&tags=nature,experience')
       .expect(200);
 
-    expect(response.body.stops.map(({ spot }: { spot: { id: string } }) => spot.id)).toEqual([
-      'rail-bike',
-      'yudeung-yeonji',
-      'wine-tunnel',
-      'eupseong',
+    expect(response.body.items.map(({ spot }: { spot: { id: string } }) => spot.id)).toEqual([
+      's-temple',
+      's-forest',
+      'r-allday',
+      'c-near',
+      's-luge',
+      's-museum',
+      's-tunnel',
+      'r-break',
     ]);
+    expect(response.body.items.map(({ type }: { type: string }) => type)).toEqual([
+      'visit',
+      'visit',
+      'meal',
+      'rest',
+      'visit',
+      'visit',
+      'visit',
+      'meal',
+    ]);
+    expect(response.body.conditions.weekday).toBe('sat');
     expect(
-      response.body.stops.map(
-        ({
-          travelMinutes,
-          startMinute,
-          endMinute,
-        }: {
-          travelMinutes: number;
-          startMinute: number;
-          endMinute: number;
-        }) => [travelMinutes, startMinute, endMinute],
-      ),
-    ).toEqual([
-      [0, 0, 60],
-      [25, 85, 115],
-      [10, 125, 165],
-      [10, 175, 215],
-    ]);
-    expect(response.body.totals).toEqual({
-      budgetMinutes: 240,
-      stayMinutes: 170,
-      travelMinutes: 45,
-      totalMinutes: 215,
-      slackMinutes: 25,
-    });
-    expect(response.body.excluded.map(({ spot }: { spot: { id: string } }) => spot.id)).toEqual([
-      'unmunsa',
-      'provence',
-    ]);
+      response.body.excluded.map(({ spot, reason }: { spot: { id: string }; reason: string }) => [
+        spot.id,
+        reason,
+      ]),
+    ).toEqual([['s-lights', 'NOT_ENOUGH_TIME']]);
     expect(response.headers['cache-control']).toBe('public, max-age=300');
   });
 
   it('normalizes tag order in the result', async () => {
     const response = await request(app)
-      .get('/api/course?hours=4&with=family&tags=experience,nature')
+      .get('/api/course?date=2026-11-07&start=10:00&end=19:00&with=family&tags=experience,nature')
       .expect(200);
 
     expect(response.body.conditions.tags).toEqual(['nature', 'experience']);
-    expect(response.body.stops.map(({ spot }: { spot: { id: string } }) => spot.id)).toEqual([
-      'rail-bike',
-      'yudeung-yeonji',
-      'wine-tunnel',
-      'eupseong',
-    ]);
   });
 
-  it('returns an empty course with 200 when no spots match', async () => {
-    const appWithoutMatchingSpots = createApp({
-      spots: createInMemoryRepository(spots.map((spot) => ({ ...spot, tags: ['food'] }))),
-      version: 'test',
-      logger: pino({ level: 'silent' }),
-    });
-
-    const response = await request(appWithoutMatchingSpots)
-      .get('/api/course?hours=4&with=family&tags=history')
-      .expect(200);
-
-    expect(response.body.stops).toEqual([]);
-    expect(response.body.zones).toEqual([]);
-  });
-
-  it('keeps unknown excluded IDs in the parsed conditions', async () => {
+  it('rejects a v1 query with the missing-date error', async () => {
     const response = await request(app)
-      .get('/api/course?hours=4&with=family&tags=nature&exclude=rail-bike,nope')
-      .expect(200);
+      .get('/api/course?hours=4&with=family&tags=nature')
+      .expect(400);
 
-    expect(response.body.conditions.exclude).toEqual(['rail-bike', 'nope']);
-    expect(response.body.stops.map(({ spot }: { spot: { id: string } }) => spot.id)).not.toContain(
-      'rail-bike',
+    expect(response.body.error.code).toBe('INVALID_QUERY');
+    expect(response.body.error.message).toBe('방문 날짜가 올바르지 않아요.');
+    expect(response.body.error.details[0].field).toBe('date');
+  });
+
+  it('rejects an impossible calendar date', async () => {
+    const response = await request(app)
+      .get('/api/course?date=2026-02-30&start=10:00&end=19:00&with=family&tags=nature')
+      .expect(400);
+
+    expect(response.body.error.message).toBe('방문 날짜가 올바르지 않아요.');
+  });
+
+  it('rejects a start time outside the allowed interval', async () => {
+    const response = await request(app)
+      .get('/api/course?date=2026-11-07&start=07:30&end=19:00&with=family&tags=nature')
+      .expect(400);
+
+    expect(response.body.error.message).toBe(
+      '시작 시각은 08:00~14:00 사이 30분 단위로 골라주세요.',
     );
   });
 
-  it('returns a Korean validation error for invalid hours', async () => {
+  it('rejects an end time less than three hours after start', async () => {
     const response = await request(app)
-      .get('/api/course?hours=99&with=family&tags=nature')
+      .get('/api/course?date=2026-11-07&start=10:00&end=12:30&with=family&tags=nature')
       .expect(400);
 
-    expect(response.body.error.code).toBe('INVALID_QUERY');
-    expect(response.body.error.message).toBe('여행 시간은 2, 4, 6 중 하나여야 해요.');
-    expect(response.body.error.details[0].field).toBe('hours');
+    expect(response.body.error.message).toBe(
+      '끝 시각은 시작보다 3시간 이상 늦고 21:00 이전이어야 해요.',
+    );
+    expect(response.body.error.details.map(({ field }: { field: string }) => field)).toContain(
+      'end',
+    );
   });
 
-  it('rejects empty interests', async () => {
-    const response = await request(app).get('/api/course?hours=4&with=family&tags=').expect(400);
-
-    expect(response.body.error.code).toBe('INVALID_QUERY');
-    expect(response.body.error.details[0].field).toBe('tags');
-  });
-
-  it('rejects an invalid companion', async () => {
+  it('rejects repeated exclude query parameters', async () => {
     const response = await request(app)
-      .get('/api/course?hours=4&with=alien&tags=nature')
+      .get(
+        '/api/course?date=2026-11-07&start=10:00&end=19:00&with=family&tags=nature&exclude=s-forest&exclude=s-luge',
+      )
       .expect(400);
 
-    expect(response.body.error.code).toBe('INVALID_QUERY');
-    expect(response.body.error.details[0].field).toBe('with');
+    expect(response.body.error.message).toBe('제외할 장소 값이 올바르지 않아요.');
   });
 
-  it('uses the first issue message and includes all invalid fields', async () => {
+  it('reports all invalid query fields using the first issue message', async () => {
     const response = await request(app)
-      .get('/api/course?hours=99&with=alien&tags=unknown')
+      .get('/api/course?date=2026-02-30&start=10:00&end=19:00&with=alien&tags=unknown')
       .expect(400);
 
-    expect(response.body.error.message).toBe('여행 시간은 2, 4, 6 중 하나여야 해요.');
-    expect(response.body.error.details.map(({ field }: { field: string }) => field)).toEqual([
-      'hours',
-      'with',
-      'tags.0',
-    ]);
+    expect(response.body.error.message).toBe('방문 날짜가 올바르지 않아요.');
+    expect(response.body.error.details.map(({ field }: { field: string }) => field)).toEqual(
+      expect.arrayContaining(['date', 'with', 'tags.0']),
+    );
+  });
+
+  it('keeps unknown excluded IDs in the conditions', async () => {
+    const response = await request(app)
+      .get('/api/course?date=2026-11-07&start=10:00&end=19:00&with=family&tags=nature&exclude=nope')
+      .expect(200);
+
+    expect(response.body.conditions.exclude).toEqual(['nope']);
+  });
+
+  it('allows a day plan with every tourist spot excluded', async () => {
+    const response = await request(app)
+      .get(
+        '/api/course?date=2026-11-07&start=10:00&end=19:00&with=family&tags=nature&exclude=s-forest,s-luge,s-museum,s-temple,s-lights,s-tunnel',
+      )
+      .expect(200);
+
+    expect(response.body.items.map(({ type }: { type: string }) => type)).not.toContain('visit');
+    expect(response.body.excluded).toEqual([]);
   });
 });
