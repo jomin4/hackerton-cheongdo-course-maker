@@ -9,7 +9,7 @@
 | 구성 요소 | 위치 | 역할 |
 |---|---|---|
 | Web (React SPA) | `apps/web` | 화면. 빌드 결과는 정적 파일(`dist/`) |
-| API (Express) | `apps/api` | `/api/*` JSON 응답, 추천 계산 |
+| API (Express) | `apps/api` | `/api/*` JSON 응답, 하루 일정 계산 |
 | Shared | `packages/shared` | 타입, 상수, zod 스키마 |
 | nginx | `infra/nginx` | 정적 파일 서빙, `/api` 리버스 프록시, HTTPS, 압축 · 캐시 · 보안 헤더 |
 | Compose | `infra/compose.yml` (운영), `compose.local.yml` (리허설) | 컨테이너 정의 · 재시작 정책 |

@@ -1,6 +1,6 @@
 # 하루 코스 설계 (v2)
 
-> 상태: 초안 · 작성 2026-10-31 · 이전 MVP: [`mvp-spec.md`](mvp-spec.md)
+> 상태: 승인 (2026-10-31) · 구현 완료 (2026-11-01, 6장 "2026-11-01 조정" 반영) · 작성 2026-10-31 · 이전 MVP: [`mvp-spec.md`](mvp-spec.md)
 > 데이터 조사: [`data-sources-research.md`](data-sources-research.md)
 
 ## 1. 의도
