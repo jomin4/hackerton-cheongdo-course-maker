@@ -19,11 +19,9 @@
 | 02 | [VM · 네트워크 · NSG](runbooks/02-vm-network-nsg.md) | Ubuntu VM, 공용 IP · DNS 이름, 방화벽 | 컴퓨팅 서비스(VM, IaaS) · 네트워킹(VNet, NSG, 공용 IP) · 스토리지(관리 디스크) | 45분 |
 | 03 | [서버 초기 설정](runbooks/03-server-setup.md) | SSH 접속, 업데이트, Docker 설치 | 공동 책임 모델(OS는 내 책임) · ID · 보안(SSH 키) | 40분 |
 | 04 | [소스 배포](runbooks/04-first-manual-deploy.md) | VM에서 소스 빌드 · HTTP로 서비스 공개 | 컨테이너 (VM과 컨테이너의 차이) | 40분 |
-| 05 | [HTTPS](runbooks/05-https-certbot.md) (선택) | Let's Encrypt 인증서, 자동 갱신 | 네트워크 보안 · DNS | 40분 |
-| 06 | ~~[CI/CD](runbooks/06-cicd-github-actions.md)~~ | 사용하지 않음 | — | — |
 | 07 | [모니터링 · 롤백 · 비용](runbooks/07-monitoring-rollback.md) | 로그 · 지표 확인, 롤백 연습, 자동 종료 | Azure Monitor · 비용 관리 | 40분 |
 
-**Terraform과 런북의 대응**: 01(리소스 그룹 · 예산) = `azurerm_resource_group` · `azurerm_consumption_budget_resource_group`, 02(VM · 네트워크 · NSG) = `main.tf`의 네트워크 · VM 리소스, 03(서버 설정) · 04(소스 배포) = `cloud-init.yaml.tftpl`, 07(자동 종료) = `azurerm_dev_test_global_vm_shutdown_schedule`. 05(HTTPS)는 필요할 때만.
+**Terraform과 런북의 대응**: 01(리소스 그룹 · 예산) = `azurerm_resource_group` · `azurerm_consumption_budget_resource_group`, 02(VM · 네트워크 · NSG) = `main.tf`의 네트워크 · VM 리소스, 03(서버 설정) · 04(소스 배포) = `cloud-init.yaml.tftpl`, 07(자동 종료) = `azurerm_dev_test_global_vm_shutdown_schedule`.
 
 ## 런북 형식
 
@@ -33,14 +31,13 @@
 2. **왜 하는가** — 이 단계가 없으면 생기는 문제
 3. **실행** — 명령과 포털 경로 (복사해서 실행)
 4. **확인** — 성공했는지 보는 방법
-5. **이해 점검** — 스스로 답해 볼 질문 (답을 `../07-study/learning-log.md`에 기록)
+5. **이해 점검** — 스스로 답해 볼 질문
 6. **정리 · 비용** — 실습 후 꺼 두기 등
 
 ## 진행 규칙
 
-- 명령은 **이해하고 실행**한다. 모르는 옵션은 `--help`나 MS Learn에서 찾아보고 learning-log에 적는다.
+- 명령은 **이해하고 실행**한다. 모르는 옵션은 `--help`나 MS Learn에서 찾아본다.
 - 막히면: 실행한 명령 + 오류 전문 + 지금까지 한 단계를 설계 세션(Claude)에 공유한다.
-- 해결한 문제는 [`troubleshooting.md`](troubleshooting.md)에 남긴다.
 - 배포 전후에는 [`checklist.md`](checklist.md)를 따른다.
 
 ## 명명 규칙

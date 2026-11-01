@@ -85,4 +85,4 @@ terraform test          # 6개: NSG 규칙, VM 설정, cloud-init 내용, 비용
 
 - `terraform.tfvars`(구독 ID · 내 IP)와 `*.tfstate`(리소스 정보)는 커밋하지 않는다 (`.gitignore`).
 - 상태 파일은 로컬에 둔다. 팀으로 쓰려면 Azure Storage 원격 백엔드를 붙인다.
-- HTTPS는 포함하지 않는다 (443은 열려 있음). 붙이려면 [런북 05](../../docs/06-deploy/runbooks/05-https-certbot.md).
+- HTTPS는 포함하지 않는다 (443은 열려 있음). 도메인을 붙이면 certbot 인증서를 nginx에 마운트해 더할 수 있다.

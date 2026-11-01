@@ -42,7 +42,7 @@
 ```
 
 - api 컨테이너는 포트를 호스트에 열지 않는다. Compose 내부 네트워크로만 nginx와 통신.
-- 이번 배포는 HTTP로 마무리한다. HTTPS(certbot 인증서 + nginx 마운트)는 선택 단계로 [런북 05](../06-deploy/runbooks/05-https-certbot.md)에 남겨 둔다.
+- 배포는 HTTP 기준이다. NSG에 443은 열어 두어, 도메인을 붙이면 certbot 인증서를 nginx에 마운트하는 방식으로 HTTPS를 더할 수 있다.
 
 ## 배포 방식
 
@@ -71,7 +71,7 @@
 | 캐시 | `/assets/*`(해시 파일명) 1년 immutable, `index.html`은 no-cache |
 | 압축 | gzip (text, css, js, json, svg) |
 | 보안 헤더 | `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, HSTS(HTTPS 확정 후) |
-| HTTP → HTTPS | HTTPS를 붙일 때만 (런북 05) |
+| HTTP → HTTPS | HTTPS를 붙일 때만 |
 
 ## 환경 변수
 

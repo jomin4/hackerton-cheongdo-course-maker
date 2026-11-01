@@ -17,7 +17,7 @@
 
 - [ ] `git log --oneline -1`이 배포하려는 커밋
 - [ ] `APP_VERSION=$(git rev-parse --short HEAD) docker compose -f infra/compose.yml up -d --build` 성공
-- [ ] 빌드가 멈추거나 `Killed`가 나오면 스왑 확인 → [`troubleshooting.md`](troubleshooting.md)
+- [ ] 빌드가 멈추거나 `Killed`가 나오면 스왑 확인 (`swapon --show`, 1GiB VM은 스왑 2GB 필요)
 
 ## 배포 후 (운영, 5분 점검)
 
@@ -37,4 +37,4 @@
 ## 문제 시
 
 1. 사용자 영향이 크면 **먼저 롤백** ([런북 07](runbooks/07-monitoring-rollback.md#4-롤백-연습)), 원인 분석은 그다음
-2. 원인 · 해결을 [`troubleshooting.md`](troubleshooting.md)에 기록
+2. 원인 · 해결을 PR 설명에 기록

@@ -1,28 +1,25 @@
 # 문서 지도
 
-청도 코스 메이커의 기획 · 설계 · 구현 · 배포 · 학습 문서. 번호 순서가 읽는 순서이자 진행 순서다.
+청도 코스 메이커의 기획 · 설계 · 구현 · 배포 문서. 번호 순서가 읽는 순서다.
 
 | 폴더 | 내용 | 주도 | 상태 |
 |---|---|---|---|
 | [`00-overview/`](00-overview/project-brief.md) | 프로젝트 개요, 역할 분담, 결정 기록(ADR) | Claude | 확정 |
-| [`01-product/`](01-product/mvp-spec.md) | MVP 기능 명세, 사용자 흐름, 관광지 데이터 | Claude | 확정 (데이터 수집 진행 중) |
+| [`01-product/`](01-product/mvp-spec.md) | MVP 기능 명세, 사용자 흐름, 관광지 데이터 | Claude | 확정 |
 | [`02-design/`](02-design/ui-screens.md) | 화면 구성, 디자인 토큰 | Claude | 확정 |
 | [`03-architecture/`](03-architecture/system-overview.md) | 시스템 구조, API, 데이터 모델, 하루 일정 계산 | Claude | 확정 |
 | [`04-dev/`](04-dev/local-setup.md) | 로컬 환경, 코드 규칙, 테스트 | Claude | 확정 |
 | [`05-copilot/`](05-copilot/README.md) | Copilot 프롬프트 01~16 · v2 구현 계획, 리뷰 기록 | Claude → Copilot | 완료 (v1 2026-10-30, v2 2026-11-01) |
-| [`06-deploy/`](06-deploy/README.md) | Azure 배포 런북 01~07, 체크리스트, 트러블슈팅 | 본인 직접 | 진행 전 |
-| [`07-study/`](07-study/learning-log.md) | MS Learn 학습 기록, 해커톤 치트시트 | 본인 | 진행 중 |
+| [`06-deploy/`](06-deploy/README.md) | Azure 배포 — 수동 런북(01~04, 07) · Terraform 대응표 · 체크리스트 | 본인 | 완료 |
 
-## 전체 진행 순서
+## 진행 순서
 
 ```
 설계 확정 (00~04)
-  └▶ Copilot 구현: 프롬프트 01 → 02/03 → 04 → 05 → 06/07 → 08 → 09
-        └▶ 직접 배포: 런북 01 → 02 → 03 → 04(수동) → 05(HTTPS) → 06(CI/CD) → 07
-              └▶ 모의 해커톤: 새 주제로 4시간 10분 타이머, 치트시트 갱신
+  └▶ v1 구현: Copilot 프롬프트 01~09 (여행 시간 2 · 4 · 6시간 코스)
+        └▶ v2 구현: 장소 43곳 데이터 + Copilot CLI 프롬프트 10~16 (하루 일정)
+              └▶ 배포: Azure VM 수동 런북 01~04 · Terraform 코드 (infra/terraform)
 ```
-
-런북 01~03(Azure 계정 · VM · 서버 준비)은 Copilot 구현과 **병행**해도 된다. 런북 04부터는 프롬프트 09가 끝나야 한다.
 
 ## 문서별 빠른 찾기
 
@@ -33,12 +30,11 @@
 | 색 · 글꼴 값 | [`02-design/design-tokens.md`](02-design/design-tokens.md) |
 | API 요청 · 응답 | [`03-architecture/api-spec.md`](03-architecture/api-spec.md) |
 | 타입 정의 | [`03-architecture/data-model.md`](03-architecture/data-model.md) |
-| 코스가 어떻게 계산되나 | [`03-architecture/recommendation-algorithm.md`](03-architecture/recommendation-algorithm.md) |
+| 하루 일정이 어떻게 계산되나 | [`03-architecture/recommendation-algorithm.md`](03-architecture/recommendation-algorithm.md) |
 | 왜 이 기술을 골랐나 | [`00-overview/decisions/`](00-overview/decisions/0001-tech-stack.md) |
 | 로컬에서 실행하는 법 | [`04-dev/local-setup.md`](04-dev/local-setup.md) |
-| 지금 Copilot에 넣을 프롬프트 | [`05-copilot/prompts/`](05-copilot/README.md#진행-순서) |
-| 배포 절차 | [`06-deploy/runbooks/`](06-deploy/README.md#로드맵) |
-| 에러가 났을 때 | [`06-deploy/troubleshooting.md`](06-deploy/troubleshooting.md) |
+| Copilot에 준 프롬프트 · 리뷰 기록 | [`05-copilot/`](05-copilot/README.md#진행-순서) · [`review-log.md`](05-copilot/review-log.md) |
+| 배포 절차 | [`06-deploy/`](06-deploy/README.md#로드맵) · [`infra/terraform`](../infra/terraform/README.md) |
 
 ## 문서 규칙
 
