@@ -29,7 +29,7 @@
 | 네트워크 | 공용 IP + DNS 이름 레이블, NSG (80 · 443 공개, 22는 내 IP만) |
 | HTTPS | Let's Encrypt (certbot) |
 | 이미지 저장소 | ~~GitHub Container Registry (GHCR)~~ → 2026-11-01: 쓰지 않음. VM에서 소스를 빌드 |
-| CI/CD | ~~GitHub Actions — 테스트 → 빌드 · 푸시 → SSH 배포~~ → 2026-11-01: 쓰지 않음. 한 번 수동 배포하고 마무리 ([런북 04](../../06-deploy/runbooks/04-first-manual-deploy.md)) |
+| CI/CD | ~~GitHub Actions — 테스트 → 빌드 · 푸시 → SSH 배포~~ → 2026-11-01: 쓰지 않음. Terraform(`infra/terraform`)으로 VM을 만들고 cloud-init이 소스를 빌드 |
 
 ## 근거
 

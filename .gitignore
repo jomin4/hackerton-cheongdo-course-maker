@@ -9,3 +9,11 @@ coverage/
 .data-draft/
 .DS_Store
 *.log
+
+# Terraform (상태 파일 · 변수 값 · 프로바이더 캐시는 커밋하지 않음)
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+terraform.tfvars
+crash.log

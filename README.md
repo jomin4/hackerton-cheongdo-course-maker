@@ -27,7 +27,7 @@ cheongdo-course/
 | 백엔드 | Express, TypeScript, zod, pino |
 | 테스트 | Vitest, Supertest |
 | 인프라 | Docker Compose, nginx, Azure VM (Ubuntu 24.04), Let's Encrypt |
-| 배포 | Azure VM에서 저장소 소스를 `infra/compose.yml`로 빌드 · 실행 (CI/CD · 레지스트리 없음) |
+| 배포 | Terraform(azurerm)으로 Azure VM 구성 → cloud-init이 저장소를 받아 `infra/compose.yml`로 빌드 · 실행 (CI/CD · 레지스트리 없음) |
 
 선택 이유: [`docs/00-overview/decisions/0001-tech-stack.md`](docs/00-overview/decisions/0001-tech-stack.md)
 
@@ -50,5 +50,6 @@ npm run dev          # http://localhost:5173
 - [x] v1 Copilot 구현 (프롬프트 01~09) — 여행 시간 2 · 4 · 6시간 코스
 - [x] v2 하루 일정 설계 · 장소 데이터 확인 — [설계](docs/01-product/day-course-design.md) · [장소 데이터](docs/01-product/spots-data.md) · [ADR 0005](docs/00-overview/decisions/0005-day-plan-coordinates-hours.md)
 - [x] v2 Copilot CLI 구현 (프롬프트 10~16) — [review-log](docs/05-copilot/review-log.md)
-- [ ] Azure VM 배포 — [런북 01~04](docs/06-deploy/README.md), 소유자가 직접 실행
+- [x] 배포 환경 코드 — [`infra/terraform`](infra/terraform/README.md) (`terraform apply` 한 번으로 배포, Azure 없이 `terraform test`로 검증)
+- [ ] 실제 Azure 배포 (`terraform apply`, 소유자 선택)
 - [ ] 모의 해커톤
