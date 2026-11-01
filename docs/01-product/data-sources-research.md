@@ -3,6 +3,8 @@
 > 조사일(접속일): **2026-10-31**. 시간에 따라 바뀌는 값(건수 · 운영시간 · 수정일)은 모두 이 날짜 기준이다.
 > 공개 페이지만 읽었다. 회원가입 · 서비스 키 발급 · 로그인 필요한 파일 다운로드는 하지 않았다.
 > 관련 문서: [`spots-data.md`](./spots-data.md) · [`../03-architecture/data-model.md`](../03-architecture/data-model.md)
+>
+> **결론 (2026-11-01)**: TourAPI는 오프라인 조사 도구로만 쓰고, 확인한 사실 · 직접 쓴 문장 · 1유형 사진 URL만 저장하기로 했다 → [ADR 0005](../00-overview/decisions/0005-day-plan-coordinates-hours.md). 아래 "미결 사항"은 조사 당시 기록이다.
 
 ## 요약 (권장안)
 

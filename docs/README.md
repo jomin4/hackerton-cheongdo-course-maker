@@ -2,15 +2,15 @@
 
 청도 코스 메이커의 기획 · 설계 · 구현 · 배포 문서. 번호 순서가 읽는 순서다.
 
-| 폴더 | 내용 | 주도 | 상태 |
-|---|---|---|---|
-| [`00-overview/`](00-overview/project-brief.md) | 프로젝트 개요, 역할 분담, 결정 기록(ADR) | Claude | 확정 |
-| [`01-product/`](01-product/mvp-spec.md) | MVP 기능 명세, 사용자 흐름, 관광지 데이터 | Claude | 확정 |
-| [`02-design/`](02-design/ui-screens.md) | 화면 구성, 디자인 토큰 | Claude | 확정 |
-| [`03-architecture/`](03-architecture/system-overview.md) | 시스템 구조, API, 데이터 모델, 하루 일정 계산 | Claude | 확정 |
-| [`04-dev/`](04-dev/local-setup.md) | 로컬 환경, 코드 규칙, 테스트 | Claude | 확정 |
-| [`05-copilot/`](05-copilot/README.md) | Copilot 프롬프트 01~16 · v2 구현 계획, 리뷰 기록 | Claude → Copilot | 완료 (v1 2026-10-30, v2 2026-11-01) |
-| [`06-deploy/`](06-deploy/README.md) | Azure 배포 — 수동 런북(01~04, 07) · Terraform 대응표 · 체크리스트 | 본인 | 완료 |
+| 폴더 | 내용 |
+|---|---|
+| [`00-overview/`](00-overview/project-brief.md) | 프로젝트 개요, 역할 분담, 결정 기록(ADR) |
+| [`01-product/`](01-product/mvp-spec.md) | MVP 기능 명세, 사용자 흐름, 관광지 데이터 |
+| [`02-design/`](02-design/ui-screens.md) | 화면 구성, 디자인 토큰 |
+| [`03-architecture/`](03-architecture/system-overview.md) | 시스템 구조, API, 데이터 모델, 하루 일정 계산 |
+| [`04-dev/`](04-dev/local-setup.md) | 로컬 환경, 코드 규칙, 테스트 |
+| [`05-copilot/`](05-copilot/README.md) | AI 구현 과정 — Copilot 프롬프트 01~16, v2 구현 계획, 리뷰 기록 |
+| [`06-deploy/`](06-deploy/README.md) | Azure 배포 — 수동 런북(01~04, 07) · Terraform 대응표 · 체크리스트 ([`infra/terraform`](../infra/terraform/README.md)) |
 
 ## 진행 순서
 
