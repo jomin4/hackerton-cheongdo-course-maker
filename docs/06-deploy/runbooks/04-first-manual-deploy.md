@@ -37,7 +37,7 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 ```bash
 cd /opt/cheongdo-course
-git clone https://github.com/jomin4/hackerton-hackerground.git app
+git clone https://github.com/jomin4/hackerton-cheongdo-course-maker.git app
 cd app
 git log --oneline -1          # 배포할 커밋 확인
 ```

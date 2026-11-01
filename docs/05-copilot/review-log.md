@@ -6,22 +6,22 @@
 
 | # | 프롬프트 | 시작 | 완료 | 재시도 | 결과 | PR |
 |---|---|---|---|---|---|---|
-| 01 | scaffold-monorepo | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#1](https://github.com/jomin4/hackerton-hackerground/pull/1) |
-| 02 | api-spots | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#3](https://github.com/jomin4/hackerton-hackerground/pull/3) |
-| 03 | recommend-course | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#2](https://github.com/jomin4/hackerton-hackerground/pull/2) |
-| 04 | api-course | 2026-10-30 | 2026-10-30 | 0 | ☑ | [#4](https://github.com/jomin4/hackerton-hackerground/pull/4) |
-| 05 | web-layout-home | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#5](https://github.com/jomin4/hackerton-hackerground/pull/5) |
-| 06 | web-course-result | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#6](https://github.com/jomin4/hackerton-hackerground/pull/6) |
-| 07 | web-spot-detail | 2026-10-30 | 2026-10-30 | 0 | ☑ | [#7](https://github.com/jomin4/hackerton-hackerground/pull/7) |
-| 08 | web-states | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#8](https://github.com/jomin4/hackerton-hackerground/pull/8) |
-| 09 | dockerize | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#9](https://github.com/jomin4/hackerton-hackerground/pull/9) |
-| 10 | tourapi-tools | 2026-10-31 | 2026-10-31 | 0 | ☑ | [#12](https://github.com/jomin4/hackerton-hackerground/pull/12) |
-| 11 | shared-v2 | 2026-10-31 | 2026-10-31 | 1 | ☑ | [#14](https://github.com/jomin4/hackerton-hackerground/pull/14) |
-| 12 | plan-day | 2026-11-01 | 2026-11-01 | 0 | ☑ | [#16](https://github.com/jomin4/hackerton-hackerground/pull/16) |
-| 13 | api-v2 | 2026-11-01 | 2026-11-01 | 0 | ☑ | [#17](https://github.com/jomin4/hackerton-hackerground/pull/17) |
-| 14 | web-home-v2 | 2026-11-01 | 2026-11-01 | 1 | ☑ | [#18](https://github.com/jomin4/hackerton-hackerground/pull/18) |
-| 15 | web-course-timeline | 2026-11-01 | 2026-11-01 | 0 | ☑ | [#19](https://github.com/jomin4/hackerton-hackerground/pull/19) |
-| 16 | web-spot-footer-v2 | 2026-11-01 | 2026-11-01 | 1 | ☑ | [#20](https://github.com/jomin4/hackerton-hackerground/pull/20) |
+| 01 | scaffold-monorepo | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#1](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/1) |
+| 02 | api-spots | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#3](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/3) |
+| 03 | recommend-course | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#2](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/2) |
+| 04 | api-course | 2026-10-30 | 2026-10-30 | 0 | ☑ | [#4](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/4) |
+| 05 | web-layout-home | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#5](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/5) |
+| 06 | web-course-result | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#6](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/6) |
+| 07 | web-spot-detail | 2026-10-30 | 2026-10-30 | 0 | ☑ | [#7](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/7) |
+| 08 | web-states | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#8](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/8) |
+| 09 | dockerize | 2026-10-30 | 2026-10-30 | 1 | ☑ | [#9](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/9) |
+| 10 | tourapi-tools | 2026-10-31 | 2026-10-31 | 0 | ☑ | [#12](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/12) |
+| 11 | shared-v2 | 2026-10-31 | 2026-10-31 | 1 | ☑ | [#14](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/14) |
+| 12 | plan-day | 2026-11-01 | 2026-11-01 | 0 | ☑ | [#16](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/16) |
+| 13 | api-v2 | 2026-11-01 | 2026-11-01 | 0 | ☑ | [#17](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/17) |
+| 14 | web-home-v2 | 2026-11-01 | 2026-11-01 | 1 | ☑ | [#18](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/18) |
+| 15 | web-course-timeline | 2026-11-01 | 2026-11-01 | 0 | ☑ | [#19](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/19) |
+| 16 | web-spot-footer-v2 | 2026-11-01 | 2026-11-01 | 1 | ☑ | [#20](https://github.com/jomin4/hackerton-cheongdo-course-maker/pull/20) |
 
 ## 기록 양식
 
