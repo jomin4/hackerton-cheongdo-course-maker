@@ -10,7 +10,7 @@ apps/api/src/
 ├── app.ts                # createApp(deps): Express 앱 조립 (테스트에서 재사용)
 ├── config.ts             # 환경 변수 읽기 · 검증
 ├── routes/               # health.ts, spots.ts, course.ts — 요청/응답 변환만
-├── domain/               # recommend-course.ts — 순수 비즈니스 로직
+├── domain/               # plan-day.ts, travel.ts, opening.ts, spot-summary.ts — 순수 비즈니스 로직
 ├── data/                 # spot-repository.ts — JSON 로드 · 검증 · 조회
 ├── middleware/           # error-handler.ts, not-found.ts
 └── lib/                  # logger.ts, http-error.ts
@@ -21,11 +21,11 @@ apps/web/src/
 ├── main.tsx · App.tsx    # 라우터
 ├── pages/                # HomePage, CoursePage, SpotPage, NotFoundPage
 ├── components/           # 화면 조각 (layout/, course/, spot/, ui/)
-├── lib/                  # api.ts(fetch 래퍼), format.ts(분 → "1시간 25분"), query.ts(URL ↔ 조건)
+├── lib/                  # api.ts(fetch 래퍼), format.ts(분 → "1시간 25분"), query.ts(URL ↔ 조건), date.ts(KST 오늘 · "11월 7일(토)")
 ├── hooks/                # useCourse, useSpot
 └── index.css             # Tailwind + @theme 토큰
 
-packages/shared/src/      # constants.ts, types.ts, schemas.ts, index.ts
+packages/shared/src/      # constants.ts, types.ts, schemas.ts, time.ts, hours-format.ts, index.ts
 ```
 
 ## 계층 규칙 (API)
@@ -40,7 +40,7 @@ packages/shared/src/      # constants.ts, types.ts, schemas.ts, index.ts
 - `strict: true`, `noUncheckedIndexedAccess: true`
 - `any` 금지 (불가피하면 `unknown` + 좁히기)
 - 타입 · 상수는 `@cheongdo/shared`에서 가져오고 중복 정의하지 않는다
-- 파일명 kebab-case (`recommend-course.ts`), React 컴포넌트 파일은 PascalCase (`CourseTimeline.tsx`)
+- 파일명 kebab-case (`plan-day.ts`), React 컴포넌트 파일은 PascalCase (`CourseTimeline.tsx`)
 - named export 사용 (React 페이지 포함), default export 지양
 
 ## React
@@ -56,7 +56,7 @@ packages/shared/src/      # constants.ts, types.ts, schemas.ts, index.ts
 ### 브랜치
 
 - `main`: 항상 배포 가능. push = 운영 배포
-- 작업 브랜치: `feat/03-recommend-course`, `fix/course-empty-state`, `docs/api-spec`, `infra/nginx-cache`
+- 작업 브랜치: `feat/12-plan-day`, `fix/course-empty-state`, `docs/api-spec`, `infra/nginx-cache`
 - 프롬프트 하나 = 브랜치 하나 = PR 하나 (`05-copilot/prompts` 번호와 맞춤)
 
 ### 커밋 메시지 (Conventional Commits)
@@ -78,7 +78,7 @@ packages/shared/src/      # constants.ts, types.ts, schemas.ts, index.ts
 | `infra` | Docker · nginx · CI/CD · 서버 |
 
 scope 예: `api`, `web`, `shared`, `infra`, `ci`
-예: `feat(api): 코스 추천 알고리즘 구현`, `infra(nginx): 정적 파일 캐시 헤더 추가`
+예: `feat(api): 하루 일정 계산 구현`, `infra(nginx): 정적 파일 캐시 헤더 추가`
 
 ### PR 체크리스트
 
