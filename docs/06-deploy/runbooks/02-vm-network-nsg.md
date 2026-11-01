@@ -25,7 +25,7 @@ az vm list-sizes --location koreacentral -o table | Select-String "B1s|B2ats_v2|
 
 | 후보 | 사양 | 메모 |
 |---|---|---|
-| `Standard_B1s` | 1 vCPU · 1 GiB | 가장 저렴. nginx + node 컨테이너 2개는 동작 가능, 이미지 빌드는 CI에서 하므로 OK |
+| `Standard_B1s` | 1 vCPU · 1 GiB | 가장 저렴. 컨테이너 2개 실행은 충분하고, VM에서 빌드할 때는 스왑 2GB를 켜서 쓴다 (런북 03 · 04) |
 | `Standard_B2ats_v2` | 2 vCPU · 1 GiB | 버스트형 |
 | `Standard_B2s` | 2 vCPU · 4 GiB | 여유 있음, 비용 높음 |
 
@@ -82,7 +82,7 @@ az network nsg rule create -g rg-cheongdo-course --nsg-name $NSG `
 ```
 
 > 집 · 학교 등 장소가 바뀌어 IP가 바뀌면 `allow-ssh-myip` 규칙의 원본 주소를 갱신해야 SSH가 된다.
-> GitHub Actions에서 SSH 배포를 하려면 22번을 Actions 러너에도 열어야 한다 → 런북 06에서 다룬다.
+> 22번은 내 IP에서만 연다. 이 프로젝트는 CI/CD를 쓰지 않으므로 다른 곳에 열 필요가 없다.
 
 ### 5. 리소스 둘러보기 (포털)
 

@@ -77,10 +77,10 @@ sudo chown $USER:$USER /opt/cheongdo-course
 
 ### 6. 스크립트로 만들기
 
-위 2~5단계를 저장소의 `infra/scripts/server-setup.sh`로 직접 작성한다(Claude에게 검토 요청). 다음에 VM을 새로 만들면:
+위 2~5단계에 **스왑 2GB**(VM에서 빌드할 때 필요)를 더한 것이 저장소의 [`infra/scripts/server-setup.sh`](../../../infra/scripts/server-setup.sh)다. 위 단계를 손으로 하지 않고 이 스크립트로 한 번에 해도 된다:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<계정>/cheongdo-course/main/infra/scripts/server-setup.sh -o setup.sh
+curl -fsSL https://raw.githubusercontent.com/jomin4/hackerton-hackerground/main/infra/scripts/server-setup.sh -o setup.sh
 less setup.sh   # 내용 확인 후
 bash setup.sh
 ```

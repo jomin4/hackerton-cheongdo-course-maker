@@ -75,7 +75,7 @@ packages/shared/src/      # constants.ts, types.ts, schemas.ts, time.ts, hours-f
 | `test` | 테스트 추가 · 수정 |
 | `docs` | 문서 |
 | `chore` | 설정 · 의존성 |
-| `infra` | Docker · nginx · CI/CD · 서버 |
+| `infra` | Docker · nginx · 운영 compose · 서버 스크립트 |
 
 scope 예: `api`, `web`, `shared`, `infra`, `ci`
 예: `feat(api): 하루 일정 계산 구현`, `infra(nginx): 정적 파일 캐시 헤더 추가`

@@ -16,8 +16,7 @@ cheongdo-course/
 ├── infra/                # nginx · Docker Compose · 서버 스크립트
 ├── docs/                 # 기획 · 설계 · 프롬프트 · 배포 런북 · 학습 기록
 └── .github/
-    ├── copilot-instructions.md   # Copilot 프로젝트 규칙
-    └── workflows/                # CI/CD
+    └── copilot-instructions.md   # Copilot 프로젝트 규칙
 ```
 
 ## 기술 스택
@@ -28,7 +27,7 @@ cheongdo-course/
 | 백엔드 | Express, TypeScript, zod, pino |
 | 테스트 | Vitest, Supertest |
 | 인프라 | Docker Compose, nginx, Azure VM (Ubuntu 24.04), Let's Encrypt |
-| CI/CD | GitHub Actions, GitHub Container Registry |
+| 배포 | Azure VM에서 저장소 소스를 `infra/compose.yml`로 빌드 · 실행 (CI/CD · 레지스트리 없음) |
 
 선택 이유: [`docs/00-overview/decisions/0001-tech-stack.md`](docs/00-overview/decisions/0001-tech-stack.md)
 
@@ -51,5 +50,5 @@ npm run dev          # http://localhost:5173
 - [x] v1 Copilot 구현 (프롬프트 01~09) — 여행 시간 2 · 4 · 6시간 코스
 - [x] v2 하루 일정 설계 · 장소 데이터 확인 — [설계](docs/01-product/day-course-design.md) · [장소 데이터](docs/01-product/spots-data.md) · [ADR 0005](docs/00-overview/decisions/0005-day-plan-coordinates-hours.md)
 - [x] v2 Copilot CLI 구현 (프롬프트 10~16) — [review-log](docs/05-copilot/review-log.md)
-- [ ] Azure 배포 — 다음 단계. Terraform으로 소유자가 직접 실행
+- [ ] Azure VM 배포 — [런북 01~04](docs/06-deploy/README.md), 소유자가 직접 실행
 - [ ] 모의 해커톤

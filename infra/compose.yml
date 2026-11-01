@@ -1,0 +1,32 @@
+# 운영(Azure VM) compose — 저장소 소스를 VM에서 빌드해 80번 포트로 공개한다.
+# 실행 (저장소 루트): APP_VERSION=$(git rev-parse --short HEAD) docker compose -f infra/compose.yml up -d --build
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+      args:
+        APP_VERSION: ${APP_VERSION:-dev}
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: info
+      PORT: '3000'
+    expose:
+      - '3000'
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ..
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - '80:80'
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1/healthz']
+      interval: 30s
+      timeout: 3s
+      retries: 3
