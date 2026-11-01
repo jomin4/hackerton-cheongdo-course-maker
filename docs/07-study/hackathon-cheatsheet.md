@@ -82,7 +82,7 @@ sudo certbot certonly --webroot -w /var/www/certbot -d <FQDN>
 ## 빠른 배포 경로 (시간이 없을 때)
 
 1. HTTPS 없이 HTTP로 먼저 1차 제출 → 개발 Ⅲ에서 HTTPS
-2. CI/CD가 막히면 런북 04의 수동 배포로 즉시 전환
+2. 배포는 런북 04의 수동 배포(VM에서 `git clone` → `docker compose -f infra/compose.yml up -d --build`)
 3. 화면 3개가 무리면 1개 + API로 축소, 상태 화면은 최소한만
 
 ## 기획서 뼈대

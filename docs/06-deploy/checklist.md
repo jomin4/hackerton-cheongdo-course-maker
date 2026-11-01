@@ -3,30 +3,31 @@
 ## 배포 전 (로컬)
 
 - [ ] `npm run lint && npm run typecheck && npm test && npm run build` 통과
-- [ ] `npm run docker:up` 리허설에서 홈 → 결과 → 상세 → 상태 화면 확인
+- [ ] `docker compose -f infra/compose.yml up -d --build` 리허설 (로컬 80번 포트) 또는 `npm run docker:up`(8080)에서 홈 → 결과 → 상세 → 상태 화면 확인
 - [ ] 커밋에 비밀 값 · `.env` 없음 (`git diff --cached`로 확인)
-- [ ] `spots.json` 변경 시 출처 · 확인 날짜 갱신
-- [ ] API · 데이터 구조 변경 시 문서(`api-spec.md`, `data-model.md`) 갱신
+- [ ] `spots.json` 변경 시 출처 · 확인 날짜(`checkedAt`) 갱신
+- [ ] 배포할 커밋이 `main`에 푸시됨 (VM은 GitHub에서 `git clone` · `git pull`로 받는다)
 
-## 배포 중 (GitHub Actions)
+## 배포 중 (VM)
 
-- [ ] `ci` → `image` → `deploy` 모두 성공
-- [ ] 실패 시 로그의 첫 번째 오류부터 확인 → [`troubleshooting.md`](troubleshooting.md)
+- [ ] `git log --oneline -1`이 배포하려는 커밋
+- [ ] `APP_VERSION=$(git rev-parse --short HEAD) docker compose -f infra/compose.yml up -d --build` 성공
+- [ ] 빌드가 멈추거나 `Killed`가 나오면 스왑 확인 → [`troubleshooting.md`](troubleshooting.md)
 
 ## 배포 후 (운영, 5분 점검)
 
 | # | 확인 | 방법 | 기대 |
 |---|---|---|---|
-| 1 | 버전 | `https://<FQDN>/api/health` | `version` = 머지 커밋 SHA, `spots` > 0 |
-| 2 | HTTPS | 브라우저 자물쇠, `http://` 접속 | 유효 인증서, https로 이동 |
-| 3 | 핵심 흐름 | 홈 → 코스 만들기 → 상세 → 돌아가기 | 정상, 4시간 가족 자연·체험 = 215분 |
-| 4 | 새로고침 | `/course?...`, `/spots/wine-tunnel`에서 F5 | 404 없이 화면 |
-| 5 | 오류 화면 | `/course?hours=99&with=family&tags=nature`, `/spots/nope` | 400 · 404 화면 |
+| 1 | 버전 | `http://<FQDN>/api/health` | `version` = 배포한 커밋, `spots` = 43 |
+| 2 | 핵심 흐름 | 홈 → 코스 만들기 → 상세 → 코스로 돌아가기 | 정상, 시각이 적힌 하루 일정 |
+| 3 | 새로고침 | `/course?date=…&start=…`, `/spots/eupseong`에서 F5 | 404 없이 화면 |
+| 4 | 오류 화면 | `/course?hours=4&with=family&tags=nature`, `/spots/nope` | 400("방문 날짜가 올바르지 않아요.") · 404 화면 |
+| 5 | 사진 · 출처 | 상세 화면, 푸터 | 사진 아래 'ⓒ한국관광공사', 푸터 '데이터 제공: ⓒ한국관광공사' |
 | 6 | 모바일 | 휴대폰으로 접속 | 가로 스크롤 없음 |
-| 7 | 헤더 | `curl.exe -I https://<FQDN>/` | HSTS · nosniff 등 보안 헤더 |
-| 8 | 캐시 | `curl.exe -I https://<FQDN>/assets/<파일>.js` | `immutable` |
-| 9 | 로그 | `docker compose logs --tail=50 api` | error 없음 |
-| 10 | 리소스 | `docker stats --no-stream`, `df -h /` | 메모리 · 디스크 여유 |
+| 7 | 헤더 | `curl.exe -I http://<FQDN>/` | nosniff 등 보안 헤더 |
+| 8 | 캐시 | `curl.exe -I http://<FQDN>/assets/<파일>.js` | `immutable` |
+| 9 | 로그 | `docker compose -f infra/compose.yml logs --tail=50 api` | error 없음 |
+| 10 | 리소스 | `docker stats --no-stream`, `free -h`, `df -h /` | 메모리 · 디스크 여유 |
 
 ## 문제 시
 

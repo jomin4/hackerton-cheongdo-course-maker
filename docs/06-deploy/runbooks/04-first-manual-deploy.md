@@ -1,125 +1,92 @@
-# 런북 04 — 첫 수동 배포 (HTTP)
+# 런북 04 — 소스 배포 (HTTP)
 
 ## 이번에 배울 것
 
 | 개념 | 한 줄 정의 |
 |---|---|
-| 컨테이너 레지스트리 | 빌드한 이미지를 올려 두고 서버가 내려받는 저장소 (여기서는 GHCR) |
-| 이미지 태그 | 이미지 버전 이름. `latest`와 git SHA를 함께 쓴다 |
-| 운영 compose | 빌드하지 않고 레지스트리의 이미지를 받아 실행하는 compose |
+| 서버에서 빌드 | 저장소 소스를 VM에 받아 그 자리에서 Docker 이미지를 만들고 실행하는 방식 |
+| 운영 compose | `infra/compose.yml` — 로컬 리허설(`compose.local.yml`)과 같은 빌드에 80번 포트 · 버전 표시만 다르다 |
+| 스왑 | 메모리가 모자랄 때 디스크를 임시 메모리로 쓰는 공간. 1GiB VM에서 빌드할 때 필요 |
 
 MS Learn 연결: 컴퓨팅 서비스 › 컨테이너 (VM과 컨테이너의 차이)
 
 ## 왜 하는가
 
-자동화(런북 06) 전에 **손으로 한 번** 해 봐야 파이프라인의 각 단계가 무엇을 하는지 안다. 선행: Copilot 프롬프트 09 완료(로컬 `docker:up` 성공).
+이 프로젝트는 레지스트리 · CI/CD 없이 **한 번 배포하고 마무리**한다. 공개 저장소라 VM에서 `git clone`만 하면 소스를 받을 수 있고, 로컬에서 리허설한 그 Dockerfile 그대로 VM에서 빌드한다.
 
-## 실행
+선행: 런북 03 완료(SSH 접속, Docker 설치, 스왑). `infra/scripts/server-setup.sh`를 썼다면 스왑까지 되어 있다.
 
-### 1. GHCR 로그인 (내 PC)
+## 실행 (모두 VM에서)
 
-GitHub → Settings → Developer settings → Personal access tokens → **Tokens (classic)** → `write:packages`, `read:packages` 권한으로 토큰 생성 (만료일 설정).
+### 1. 스왑 확인
 
-```powershell
-$env:CR_PAT = "<토큰>"     # 이 창에서만 유지, 파일에 저장하지 말 것
-$env:CR_PAT | docker login ghcr.io -u <GitHub 계정> --password-stdin
+```bash
+swapon --show          # /swapfile 2G 가 보이면 OK
+free -h
 ```
 
-### 2. 이미지 빌드 · 푸시 (내 PC, 저장소 루트)
+없으면 (`server-setup.sh`를 안 썼을 때):
 
-GHCR 이미지 이름은 **소문자**여야 한다.
-
-```powershell
-$OWNER = "<github 계정 소문자>"
-$SHA = git rev-parse --short HEAD
-
-docker build -f apps/api/Dockerfile --build-arg APP_VERSION=$SHA `
-  -t ghcr.io/$OWNER/cheongdo-course-api:$SHA -t ghcr.io/$OWNER/cheongdo-course-api:latest .
-docker build -f apps/web/Dockerfile `
-  -t ghcr.io/$OWNER/cheongdo-course-web:$SHA -t ghcr.io/$OWNER/cheongdo-course-web:latest .
-
-docker push ghcr.io/$OWNER/cheongdo-course-api --all-tags
-docker push ghcr.io/$OWNER/cheongdo-course-web --all-tags
+```bash
+sudo fallocate -l 2G /swapfile && sudo chmod 600 /swapfile
+sudo mkswap /swapfile && sudo swapon /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ```
 
-> Apple Silicon Mac에서 빌드하면 VM(amd64)과 아키텍처가 다르다 → `docker buildx build --platform linux/amd64 ... --push` 사용. Windows(x64)는 해당 없음.
-
-GitHub → 내 프로필 → **Packages**에서 두 패키지 확인. 패키지 설정에서 저장소와 연결하고, 공개 저장소라면 패키지도 **Public**으로 바꾸면 VM에서 로그인 없이 받을 수 있다. 비공개로 둔다면 VM에서도 `read:packages` 토큰으로 `docker login`이 필요하다.
-
-### 3. 운영 compose 작성 (저장소 `infra/compose.yml`)
-
-직접 작성한다. 로컬 리허설용(`compose.local.yml`)과의 차이를 생각하며 쓸 것.
-
-```yaml
-services:
-  api:
-    image: ghcr.io/${GHCR_OWNER}/cheongdo-course-api:${IMAGE_TAG:-latest}
-    environment:
-      NODE_ENV: production
-      LOG_LEVEL: info
-    expose:
-      - "3000"
-    restart: unless-stopped
-
-  web:
-    image: ghcr.io/${GHCR_OWNER}/cheongdo-course-web:${IMAGE_TAG:-latest}
-    ports:
-      - "80:80"
-    depends_on:
-      api:
-        condition: service_healthy
-    restart: unless-stopped
-```
-
-`infra/.env.example`도 만든다 (실제 `.env`는 커밋 금지):
-
-```
-GHCR_OWNER=yourgithubid
-IMAGE_TAG=latest
-DOMAIN=cheongdo-course-xx.koreacentral.cloudapp.azure.com
-```
-
-### 4. 서버에 올리고 실행 (VM)
-
-내 PC에서 compose 파일 복사:
-
-```powershell
-scp infra/compose.yml azureuser@<FQDN>:/opt/cheongdo-course/compose.yml
-```
-
-VM에서:
+### 2. 소스 받기
 
 ```bash
 cd /opt/cheongdo-course
-cat > .env <<'EOF'
-GHCR_OWNER=<github 계정 소문자>
-IMAGE_TAG=latest
-DOMAIN=<FQDN>
-EOF
-chmod 600 .env
-
-docker compose pull
-docker compose up -d
-docker compose ps
+git clone https://github.com/jomin4/hackerton-hackerground.git app
+cd app
+git log --oneline -1          # 배포할 커밋 확인
 ```
 
-## 확인
+### 3. 빌드 · 실행
 
 ```bash
-docker compose ps                         # 두 서비스 running, api healthy
-docker compose logs --tail=50 api
-curl -s http://localhost/api/health
+APP_VERSION=$(git rev-parse --short HEAD) docker compose -f infra/compose.yml up -d --build
 ```
 
-내 PC 브라우저에서 `http://<FQDN>` → 홈 화면, `/course?hours=4&with=family&tags=nature,experience` 새로고침 정상.
+- 처음에는 npm 설치 · 빌드로 몇 분 걸린다 (Standard_B1s 기준 5~10분). 빌드 중 `docker stats`가 안 보여도 정상.
+- `APP_VERSION`은 `/api/health`의 `version`으로 나온다 → 어떤 커밋이 떠 있는지 바로 확인할 수 있다.
+
+### 4. 상태 확인
+
+```bash
+docker compose -f infra/compose.yml ps          # api · web 둘 다 healthy
+curl -s http://localhost/api/health              # {"status":"ok","version":"<커밋>","spots":43,...}
+```
+
+## 확인 (내 PC 브라우저)
+
+| 확인 | 주소 | 기대 |
+|---|---|---|
+| 홈 | `http://<FQDN>/` | 방문 날짜 · 시작 · 끝 입력이 있는 홈 |
+| 결과 (새로고침 포함) | `http://<FQDN>/course?date=2026-11-07&start=10:00&end=21:00&with=couple&tags=history,photo` | 저녁 뒤 청도 프로방스까지 있는 하루 일정, F5 해도 화면 유지 |
+| 상세 (새로고침 포함) | `http://<FQDN>/spots/eupseong` | 사진 · 운영시간 · 카카오맵 링크 |
+| 400 | `http://<FQDN>/course?hours=4&with=family&tags=nature` | "방문 날짜가 올바르지 않아요." 화면 |
+| 404 | `http://<FQDN>/spots/nope` | "찾는 장소가 없어요" |
+| 모바일 | 휴대폰으로 `http://<FQDN>/` | 가로 스크롤 없음 |
+
+`<FQDN>`은 런북 02의 DNS 이름(`cheongdo-course-xx.koreacentral.cloudapp.azure.com`) 또는 공용 IP.
+
+## 다시 배포 (코드를 고쳤을 때)
+
+```bash
+cd /opt/cheongdo-course/app
+git pull
+APP_VERSION=$(git rev-parse --short HEAD) docker compose -f infra/compose.yml up -d --build
+docker image prune -f        # 이전 빌드에서 남은 이미지 정리
+```
 
 ## 이해 점검
 
-1. 로컬 리허설 compose와 운영 compose의 차이 3가지는? (build vs image, 포트, env)
-2. 서버에서 이미지를 빌드하지 않고 레지스트리에서 받는 이유는?
-3. `IMAGE_TAG`를 `latest` 대신 SHA로 지정하면 무엇이 좋아지나?
-4. `restart: unless-stopped`는 VM이 재부팅되면 어떻게 동작하나? (직접 `sudo reboot`로 확인)
+1. `compose.local.yml`과 `compose.yml`의 차이 2가지는? (포트, 버전 빌드 인자)
+2. 레지스트리를 쓰지 않고 서버에서 빌드할 때의 장점과 단점은? (단순함 ↔ 서버 자원 · 빌드 시간)
+3. 1GiB VM에서 스왑 없이 빌드하면 어떤 일이 생길 수 있나?
+4. `restart: unless-stopped`는 VM이 재부팅되면 어떻게 동작하나? (직접 `sudo reboot` 후 `docker compose -f infra/compose.yml ps`로 확인)
 
 ## 정리 · 비용
 
-지금은 HTTP라 주소창에 "주의 요함"이 뜬다 → 런북 05. 실습을 멈출 땐 `az vm deallocate` (컨테이너는 재시작 시 자동으로 다시 뜬다).
+지금은 HTTP라 주소창에 "주의 요함"이 뜬다. HTTPS가 필요하면 런북 05(선택). 실습을 멈출 땐 `az vm deallocate` — 다시 켜면 컨테이너가 자동으로 다시 뜬다.

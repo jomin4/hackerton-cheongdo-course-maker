@@ -2,6 +2,8 @@
 
 > 이 영역은 **개발자 본인이 직접** 실행한다. Claude는 런북 작성과 막혔을 때의 디버깅을 돕는다.
 > 각 런북은 "따라 하는 가이드"이자 "Azure 학습 노트"다.
+>
+> **배포 방식 (2026-11-01 결정)**: Azure 포털 · CLI로 VM을 직접 만들고, VM에서 저장소를 `git clone`해 `infra/compose.yml`로 빌드 · 실행한다. Terraform · 컨테이너 레지스트리 · GitHub Actions(CI/CD)는 쓰지 않고 **한 번 배포하고 마무리**한다. 필수는 런북 01~04, 07의 비용 정리다.
 
 ## 목표 구조
 
@@ -14,12 +16,12 @@
 | 01 | [계정 · 리소스 그룹](runbooks/01-account-resource-group.md) | 구독, 리소스 그룹, 예산 알림 | 클라우드 개념(사용량 기반 과금) · 핵심 아키텍처 구성 요소(지역, 구독, 리소스 그룹) | 30분 |
 | 02 | [VM · 네트워크 · NSG](runbooks/02-vm-network-nsg.md) | Ubuntu VM, 공용 IP · DNS 이름, 방화벽 | 컴퓨팅 서비스(VM, IaaS) · 네트워킹(VNet, NSG, 공용 IP) · 스토리지(관리 디스크) | 45분 |
 | 03 | [서버 초기 설정](runbooks/03-server-setup.md) | SSH 접속, 업데이트, Docker 설치 | 공동 책임 모델(OS는 내 책임) · ID · 보안(SSH 키) | 40분 |
-| 04 | [첫 수동 배포](runbooks/04-first-manual-deploy.md) | HTTP로 서비스 공개 | 컨테이너 이미지 · 레지스트리 | 40분 |
-| 05 | [HTTPS](runbooks/05-https-certbot.md) | Let's Encrypt 인증서, 자동 갱신 | 네트워크 보안 · DNS | 40분 |
-| 06 | [CI/CD](runbooks/06-cicd-github-actions.md) | push → 자동 배포 | (GitHub) Actions · Secrets | 60분 |
+| 04 | [소스 배포](runbooks/04-first-manual-deploy.md) | VM에서 소스 빌드 · HTTP로 서비스 공개 | 컨테이너 (VM과 컨테이너의 차이) | 40분 |
+| 05 | [HTTPS](runbooks/05-https-certbot.md) (선택) | Let's Encrypt 인증서, 자동 갱신 | 네트워크 보안 · DNS | 40분 |
+| 06 | ~~[CI/CD](runbooks/06-cicd-github-actions.md)~~ | 사용하지 않음 | — | — |
 | 07 | [모니터링 · 롤백 · 비용](runbooks/07-monitoring-rollback.md) | 로그 · 지표 확인, 롤백 연습, 자동 종료 | Azure Monitor · 비용 관리 | 40분 |
 
-**순서가 중요하다**: 04에서 손으로 배포해 보고 나서 06에서 자동화한다. 파이프라인이 하는 일을 이미 알고 있어야 실패했을 때 고칠 수 있다.
+**순서**: 01 → 02 → 03 → 04로 서비스를 공개하고, 07에서 로그 확인 · 자동 종료 · 정리를 한다. 05(HTTPS)는 필요할 때만.
 
 ## 런북 형식
 

@@ -11,7 +11,7 @@
 | Web (React SPA) | `apps/web` | 화면. 빌드 결과는 정적 파일(`dist/`) |
 | API (Express) | `apps/api` | `/api/*` JSON 응답, 하루 일정 계산 |
 | Shared | `packages/shared` | 타입, 상수, zod 스키마 |
-| nginx | `infra/nginx` | 정적 파일 서빙, `/api` 리버스 프록시, HTTPS, 압축 · 캐시 · 보안 헤더 |
+| nginx | `infra/nginx` | 정적 파일 서빙, `/api` 리버스 프록시, 압축 · 캐시 · 보안 헤더 |
 | Compose | `infra/compose.yml` (운영), `compose.local.yml` (리허설) | 컨테이너 정의 · 재시작 정책 |
 
 ## 실행 모드 3가지
@@ -37,32 +37,30 @@
 ### 3. 운영 — Azure VM
 
 ```
-관광객 ──HTTPS──▶ 공용 IP / DNS 이름 ──▶ NSG (80·443) ──▶ web 컨테이너 (nginx :443)
+관광객 ──HTTP──▶ 공용 IP / DNS 이름 ──▶ NSG (80) ──▶ web 컨테이너 (nginx :80)
                                                           └─(/api/*)──▶ api 컨테이너 (:3000, 외부 비공개)
 ```
 
 - api 컨테이너는 포트를 호스트에 열지 않는다. Compose 내부 네트워크로만 nginx와 통신.
-- HTTPS 인증서는 VM의 certbot이 발급 · 갱신하고, nginx 컨테이너가 읽기 전용으로 마운트한다.
+- 이번 배포는 HTTP로 마무리한다. HTTPS(certbot 인증서 + nginx 마운트)는 선택 단계로 [런북 05](../06-deploy/runbooks/05-https-certbot.md)에 남겨 둔다.
 
-## 배포 파이프라인
+## 배포 방식
 
 ```
-git push main
-  └▶ GitHub Actions
-       1. npm ci → lint → typecheck → test
-       2. web · api Docker 이미지 빌드 (태그: git SHA + latest)
-       3. GHCR에 푸시
-       4. SSH로 VM 접속 → docker compose pull → up -d → /api/health 확인
+내 PC: git push main
+VM:    cd /opt/cheongdo-course/app && git pull
+       APP_VERSION=$(git rev-parse --short HEAD) docker compose -f infra/compose.yml up -d --build
+       curl http://localhost/api/health      # version = 배포한 커밋
 ```
 
-실패하면 그 단계에서 멈추고, VM에는 이전 이미지가 계속 돈다. 롤백은 이전 SHA 태그로 `up -d`.
+CI/CD와 이미지 레지스트리는 쓰지 않는다 (2026-11-01 결정, 한 번 배포하고 마무리). 롤백은 VM에서 이전 커밋으로 `git checkout` 후 같은 명령으로 다시 빌드한다 ([런북 07](../06-deploy/runbooks/07-monitoring-rollback.md)).
 
 ## 이미지
 
 | 이미지 | 베이스 | 내용 |
 |---|---|---|
-| `ghcr.io/<계정>/cheongdo-course-web` | 빌드: `node:22-alpine` → 실행: `nginx:alpine` | React `dist/` + `nginx.conf` |
-| `ghcr.io/<계정>/cheongdo-course-api` | 빌드: `node:22-alpine` → 실행: `node:22-alpine` | tsup 번들 `dist/index.js`(shared 포함, [ADR 0004](../00-overview/decisions/0004-api-build-tsup.md)) + 운영 의존성 + `data/spots.json`, 비루트 사용자 실행 |
+| web (`apps/web/Dockerfile`) | 빌드: `node:22-alpine` → 실행: `nginx:alpine` | React `dist/` + `nginx.conf` |
+| api (`apps/api/Dockerfile`) | 빌드: `node:22-alpine` → 실행: `node:22-alpine` | tsup 번들 `dist/index.js`(shared 포함, [ADR 0004](../00-overview/decisions/0004-api-build-tsup.md)) + 운영 의존성 + `data/spots.json`, 비루트 사용자 실행 |
 
 ## nginx 책임
 
@@ -73,7 +71,7 @@ git push main
 | 캐시 | `/assets/*`(해시 파일명) 1년 immutable, `index.html`은 no-cache |
 | 압축 | gzip (text, css, js, json, svg) |
 | 보안 헤더 | `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, HSTS(HTTPS 확정 후) |
-| HTTP → HTTPS | 80은 certbot 확인 경로만 응답하고 나머지는 301 |
+| HTTP → HTTPS | HTTPS를 붙일 때만 (런북 05) |
 
 ## 환경 변수
 
@@ -83,9 +81,6 @@ git push main
 | `NODE_ENV` | api | `development` | `production`이면 pino JSON 로그 |
 | `LOG_LEVEL` | api | `info` | pino 로그 수준 |
 | `DATA_PATH` | api | `./data/spots.json` | 관광지 데이터 경로 (작업 디렉터리 기준) |
-| `APP_VERSION` | api (이미지 빌드 인자 `ARG` → `ENV`) | `dev` | `/api/health`의 `version`. CI가 git SHA를 `--build-arg`로 주입 |
-| `IMAGE_TAG` | VM `.env` | `latest` | 배포할 이미지 태그 (롤백 시 변경) |
-| `GHCR_OWNER` | VM `.env` | — | GHCR 계정명 (소문자) |
-| `DOMAIN` | VM `.env` | — | 예: `cheongdo-course.koreacentral.cloudapp.azure.com` |
+| `APP_VERSION` | api (이미지 빌드 인자 `ARG` → `ENV`) | `dev` | `/api/health`의 `version`. `infra/compose.yml`이 `APP_VERSION` 환경 변수(배포 시 git 짧은 SHA)를 빌드 인자로 넘김 |
 
-비밀 값(SSH 키 등)은 GitHub Secrets에만 두고 저장소에 커밋하지 않는다.
+비밀 값(SSH 개인 키 등)은 내 PC에만 두고 저장소에 커밋하지 않는다. 운영에 필요한 비밀 값은 없다 (TourAPI 키는 수집 도구용으로 내 PC `.env`에만).

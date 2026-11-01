@@ -1,5 +1,7 @@
 # 런북 05 — HTTPS (Let's Encrypt · certbot)
 
+> **선택 단계.** 이번 배포는 HTTP(런북 04)로 마무리한다. 이 런북은 GHCR 이미지를 쓰던 예전 운영 compose 기준으로 쓰여 있으므로, 진행하려면 `infra/compose.yml`(VM에서 빌드)에 맞게 2 · 4단계를 고친 뒤 따라 한다 (Claude에게 요청).
+
 ## 이번에 배울 것
 
 | 개념 | 한 줄 정의 |

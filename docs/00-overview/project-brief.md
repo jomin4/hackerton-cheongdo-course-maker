@@ -23,7 +23,7 @@
 | 조건 선택 → 하루 일정 → 장소 상세 | LLM 기반 추천 |
 | URL로 코스 공유 | 데이터베이스, 로그인, 리뷰·사진 업로드 |
 | 로딩·빈 결과·오류 상태 화면 | 지도 표시, 실시간 교통 |
-| Azure VM 운영 배포 + HTTPS + CI/CD | 다중 서버, 오토스케일 |
+| Azure VM 운영 배포 (VM에서 소스 빌드, HTTPS는 선택) | 다중 서버, 오토스케일 |
 
 자세한 기능 목록은 [`../01-product/mvp-spec.md`](../01-product/mvp-spec.md).
 
@@ -46,7 +46,7 @@
 
 ## 기술 스택 요약
 
-React + Vite + TypeScript + Tailwind / Express + TypeScript / nginx + Docker Compose / Azure VM (Ubuntu 24.04) / GitHub Actions + GHCR / Let's Encrypt.
+React + Vite + TypeScript + Tailwind / Express + TypeScript / nginx + Docker Compose / Azure VM (Ubuntu 24.04) / 배포는 VM에서 소스 빌드 (CI/CD · 레지스트리 없음).
 전체 표와 선택 이유는 [`decisions/0001-tech-stack.md`](decisions/0001-tech-stack.md).
 
 ## 주요 링크
