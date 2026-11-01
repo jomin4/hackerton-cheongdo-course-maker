@@ -62,7 +62,7 @@ APP_VERSION=$(git rev-parse --short HEAD) docker compose -f infra/compose.yml up
 
 > 서버에서 빌드하므로 롤백도 빌드 시간(몇 분)이 걸린다. 근본 수정은 `git revert` → PR → 머지 → 런북 04의 "다시 배포".
 
-롤백에 걸린 시간을 재서 learning-log에 기록한다 (목표: 2분 이내).
+롤백에 걸린 시간을 재 본다 (서버에서 다시 빌드하므로 몇 분).
 
 ### 5. 비용 관리
 

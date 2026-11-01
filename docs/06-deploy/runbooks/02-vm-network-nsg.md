@@ -61,7 +61,7 @@ az vm create `
 - `--nsg-rule NONE`: 기본 규칙을 만들지 않고 아래에서 직접 만든다 (무엇이 열려 있는지 정확히 알기 위해).
 - `Ubuntu2404` 별칭이 없다고 나오면 `az vm image list --publisher Canonical --offer ubuntu-24_04-lts --all -o table`로 이미지 URN을 찾아 쓴다.
 
-출력의 `publicIpAddress`, `fqdn`을 learning-log에 적는다.
+출력의 `publicIpAddress`, `fqdn`을 확인해 둔다 (런북 04에서 접속 주소로 쓴다).
 
 ### 4. NSG 규칙
 

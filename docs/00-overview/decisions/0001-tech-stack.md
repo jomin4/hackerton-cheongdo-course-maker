@@ -27,7 +27,7 @@
 | 컨테이너 | Docker + Docker Compose (web · api 컨테이너 2개) |
 | 클라우드 | Azure Virtual Machine, Ubuntu 24.04 LTS, Korea Central |
 | 네트워크 | 공용 IP + DNS 이름 레이블, NSG (80 · 443 공개, 22는 내 IP만) |
-| HTTPS | Let's Encrypt (certbot) |
+| HTTPS | Let's Encrypt (certbot) — 도메인을 붙일 때 추가 (현재 배포는 HTTP) |
 | 이미지 저장소 | ~~GitHub Container Registry (GHCR)~~ → 2026-11-01: 쓰지 않음. VM에서 소스를 빌드 |
 | CI/CD | ~~GitHub Actions — 테스트 → 빌드 · 푸시 → SSH 배포~~ → 2026-11-01: 쓰지 않음. Terraform(`infra/terraform`)으로 VM을 만들고 cloud-init이 소스를 빌드 |
 
