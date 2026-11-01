@@ -20,6 +20,7 @@
 | 12 | plan-day | 2026-11-01 | 2026-11-01 | 0 | ☑ | [#16](https://github.com/jomin4/hackerton-hackerground/pull/16) |
 | 13 | api-v2 | 2026-11-01 | 2026-11-01 | 0 | ☑ | [#17](https://github.com/jomin4/hackerton-hackerground/pull/17) |
 | 14 | web-home-v2 | 2026-11-01 | 2026-11-01 | 1 | ☑ | [#18](https://github.com/jomin4/hackerton-hackerground/pull/18) |
+| 15 | web-course-timeline | 2026-11-01 | 2026-11-01 | 0 | ☑ | [#19](https://github.com/jomin4/hackerton-hackerground/pull/19) |
 
 ## 기록 양식
 
@@ -203,3 +204,9 @@
 - 리뷰 지적 사항 (프롬프트 쪽 실수): "끝이 범위 안이면 유지" 규칙과 "시작 14:00 → 끝 17:00" 예시가 서로 맞지 않았음(19:00은 14:00 시작에도 유효). Copilot이 충돌을 보고하고 예시를 따랐음 → 규칙(유지)이 맞다고 정해 수정 프롬프트로 고침
 - 리뷰에서 확인: `todayInSeoul`이 UTC+9 고정 계산, 공유 URL을 직접 이어 붙여 `%3A` · `%2C` 없음. 브라우저 확인은 결과 · 상세 화면이 아직 v1 export(`HOURS`, `TRAVEL_MINUTES`)를 import해 앱 전체가 뜨지 않아 16 이후로 미룸
 - 해커톤용으로 저장할 표현: "규칙과 예시를 같이 줄 때는 예시가 규칙을 따르는지 기준 계산으로 먼저 확인"
+
+### 15 — web-course-timeline (2026-11-01)
+
+- 소요: Copilot CLI 1차 5분 59초(AI 크레딧 3.5), 재시도 0회
+- 결과: 결과 · 홈 · lib 테스트 33개 통과, eslint · prettier. 남은 타입 오류 16개는 SpotPage(16 대상)뿐
+- 리뷰: 코드 검사만 하고 머지. 브라우저 확인(타임라인 · 사진 · 390px)은 SpotPage가 v1 export를 import해 앱이 뜨지 않아 16 머지 직전에 화면 전체를 함께 확인
