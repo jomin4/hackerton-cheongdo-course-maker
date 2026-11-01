@@ -60,6 +60,24 @@ export function Car(props: IconProps) {
   );
 }
 
+export function Utensils(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M7 3v7m-3-7v4a3 3 0 0 0 6 0V3m-3 7v11" />
+      <path d="M16 3v18m0-18c3 2 4 5 4 9h-4" />
+    </IconBase>
+  );
+}
+
+export function Coffee(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M4 8h13v7a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8Z" />
+      <path d="M17 10h1a3 3 0 0 1 0 6h-2M7 3v2m4-2v2" />
+    </IconBase>
+  );
+}
+
 export function Link(props: IconProps) {
   return (
     <IconBase {...props}>

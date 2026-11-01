@@ -1,24 +1,28 @@
-import { ZONE_LABELS, type Course } from '@cheongdo/shared';
+import { toMinutes, type DayPlan } from '@cheongdo/shared';
 
-import { formatDuration } from '../../lib/format.js';
+import { formatDuration, formatTimeRange } from '../../lib/format.js';
 
-export function CourseSummary({ course }: { course: Course }) {
-  const { budgetMinutes, stayMinutes, travelMinutes, slackMinutes, totalMinutes } = course.totals;
+export function CourseSummary({ plan }: { plan: DayPlan }) {
+  const { stayMinutes, travelMinutes, slackMinutes, startAt, endAt, visitCount } = plan.totals;
+  const selectedMinutes = toMinutes(plan.conditions.end) - toMinutes(plan.conditions.start);
+  const mealCount = plan.items.filter((item) => item.type === 'meal').length;
   const barWidth = (minutes: number) =>
-    budgetMinutes > 0 ? `${(minutes / budgetMinutes) * 100}%` : '0%';
+    selectedMinutes > 0 ? `${(minutes / selectedMinutes) * 100}%` : '0%';
 
   return (
     <section
       aria-labelledby="course-summary-heading"
-      className="rounded-card border border-line bg-surface p-5"
+      className="min-w-0 rounded-card border border-line bg-surface p-5"
     >
       <h2 className="text-sm font-semibold" id="course-summary-heading">
-        코스 요약
+        일정 요약
       </h2>
-      <p className="mt-4 font-mono text-3xl font-semibold tracking-tight">
-        {formatDuration(totalMinutes)}
+      <p className="mt-4 break-words font-mono text-3xl font-semibold tracking-tight">
+        {formatTimeRange(startAt, endAt)}
       </p>
-      <p className="mt-1 text-sm text-muted">예산 {formatDuration(budgetMinutes)}</p>
+      <p className="mt-1 text-sm text-muted">
+        선택한 시간 {formatTimeRange(plan.conditions.start, plan.conditions.end)}
+      </p>
 
       <div
         aria-label={`체류 ${formatDuration(stayMinutes)}, 이동 ${formatDuration(travelMinutes)}, 여유 ${formatDuration(slackMinutes)}`}
@@ -45,12 +49,8 @@ export function CourseSummary({ course }: { course: Course }) {
       </ul>
 
       <div className="mt-6 border-t border-line-soft pt-4 text-sm">
-        <p>
-          장소 <span className="font-medium">{course.stops.length}곳</span>
-        </p>
-        <p className="mt-2 text-muted">
-          권역 {course.zones.map((zone) => ZONE_LABELS[zone]).join(' · ')}
-        </p>
+        <p>관광 {visitCount}곳</p>
+        <p className="mt-2">{mealCount > 0 ? `식사 ${mealCount}번` : '식사 없음'}</p>
       </div>
     </section>
   );
