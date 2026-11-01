@@ -16,11 +16,11 @@ import type {
   ExcludedSpot,
   Meal,
   Spot,
-  SpotSummary,
   Tag,
   Weekday,
 } from '@cheongdo/shared';
 import { fitVisit } from './opening.js';
+import { toSpotSummary } from './spot-summary.js';
 import { haversineKm, travelMinutes } from './travel.js';
 
 const TAG_MATCH_SCORE = 10;
@@ -108,21 +108,6 @@ function travelLegFrom(position: Spot | undefined, destination: Spot): TravelLeg
 
 function isOpenOn(spot: Spot, weekday: Weekday): boolean {
   return spot.hours.days[weekday].length > 0;
-}
-
-function createSpotSummary(spot: Spot): SpotSummary {
-  const image = spot.images[0];
-  return {
-    id: spot.id,
-    kind: spot.kind,
-    name: spot.name,
-    summary: spot.summary,
-    zone: spot.zone,
-    tags: [...spot.tags],
-    stayMinutes: spot.stayMinutes,
-    location: { ...spot.location },
-    ...(image ? { image: { ...image } } : {}),
-  };
 }
 
 function addNotice(plan: MutablePlan, notice: string): void {
@@ -330,7 +315,7 @@ function appendPlanItem(
     order: plan.items.length + 1,
     type,
     ...(meal ? { meal } : {}),
-    spot: createSpotSummary(spot),
+    spot: toSpotSummary(spot),
     travelMinutes: leg.travelMinutes,
     waitMinutes,
     distanceKm: Math.round(leg.distanceKm * DISTANCE_PRECISION) / DISTANCE_PRECISION,
@@ -606,7 +591,7 @@ function createDayPlan(
   const excluded: ExcludedSpot[] = candidates
     .filter(({ spot }) => !selectedIds.has(spot.id))
     .map(({ spot }) => ({
-      spot: createSpotSummary(spot),
+      spot: toSpotSummary(spot),
       reason: isOpenOn(spot, weekday) ? 'NOT_ENOUGH_TIME' : 'CLOSED_ON_DAY',
     }));
   const stayMinutes = selectedPlan.items.reduce(

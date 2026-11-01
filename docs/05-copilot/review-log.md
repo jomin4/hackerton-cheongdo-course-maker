@@ -18,6 +18,7 @@
 | 10 | tourapi-tools | 2026-10-31 | 2026-10-31 | 0 | ☑ | [#12](https://github.com/jomin4/hackerton-hackerground/pull/12) |
 | 11 | shared-v2 | 2026-10-31 | 2026-10-31 | 1 | ☑ | [#14](https://github.com/jomin4/hackerton-hackerground/pull/14) |
 | 12 | plan-day | 2026-11-01 | 2026-11-01 | 0 | ☑ | [#16](https://github.com/jomin4/hackerton-hackerground/pull/16) |
+| 13 | api-v2 | 2026-11-01 | 2026-11-01 | 0 | ☑ | [#17](https://github.com/jomin4/hackerton-hackerground/pull/17) |
 
 ## 기록 양식
 
@@ -187,3 +188,9 @@
 - 리뷰에서 확인: 실제 `spots.json`에 무작위 쿼리 2,000개(날짜 · 시각 · 동행 · 관심사 · exclude)를 돌려 기준 구현과 응답 JSON이 **2,000개 모두 같음**, 숫자 리터럴은 이름 붙인 상수뿐(`TAG_MATCH_SCORE` 등), `Date` · `Math.random` 없음, 기대값이 테스트에 리터럴로 들어감
 - Copilot이 스스로 정한 것: 저녁 도달 가능성 계산에서 이미 간 식당을 뺌 (규칙 의도와 같은 방향이라 수용)
 - 해커톤용으로 저장할 표현: "알고리즘 프롬프트는 기대값을 사람이 따로 계산해 고정하고, 실제 데이터로 기준 구현과 차등 비교"
+
+### 13 — api-v2 (2026-11-01)
+
+- 소요: Copilot CLI 1차 4분 25초(AI 크레딧 2.57), 재시도 0회
+- 결과: 완료 기준 통과 — api 테스트 51개, api 타입 오류 0, eslint · prettier · `build`. web 타입 오류 48 · 테스트 8개 실패는 14~16 대상
+- 리뷰에서 확인: 빌드 결과(`dist/index.js`)를 실제 `spots.json`(43곳)으로 띄워 `/api/course` 200 + `Cache-Control`, v1 `hours` 쿼리 · 2026-02-30 → 한국어 400(첫 오류는 날짜), `kind=bar` 400, 없는 장소 404 '장소를 찾을 수 없어요.', 식당(산유화) 상세의 nearby가 거리순 관광지(운문사 · 대비사 · 삼계리계곡). `toSpotSummary`를 한 곳으로 모은 뒤에도 기준 구현 차등 비교 2,000/2,000 같음
