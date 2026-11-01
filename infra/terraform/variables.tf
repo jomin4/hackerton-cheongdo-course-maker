@@ -62,7 +62,7 @@ variable "admin_cidr" {
 variable "repo_url" {
   description = "VM이 clone 할 저장소 (공개 저장소)"
   type        = string
-  default     = "https://github.com/jomin4/hackerton-hackerground.git"
+  default     = "https://github.com/jomin4/hackerton-cheongdo-course-maker.git"
 }
 
 variable "repo_ref" {

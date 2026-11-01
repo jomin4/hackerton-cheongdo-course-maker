@@ -43,7 +43,7 @@ run "vm_boots_and_deploys_the_app" {
   assert {
     condition = alltrue([
       for s in [
-        "git clone --branch main https://github.com/jomin4/hackerton-hackerground.git /opt/cheongdo-course/app",
+        "git clone --branch main https://github.com/jomin4/hackerton-cheongdo-course-maker.git /opt/cheongdo-course/app",
         "docker compose -f infra/compose.yml up -d --build",
         "fallocate -l 2G /swapfile",
         "usermod -aG docker azureuser",
