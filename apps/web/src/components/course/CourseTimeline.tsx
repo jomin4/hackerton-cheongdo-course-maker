@@ -89,7 +89,7 @@ function PlanCard({ courseQuery, item }: { courseQuery: string; item: DayPlanIte
         <figure>
           <img
             alt={item.spot.image.alt}
-            className="aspect-video w-full object-cover"
+            className="h-44 w-full object-cover sm:h-56"
             loading="lazy"
             src={item.spot.image.url}
           />

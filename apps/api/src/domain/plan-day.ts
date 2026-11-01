@@ -185,6 +185,7 @@ function canReachMealWindow(
   pendingMeal: Meal | undefined,
   restaurants: Spot[],
   usedIds: Set<string>,
+  endMinute: number,
 ): boolean {
   if (!pendingMeal) {
     return true;
@@ -198,7 +199,8 @@ function canReachMealWindow(
     return false;
   }
 
-  return visit.leaveMinute + nearestTravel <= toMinutes(MEAL_WINDOWS[pendingMeal].to);
+  const mealDeadline = Math.min(toMinutes(MEAL_WINDOWS[pendingMeal].to), endMinute - MEAL_MINUTES);
+  return visit.leaveMinute + nearestTravel <= mealDeadline;
 }
 
 function canVisitBeforeDinner(spot: Spot, weekday: Weekday, dinnerPending: boolean): boolean {
@@ -226,7 +228,7 @@ function getEligibleTouristVisits(
     )
     .flatMap((candidate) => {
       const visit = planTouristVisit(candidate, plan.position, plan.minute, weekday, endMinute);
-      return visit && canReachMealWindow(visit, pendingMeal, restaurants, plan.usedIds)
+      return visit && canReachMealWindow(visit, pendingMeal, restaurants, plan.usedIds, endMinute)
         ? [visit]
         : [];
     });
@@ -268,7 +270,7 @@ function chooseTouristVisit(
     if (
       startingVisit &&
       canVisitBeforeDinner(startingCandidate.spot, weekday, dinnerPending) &&
-      canReachMealWindow(startingVisit, pendingMeal, restaurants, plan.usedIds)
+      canReachMealWindow(startingVisit, pendingMeal, restaurants, plan.usedIds, endMinute)
     ) {
       return startingVisit;
     }

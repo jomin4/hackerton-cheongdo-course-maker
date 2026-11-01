@@ -179,9 +179,26 @@ describe('CoursePage', () => {
     expect(screen.getByText('관광 3곳')).toBeTruthy();
     expect(screen.getByText('식사 2번')).toBeTruthy();
 
+    const orderedSections = [
+      screen.getByRole('region', { name: '일정 요약' }),
+      screen.getByRole('status', { name: '일정 안내' }),
+      screen.getByRole('region', { name: '방문 순서' }),
+      screen.getByRole('region', { name: '이번 일정에서 빠진 장소' }),
+      screen.getByText(/이동 시간은 직선거리에 도로 보정을 더해 어림한 값이에요/),
+    ];
+    for (let index = 0; index < orderedSections.length - 1; index += 1) {
+      expect(
+        orderedSections[index]!.compareDocumentPosition(orderedSections[index + 1]!) &
+          Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
+    }
+
     const image = screen.getByRole('img', { name: '테스트 사진' });
     expect(image.getAttribute('src')).toBe('https://example.com/photo.jpg');
     expect(image.getAttribute('loading')).toBe('lazy');
+    expect(image.className.split(/\s+/)).toEqual(
+      expect.arrayContaining(['h-44', 'sm:h-56', 'object-cover']),
+    );
     expect(screen.getByText('ⓒ한국관광공사')).toBeTruthy();
     expect(screen.getAllByRole('img', { name: /테스트 사진/ })).toHaveLength(1);
     for (const name of ['둘째 관광지', '점심 식당', '쉬어 가는 카페', '셋째 관광지']) {
@@ -322,6 +339,11 @@ describe('CoursePage', () => {
     expect(await screen.findByText('조건을 다시 확인해 주세요')).toBeTruthy();
     expect(screen.getByText('07:00').className).toContain('text-accent-text');
     expect(screen.getByText('family').className).not.toContain('text-accent-text');
+    expect(
+      screen.getByText(
+        '방문 날짜(오늘 이후), 시작 08:00~14:00, 끝은 시작 3시간 뒤~21:00(30분 단위), 동행, 관심사를 확인해 주세요.',
+      ),
+    ).toBeTruthy();
     expect(screen.getByRole('link', { name: '조건 다시 고르기' }).getAttribute('href')).toBe(
       '/?date=2026-11-07&start=07:00&end=19:00&with=family&tags=nature',
     );

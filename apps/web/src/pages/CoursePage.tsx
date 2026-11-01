@@ -129,7 +129,7 @@ export function CoursePage() {
         </Container>
       </section>
 
-      <Container className="flex flex-wrap gap-6 py-8 sm:py-10">
+      <Container className="grid grid-cols-1 gap-6 py-8 sm:py-10 md:grid-cols-[minmax(0,1.75fr)_minmax(280px,1fr)] md:items-start">
         {state.status === 'loading' ? (
           <CourseSkeleton />
         ) : state.status === 'error' ? (
@@ -142,7 +142,10 @@ export function CoursePage() {
           <EmptyCourse plan={state.data} />
         ) : (
           <>
-            <div className="order-2 w-full min-w-0 flex-[999_1_560px] md:order-1">
+            <div className="order-1 min-w-0 md:col-start-2 md:row-start-1">
+              <CourseSummary plan={state.data} />
+            </div>
+            <div className="order-2 min-w-0 md:col-start-1 md:row-start-1">
               {state.data.notices.length > 0 && (
                 <div
                   aria-label="일정 안내"
@@ -158,16 +161,13 @@ export function CoursePage() {
               )}
               <CourseTimeline plan={state.data} />
             </div>
-            <aside className="order-1 w-full min-w-0 flex-[1_1_320px] md:order-2">
-              <div className="space-y-4">
-                <CourseSummary plan={state.data} />
-                <ExcludedSpots plan={state.data} />
-                <p className="rounded-card border border-line bg-surface-2 p-4 text-sm leading-6 text-muted">
-                  이동 시간은 직선거리에 도로 보정을 더해 어림한 값이에요. 실제 교통 상황에 따라
-                  달라질 수 있어요.
-                </p>
-              </div>
-            </aside>
+            <div className="order-3 min-w-0 space-y-4 md:col-start-2 md:row-start-2">
+              <ExcludedSpots plan={state.data} />
+              <p className="rounded-card border border-line bg-surface-2 p-4 text-sm leading-6 text-muted">
+                이동 시간은 직선거리에 도로 보정을 더해 어림한 값이에요. 실제 교통 상황에 따라
+                달라질 수 있어요.
+              </p>
+            </div>
           </>
         )}
       </Container>
@@ -239,6 +239,10 @@ function ErrorState({
           {renderQuery(search, error.details)}
         </code>
         <p className="mt-3 text-sm leading-6 text-ink-2">{error.message}</p>
+        <p className="mt-2 text-sm leading-6 text-muted">
+          방문 날짜(오늘 이후), 시작 08:00~14:00, 끝은 시작 3시간 뒤~21:00(30분 단위), 동행,
+          관심사를 확인해 주세요.
+        </p>
         <Link
           className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-ink px-5 text-sm font-medium text-white hover:bg-ink-2"
           to={`/${search}`}
