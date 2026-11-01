@@ -1,7 +1,10 @@
+// @vitest-environment jsdom
+
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { fetchJson } from '../lib/api.js';
 import { HomePage } from './HomePage.js';
 
 vi.mock('../lib/api.js', () => ({
@@ -28,10 +31,67 @@ function LocationOutput() {
 describe('HomePage', () => {
   afterEach(() => {
     cleanup();
+    vi.useRealTimers();
   });
 
   beforeEach(() => {
+    vi.useFakeTimers({ now: new Date('2026-11-06T03:00:00Z'), toFake: ['Date'] });
     vi.clearAllMocks();
+  });
+
+  it('uses the Seoul date and offers start and end times for a full day', () => {
+    renderHome();
+
+    expect(screen.getByLabelText('방문 날짜').getAttribute('min')).toBe('2026-11-06');
+    expect(screen.getByLabelText('시작').querySelectorAll('option')).toHaveLength(13);
+    expect(screen.getByLabelText('끝').querySelector('option')?.value).toBe('13:00');
+    expect(fetchJson).toHaveBeenCalledWith('/api/spots?kind=spot');
+  });
+
+  it('keeps the selected end time and updates the shared URL when it remains available', () => {
+    renderHome();
+
+    fireEvent.change(screen.getByLabelText('시작'), { target: { value: '14:00' } });
+
+    expect((screen.getByLabelText('끝') as HTMLSelectElement).value).toBe('19:00');
+    expect(
+      screen.getByText(
+        '/course?date=2026-11-06&start=14:00&end=19:00&with=family&tags=nature,experience',
+      ),
+    ).toBeTruthy();
+    expect(screen.getByLabelText('끝').querySelector('option')?.value).toBe('17:00');
+  });
+
+  it('moves the end time to the first available option when the selected end is unavailable', () => {
+    renderHome();
+
+    fireEvent.change(screen.getByLabelText('끝'), { target: { value: '13:00' } });
+    fireEvent.change(screen.getByLabelText('시작'), { target: { value: '11:00' } });
+
+    expect((screen.getByLabelText('끝') as HTMLSelectElement).value).toBe('14:00');
+  });
+
+  it('shows the selected date and correct defaults from search parameters', () => {
+    renderHome('/?date=2026-11-07&with=solo&tags=photo,nature');
+
+    expect(screen.getByText(/11월 7일\(토\).*10:00–19:00/)).toBeTruthy();
+    expect(screen.getByRole('button', { name: '혼자' }).getAttribute('aria-pressed')).toBe('true');
+    expect(
+      screen.getByText('/course?date=2026-11-07&start=10:00&end=19:00&with=solo&tags=nature,photo'),
+    ).toBeTruthy();
+  });
+
+  it('returns an empty or past date selection to today', () => {
+    renderHome();
+    const dateInput = screen.getByLabelText('방문 날짜');
+
+    fireEvent.change(dateInput, { target: { value: '2026-10-31' } });
+
+    expect((dateInput as HTMLInputElement).value).toBe('2026-11-06');
+
+    fireEvent.change(dateInput, { target: { value: '' } });
+
+    expect((dateInput as HTMLInputElement).value).toBe('2026-11-06');
   });
 
   it('disables course creation when every interest is cleared', () => {
@@ -49,22 +109,6 @@ describe('HomePage', () => {
     expect(screen.getByText('관심사를 하나 이상 골라주세요')).toBeTruthy();
   });
 
-  it('updates the shared URL preview as interests change', () => {
-    renderHome();
-
-    fireEvent.click(screen.getByRole('button', { name: '자연' }));
-
-    expect(screen.getByText('/course?hours=4&with=family&tags=experience')).toBeTruthy();
-  });
-
-  it('prefills conditions from URL parameters', () => {
-    renderHome('/?hours=6&with=solo&tags=photo,nature');
-
-    expect(screen.getByRole('button', { name: /6시간/ }).getAttribute('aria-pressed')).toBe('true');
-    expect(screen.getByRole('button', { name: '혼자' }).getAttribute('aria-pressed')).toBe('true');
-    expect(screen.getByText('/course?hours=6&with=solo&tags=nature,photo')).toBeTruthy();
-  });
-
   it('navigates to the selected course URL', () => {
     renderHome();
 
@@ -72,7 +116,7 @@ describe('HomePage', () => {
     fireEvent.click(within(conditions).getByRole('button', { name: '코스 만들기' }));
 
     expect(screen.getByTestId('location').textContent).toBe(
-      '/course?hours=4&with=family&tags=nature,experience',
+      '/course?date=2026-11-06&start=10:00&end=19:00&with=family&tags=nature,experience',
     );
   });
 });
