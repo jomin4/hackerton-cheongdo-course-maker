@@ -47,13 +47,13 @@
 ## 배포 방식
 
 ```
-내 PC: git push main
-VM:    cd /opt/cheongdo-course/app && git pull
-       APP_VERSION=$(git rev-parse --short HEAD) docker compose -f infra/compose.yml up -d --build
-       curl http://localhost/api/health      # version = 배포한 커밋
+처음:  infra/terraform → terraform apply
+       → 리소스 그룹 · VNet · NSG · 공용 IP · VM 생성
+       → VM 첫 부팅(cloud-init): 스왑 · Docker 설치 → git clone → compose.yml 빌드 · 실행
+이후:  VM에서 git pull → APP_VERSION=$(git rev-parse --short HEAD) docker compose -f infra/compose.yml up -d --build
 ```
 
-CI/CD와 이미지 레지스트리는 쓰지 않는다 (2026-11-01 결정, 한 번 배포하고 마무리). 롤백은 VM에서 이전 커밋으로 `git checkout` 후 같은 명령으로 다시 빌드한다 ([런북 07](../06-deploy/runbooks/07-monitoring-rollback.md)).
+인프라는 Terraform 코드([`infra/terraform`](../../infra/terraform/README.md))로 정의하고, CI/CD와 이미지 레지스트리는 쓰지 않는다 (2026-11-01 결정). 롤백은 VM에서 이전 커밋으로 `git checkout` 후 같은 명령으로 다시 빌드한다 ([런북 07](../06-deploy/runbooks/07-monitoring-rollback.md)).
 
 ## 이미지
 

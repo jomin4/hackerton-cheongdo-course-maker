@@ -8,3 +8,6 @@ coverage
 tools
 .claude
 docs
+infra/terraform
+**/.terraform
+*.tfstate*

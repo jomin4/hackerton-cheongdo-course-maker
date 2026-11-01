@@ -8,7 +8,12 @@
 - [ ] `spots.json` 변경 시 출처 · 확인 날짜(`checkedAt`) 갱신
 - [ ] 배포할 커밋이 `main`에 푸시됨 (VM은 GitHub에서 `git clone` · `git pull`로 받는다)
 
-## 배포 중 (VM)
+## 배포 중 (Terraform)
+
+- [ ] `terraform test` 통과, `terraform plan`에 만들어질 리소스가 의도대로 (리소스 그룹 · VNet · 서브넷 · NSG · 연결 · 공용 IP · NIC · VM)
+- [ ] `terraform apply` 후 `terraform output -raw bootstrap_log_command`로 "cheongdo bootstrap done" 확인
+
+## 다시 배포 (VM)
 
 - [ ] `git log --oneline -1`이 배포하려는 커밋
 - [ ] `APP_VERSION=$(git rev-parse --short HEAD) docker compose -f infra/compose.yml up -d --build` 성공

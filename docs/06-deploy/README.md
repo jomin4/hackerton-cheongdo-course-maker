@@ -3,7 +3,9 @@
 > 이 영역은 **개발자 본인이 직접** 실행한다. Claude는 런북 작성과 막혔을 때의 디버깅을 돕는다.
 > 각 런북은 "따라 하는 가이드"이자 "Azure 학습 노트"다.
 >
-> **배포 방식 (2026-11-01 결정)**: Azure 포털 · CLI로 VM을 직접 만들고, VM에서 저장소를 `git clone`해 `infra/compose.yml`로 빌드 · 실행한다. Terraform · 컨테이너 레지스트리 · GitHub Actions(CI/CD)는 쓰지 않고 **한 번 배포하고 마무리**한다. 필수는 런북 01~04, 07의 비용 정리다.
+> **배포 방식 (2026-11-01 결정)**: [`infra/terraform`](../../infra/terraform/README.md)의 `terraform apply` 한 번으로 리소스 그룹 · 네트워크 · NSG · 공용 IP · VM을 만들고, VM이 첫 부팅 때(cloud-init) 저장소를 `git clone`해 `infra/compose.yml`로 빌드 · 실행한다. 컨테이너 레지스트리 · GitHub Actions(CI/CD)는 쓰지 않는다.
+>
+> 아래 런북 01~04는 같은 일을 포털 · CLI로 손으로 하는 방법이다. Terraform 코드가 각 단계에서 무엇을 만드는지 이해하는 학습 자료로 쓴다.
 
 ## 목표 구조
 
@@ -21,7 +23,7 @@
 | 06 | ~~[CI/CD](runbooks/06-cicd-github-actions.md)~~ | 사용하지 않음 | — | — |
 | 07 | [모니터링 · 롤백 · 비용](runbooks/07-monitoring-rollback.md) | 로그 · 지표 확인, 롤백 연습, 자동 종료 | Azure Monitor · 비용 관리 | 40분 |
 
-**순서**: 01 → 02 → 03 → 04로 서비스를 공개하고, 07에서 로그 확인 · 자동 종료 · 정리를 한다. 05(HTTPS)는 필요할 때만.
+**Terraform과 런북의 대응**: 01(리소스 그룹 · 예산) = `azurerm_resource_group` · `azurerm_consumption_budget_resource_group`, 02(VM · 네트워크 · NSG) = `main.tf`의 네트워크 · VM 리소스, 03(서버 설정) · 04(소스 배포) = `cloud-init.yaml.tftpl`, 07(자동 종료) = `azurerm_dev_test_global_vm_shutdown_schedule`. 05(HTTPS)는 필요할 때만.
 
 ## 런북 형식
 

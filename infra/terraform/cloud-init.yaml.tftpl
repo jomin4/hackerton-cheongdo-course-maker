@@ -1,0 +1,61 @@
+#cloud-config
+# 첫 부팅 때 한 번 실행된다. 진행 로그: /var/log/cheongdo-bootstrap.log
+# (Terraform templatefile: $${admin_username} 같은 중괄호 변수는 Terraform 이 채우고, bash 변수는 중괄호 없이 $VAR 로 쓴다)
+package_update: true
+packages:
+  - git
+  - ca-certificates
+  - curl
+  - unattended-upgrades
+
+write_files:
+  - path: /etc/docker/daemon.json
+    permissions: '0644'
+    content: |
+      {
+        "log-driver": "json-file",
+        "log-opts": { "max-size": "10m", "max-file": "3" }
+      }
+  - path: /usr/local/bin/cheongdo-bootstrap.sh
+    permissions: '0755'
+    content: |
+      #!/usr/bin/env bash
+      set -euxo pipefail
+      exec > >(tee -a /var/log/cheongdo-bootstrap.log) 2>&1
+
+      timedatectl set-timezone Asia/Seoul
+
+      # 스왑 2GB — 1GiB VM 에서 npm 설치 · vite 빌드가 멈추지 않게
+      if ! swapon --show | grep -q /swapfile; then
+        fallocate -l 2G /swapfile
+        chmod 600 /swapfile
+        mkswap /swapfile
+        swapon /swapfile
+        echo '/swapfile none swap sw 0 0' >> /etc/fstab
+      fi
+
+      # Docker 공식 apt 저장소
+      install -m 0755 -d /etc/apt/keyrings
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+      chmod a+r /etc/apt/keyrings/docker.asc
+      echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" \
+        > /etc/apt/sources.list.d/docker.list
+      apt-get update
+      DEBIAN_FRONTEND=noninteractive apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+      systemctl enable --now docker
+      usermod -aG docker ${admin_username}
+
+      # 소스 받기 → 빌드 · 실행 (infra/compose.yml: web 80 공개, api 3000 내부)
+      mkdir -p /opt/cheongdo-course
+      if [ ! -d /opt/cheongdo-course/app/.git ]; then
+        git clone --branch ${repo_ref} ${repo_url} /opt/cheongdo-course/app
+      fi
+      cd /opt/cheongdo-course/app
+      APP_VERSION=$(git rev-parse --short HEAD) docker compose -f infra/compose.yml up -d --build
+
+      # 다시 배포는 관리자 계정으로 하므로 소유자를 넘긴다 (git 은 소유자가 다르면 거부)
+      chown -R ${admin_username}:${admin_username} /opt/cheongdo-course
+      echo "cheongdo bootstrap done: $(date -Iseconds)"
+
+runcmd:
+  - [/usr/local/bin/cheongdo-bootstrap.sh]
