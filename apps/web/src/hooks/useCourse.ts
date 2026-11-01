@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
-import type { Course } from '@cheongdo/shared';
+import type { DayPlan } from '@cheongdo/shared';
 
 import { fetchJson } from '../lib/api.js';
 
 export type CourseState =
   | { status: 'loading'; data: null; error: null }
-  | { status: 'success'; data: Course; error: null }
+  | { status: 'success'; data: DayPlan; error: null }
   | { status: 'error'; data: null; error: Error };
 
 const loadingState: CourseState = { status: 'loading', data: null, error: null };
@@ -30,7 +30,7 @@ export function useCourse(searchOverride?: string, enabled = true, retryCount = 
     const controller = new AbortController();
     let active = true;
 
-    void fetchJson<Course>(`/api/course${search}`, controller.signal)
+    void fetchJson<DayPlan>(`/api/course${search}`, controller.signal)
       .then((data) => {
         if (active)
           setResult({
